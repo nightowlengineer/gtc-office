@@ -1,12 +1,15 @@
 define(
-		[ 'typeahead', 'bloodhound', 'handlebars', 'text!templates/header.html' ],
-		function(Typeahead, Bloodhound, Handlebars, headerTemplate) {
+		[ 'bootstrap', 'marionette', 'typeahead', 'bloodhound', 'handlebars',
+				'text!templates/header.html' ],
+		function(bootstrap, Marionette, Typeahead, Bloodhound, Handlebars,
+				headerTemplate) {
 
-			var HeaderView = Marionette.ItemView
+			return Marionette.ItemView
 					.extend({
 						template : headerTemplate,
 
-						initialize : function() {
+						onShow : function() {
+							$('.dropdown-toggle').dropdown();
 							var membersBloodhound = new Bloodhound(
 									{
 										datumTokenizer : Bloodhound.tokenizers.obj
@@ -38,6 +41,5 @@ define(
 												}
 											});
 						}
-					});
-			return HeaderView;
+					})
 		});

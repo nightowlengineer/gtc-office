@@ -1,4 +1,5 @@
-define([ "marionette", "jquery-ui", "office" ], function(Marionette, OfficeLayout) {
+define([ "marionette", "views/header", "views/footer" ], function(Marionette,
+		HeaderView, FooterView) {
 	var GtcOffice = new Marionette.Application();
 
 	GtcOffice.navigate = function(route, options) {
@@ -26,18 +27,20 @@ define([ "marionette", "jquery-ui", "office" ], function(Marionette, OfficeLayou
 		}
 	};
 
-	GtcOffice.on("before:start", function() {
+	GtcOffice.on("start", function() {
 		var RegionContainer = Marionette.LayoutView.extend({
-			el : "#app-container",
+			el : "#appWrapper",
 
 			regions : {
 				header : "#header",
-				main : "#main-region",
-				dialog : "#dialog-region"
+				footer : "#footer",
+				content : "#content",
+				dialog : "#dialog"
 			}
-		});
 
+		});
 		GtcOffice.regions = new RegionContainer();
+
 		GtcOffice.regions.dialog.onShow = function(view) {
 			var self = this;
 			var closeDialog = function() {
@@ -57,20 +60,15 @@ define([ "marionette", "jquery-ui", "office" ], function(Marionette, OfficeLayou
 				}
 			});
 		};
-	});
 
-	GtcOffice.on("start", function() {
-		if (Backbone.history) {
-			require([ "office" ],
-					function(OfficeLayout) {
-						Backbone.history.start();
-						var officeLayout = new OfficeLayout();
-						
-						if (GtcOffice.getCurrentRoute() === "") {
-							GtcOffice.trigger("home:view");
-						}
-					});
+		this.regions.getRegion('header').show(new HeaderView());
+		this.regions.getRegion('footer').show(new FooterView());
+		Backbone.history.start();
+
+		if (GtcOffice.getCurrentRoute() === "") {
+			GtcOffice.trigger("home:view");
 		}
+
 	});
 
 	return GtcOffice;
