@@ -6,7 +6,7 @@ define([ 'marionette', 'text!templates/member/member_home.html',
 		my_template : _.template(memberHomeTemplate),
 		templateHelpers : function() {
 			return {
-				totalMembers : "1596",
+				totalMembers : this.members.length,
 				overdueMembers: "3",
 				lapsingMembers: "6",
 				openApplications : "20"
@@ -14,13 +14,16 @@ define([ 'marionette', 'text!templates/member/member_home.html',
 		},
 
 		initialize : function() {
-			this.render();
 			var that = this;
-			var members = new Members().fetch();
-			members.done(function() {
-				GtcOffice.show(new MemberTableView({
+			this.members = new Members();
+			var p = this.members.fetch();
+			p.done(function() {
+				var memberTableView = new MemberTableView({
 					collection: that.members
-				}));
+				});
+				that.render();
+				//memberTableView.render();
+				GtcOffice.showView(memberTableView);
 			});
 		},
 
