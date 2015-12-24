@@ -1,8 +1,11 @@
 <div>
 	<div id="memberHome">
-		Member home
+		<h2>Overview</h2>
 		<div id="memberStats">
-			<%= totalMembers %>
+			<h3>Total Members: <span class="label label-primary"><%= totalMembers %></span></h3>
+			<h4>Open applications: <span class="label label-success"><%= openApplications %></span></h4>
+			<h4>Lapsing: <span class="label label-warning"><%= lapsingMembers %></span></h4>
+			<h4>Overdue: <span class="label label-danger"><%= openApplications %></span></h4>
 		</div>
 	</div>
 </div>
