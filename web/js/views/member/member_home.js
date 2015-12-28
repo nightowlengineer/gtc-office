@@ -7,14 +7,14 @@ define([ 'marionette', 'text!templates/member/member_home.html',
 		templateHelpers : function() {
 			return {
 				totalMembers : this.members.length,
-				overdueMembers: "3",
-				lapsingMembers: "6",
-				openApplications : "20"
+				currentMembers: this.members.where({"status":"CURRENT"}).length,
+				lapsingMembers: this.members.where({"status":"LAPSED"}).length,
+				openApplications : this.members.where({"status":"APPLIED"}).length + this.members.where({"status":"APPROVED"}).length
 			};
 		},
 		
 		regions : {
-				memberTable : "#memberTable"
+				memberTable : "#memberTableRegion"
 		},
 
 		initialize : function() {
