@@ -2,7 +2,7 @@ define([ 'marionette', 'text!templates/member/member_home.html',
 		'collections/member_collection', 'views/member/member_table' ], function(Marionette,
 		memberHomeTemplate, Members, MemberTableView) {
 
-	return Marionette.ItemView.extend({
+	return Marionette.LayoutView.extend({
 		my_template : _.template(memberHomeTemplate),
 		templateHelpers : function() {
 			return {
@@ -12,18 +12,22 @@ define([ 'marionette', 'text!templates/member/member_home.html',
 				openApplications : "20"
 			};
 		},
+		
+		regions : {
+				memberTable : "#memberTable"
+		},
 
 		initialize : function() {
 			var that = this;
 			this.members = new Members();
 			var p = this.members.fetch();
+			
 			p.done(function() {
 				var memberTableView = new MemberTableView({
 					collection: that.members
 				});
 				that.render();
-				//memberTableView.render();
-				GtcOffice.showView(memberTableView);
+				that.memberTable.show(memberTableView);
 			});
 		},
 
