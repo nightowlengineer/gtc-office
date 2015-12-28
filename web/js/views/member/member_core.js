@@ -6,10 +6,7 @@ define([ 'marionette', 'text!templates/member/member_core.html',
 		my_template : _.template(memberCoreTemplate),
 		templateHelpers : function() {
 			return {
-				firstName : this.member.get("firstName"),
-				lastName : this.member.get("lastName"),
-				membershipNumber : this.member.get("membershipNumber"),
-				type : this.member.get("type")
+				member : this.member.attributes
 			};
 		},
 		
