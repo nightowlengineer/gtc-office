@@ -14,7 +14,8 @@ require
 				templates : 'templates',
 				bootstrap : 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min',
 				typeahead : 'libs/typeahead.jquery',
-				bloodhound : 'http://twitter.github.com/typeahead.js/releases/latest/bloodhound'
+				bloodhound : 'http://twitter.github.com/typeahead.js/releases/latest/bloodhound',
+				datatables : 'https://cdn.datatables.net/1.10.10/js/jquery.dataTables'
 			},
 			shim : {
 				underscore : {
