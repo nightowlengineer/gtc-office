@@ -10,7 +10,8 @@ define([ 'marionette', 'text!templates/member/member_tableitem.html' ],
 					return {
 						//model : this.model,
 						membershipNumber : this.model.get("membershipNumber"),
-						firstName : this.model.get("firstName")
+						firstName : this.model.get("firstName"),
+						id : this.model.id
 					};
 				},
 
