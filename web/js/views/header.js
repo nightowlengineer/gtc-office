@@ -16,8 +16,7 @@ define(
 												.whitespace('value'),
 										queryTokenizer : Bloodhound.tokenizers.whitespace,
 										remote : {
-											//url : 'https://api.dev.gtc.org.uk/member/search/%memberNumber',
-											url : 'https://localhost:8443/member/search/%memberNumber',
+											url : 'https://api.dev.gtc.org.uk/member/search/%memberNumber',
 											wildcard : '%memberNumber'
 										}
 									});

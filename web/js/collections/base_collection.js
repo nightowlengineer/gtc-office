@@ -1,7 +1,7 @@
 define([ 'backbone' ], function(Backbone) {
 
 	return Backbone.Collection.extend({
-		url : "https://localhost:8443/"
+		url : "https://api.dev.gtc.org.uk/"
 	});
 
 });
