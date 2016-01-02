@@ -21,14 +21,32 @@
 					<div class="panel-body">
 						<div class="row">
 							<div class="col-md-6">
-								<p><strong>Salutation</strong>: <%= member.salutation %></p>
+								<p><strong>Salutation</strong>: <%= salutation %></p>
 								<p><strong>First name</strong>: <%= member.firstName %></p>
 								<p><strong>Last name</strong>: <%= member.lastName %></p>
 								<p><strong>Email</strong>: <%= member.email %></p>
 							</div>
 							<div class="col-md-6">
-								<p><strong>Addresses</strong>: <%= JSON.stringify(member.addresses) %></p>
-								<p><strong>Phone numbers</strong>: <%= JSON.stringify(member.phoneNumbers) %></p>
+								<strong>Addresses</strong>:
+									<% _.each(member.addresses, function(address){%>
+									<div class="row">
+										<div class="col-md-2"><strong><%= address.addressType %></strong></div>
+										<div class="col-md-4"><% _.each(address.lines, function(line){%>
+											<%= line %><br />
+										<% }) %>
+										<%= address.country %><br />
+										<%= address.postcode %><br />
+										</div>
+									</div>
+									<% }) %>
+								
+								<strong>Phone numbers</strong>:
+									<% _.each(member.phoneNumbers, function(phoneNumber){%>
+									<div class="row">
+										<div class="col-md-2"><strong><%= phoneNumber.phoneType %></strong></div>
+										<div class="col-md-4"><%= phoneNumber.number %></div>
+									</div>
+									<% }) %>
 							</div>
 						</div>
 					</div>

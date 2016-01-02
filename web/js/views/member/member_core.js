@@ -1,11 +1,12 @@
 define([ 'marionette', 'text!templates/member/member_core.html',
-		'models/member_model'], function(Marionette,
-		memberCoreTemplate, Member) {
+		'models/member_model', 'underscore.string'], function(Marionette,
+		memberCoreTemplate, Member, s) {
 
 	return Marionette.LayoutView.extend({
 		my_template : _.template(memberCoreTemplate),
 		templateHelpers : function() {
 			return {
+				salutation : s.capitalize(this.member.attributes.salutation, true),
 				member : this.member.attributes
 			};
 		},

@@ -1,3 +1,5 @@
+// Use https://cdnjs.com to find hosted resources
+
 require
 		.config({
 			baseUrl : './js',
@@ -5,6 +7,7 @@ require
 				jquery : 'https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min',
 				json2 : 'https://cdnjs.cloudflare.com/ajax/libs/json2/20150503/json2.min',
 				underscore : 'https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min',
+				'underscore.string' : 'https://cdnjs.cloudflare.com/ajax/libs/underscore.string/3.2.2/underscore.string.min',
 				backbone : 'https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.2.3/backbone-min',
 				marionette : 'https://cdnjs.cloudflare.com/ajax/libs/backbone.marionette/2.4.3/backbone.marionette.min',
 				handlebars : 'https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.4/handlebars.amd.min',
@@ -21,6 +24,10 @@ require
 				underscore : {
 					exports : "_"
 				},
+				'underscore.string' : {
+					deps : ["underscore"],
+					exports : "s"
+				},
 				backbone : {
 					deps : [ "jquery", "underscore", "json2" ],
 					exports : "Backbone"
@@ -29,11 +36,11 @@ require
 					deps : [ "backbone" ],
 					exports : "Marionette"
 				},
-				"jquery-ui" : [ "jquery" ],
+				'jquery-ui' : [ "jquery" ],
 				tpl : [ "text" ],
 				typeahead : {
-					'deps' : [ 'jquery' ],
-					'exports' : 'jquery'
+					deps : [ 'jquery' ],
+					exports : 'jquery'
 				},
 				bootstrap : {
 					deps : [ "jquery" ],
