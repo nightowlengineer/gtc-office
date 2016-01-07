@@ -1,6 +1,6 @@
 define([ 'marionette', 'text!templates/member/member_home.html',
-		'collections/member_collection', 'views/member/member_table' ], function(Marionette,
-		memberHomeTemplate, Members, MemberTableView) {
+		'collections/member_collection' ], function(Marionette,
+		memberHomeTemplate, Members) {
 
 	return Marionette.LayoutView.extend({
 		my_template : _.template(memberHomeTemplate),
@@ -20,14 +20,10 @@ define([ 'marionette', 'text!templates/member/member_home.html',
 		initialize : function() {
 			var that = this;
 			this.members = new Members();
-			var p = this.members.fetch();
+			var p = this.members.getAllMembers();
 			
 			p.done(function() {
-				var memberTableView = new MemberTableView({
-					collection: that.members
-				});
 				that.render();
-				that.memberTable.show(memberTableView);
 			});
 		},
 
