@@ -7,6 +7,16 @@ define(
 			return Marionette.ItemView
 					.extend({
 						template : headerTemplate,
+						
+						events : {
+							"typeahead:select" : "typeaheadSelectMember"
+						},
+						
+						typeaheadSelectMember : function(e, suggestion)
+						{
+							$('.typeahead').typeahead('val', "");
+							GtcOffice.navigate("#/member/" + suggestion._id, true);
+						},
 
 						onShow : function() {
 							$('.dropdown-toggle').dropdown();
