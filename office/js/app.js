@@ -1,6 +1,6 @@
 define([ "marionette", "routers/main_router", "routers/member_router",
-		"views/header", "views/footer", "views/home", "pace", "underscore", "underscore.string"], function(Marionette,
-		MainRouter, MemberRouter, HeaderView, FooterView, HomeView, pace, _, s) {
+		"views/header", "views/footer", "views/home", "pace", "underscore", "underscore.string", "jquery"], function(Marionette,
+		MainRouter, MemberRouter, HeaderView, FooterView, HomeView, pace, _, s, $) {
 	GtcOffice = new Marionette.Application();
 
 	GtcOffice.navigate = function(route, options) {
@@ -32,6 +32,12 @@ define([ "marionette", "routers/main_router", "routers/member_router",
 		
 		pace.start({
 			restartOnRequestAfter: 100
+		});
+		
+		$(document).on('click a', 'a:not([data-bypass])', function(e) {
+			e.preventDefault();
+			var link = e.target.attributes.getNamedItem("data-route").value;
+			GtcOffice.navigate(link, true);
 		});
 		
 		var RegionContainer = Marionette.LayoutView.extend({
@@ -74,8 +80,12 @@ define([ "marionette", "routers/main_router", "routers/member_router",
 		var mainRouter = new MainRouter();
 		var memberRouter = new MemberRouter();
 		
-		Backbone.history.start();
+		Backbone.history.start({
+			pushState: true,
+			root: window.location.pathname.replace('/','').split('/')[0]
+		});
 	});
+
 	
 	GtcOffice.setNav = function(location)
 	{

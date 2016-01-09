@@ -2,7 +2,7 @@
 
 require
 		.config({
-			baseUrl : 'js',
+			baseUrl : '/office/js/',
 			paths : {
 				jquery : 'https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min',
 				json2 : 'https://cdnjs.cloudflare.com/ajax/libs/json2/20150503/json2.min',
