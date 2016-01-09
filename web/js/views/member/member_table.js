@@ -27,7 +27,20 @@ define([ 'marionette', 'text!templates/member/member_table.html',
 		},
 		
 		onShow : function(){
-			$("#memberTable").DataTable();
+			var table = $("#memberTable").DataTable();
+			
+			var sortDef;
+			
+			if (this.showMemberNumber)
+			{
+				sortDef = [0, 'desc'];
+			}
+			else
+			{
+				sortDef = [0, 'asc'];
+			}
+			
+			table.order(sortDef).draw();
 		}
 	});
 });
