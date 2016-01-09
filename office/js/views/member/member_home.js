@@ -9,7 +9,8 @@ define([ 'marionette', 'text!templates/member/member_home.html',
 				totalMembers : this.members.length,
 				currentMembers: this.members.where({"status":"CURRENT"}).length,
 				lapsingMembers: this.members.where({"status":"LAPSED"}).length,
-				openApplications : this.members.where({"status":"APPLIED"}).length + this.members.where({"status":"APPROVED"}).length
+				openApplications : this.members.where({"status":"APPLIED"}).length + this.members.where({"status":"APPROVED"}).length +
+					this.members.where({"status":"INVOICED"}).length + this.members.where({"status":"PAID"}).length
 			};
 		},
 		
