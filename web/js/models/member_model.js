@@ -6,6 +6,11 @@ define([ 'models/base_model' ], function(BaseModel) {
 		getSalutations : function()
 		{
 			return this.getPlainData("member/salutationTypes");
+		},
+		
+		getLocations : function()
+		{
+			return this.getPlainData("member/locationTypes");
 		}
 	});
 
