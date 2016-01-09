@@ -1,6 +1,6 @@
 define([ "marionette", "routers/main_router", "routers/member_router",
-		"views/header", "views/footer", "views/home", "pace"], function(Marionette,
-		MainRouter, MemberRouter, HeaderView, FooterView, HomeView, pace) {
+		"views/header", "views/footer", "views/home", "pace", "underscore", "underscore.string"], function(Marionette,
+		MainRouter, MemberRouter, HeaderView, FooterView, HomeView, pace, _, s) {
 	GtcOffice = new Marionette.Application();
 
 	GtcOffice.navigate = function(route, options) {
@@ -68,7 +68,6 @@ define([ "marionette", "routers/main_router", "routers/member_router",
 		};
 
 		this.regions.getRegion('header').show(new HeaderView());
-//		this.showView(new HomeView());
 		this.regions.getRegion('footer').show(new FooterView());
 
 		// Routers
@@ -77,6 +76,21 @@ define([ "marionette", "routers/main_router", "routers/member_router",
 		
 		Backbone.history.start();
 	});
+	
+	GtcOffice.setNav = function(location)
+	{
+		// Reset nav
+		$("li[data-app-location]").removeClass("active");
+
+		// Expand the location
+		var path = s.words(location, ".");
+		// Set the parent location
+		if (path[0] != location)
+		{
+			$("li[data-app-location='" + path[0] + "']").addClass("active");
+		}
+		$("li[data-app-location='" + location + "']").addClass("active");
+	};
 	
 	GtcOffice.showView = function(view) {
 		this.regions.getRegion('content').show(view);

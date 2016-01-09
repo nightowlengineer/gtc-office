@@ -4,6 +4,7 @@ define([ 'marionette', 'views/home' ], function(Marionette, HomeView) {
 		index : function() {
 			console.log("MainController.index called");
 			GtcOffice.showView(new HomeView());
+			GtcOffice.setNav("home");
 		}
 	});
 
