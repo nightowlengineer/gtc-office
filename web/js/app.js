@@ -1,6 +1,6 @@
 define([ "marionette", "routers/main_router", "routers/member_router",
-		"views/header", "views/footer", "views/home" ], function(Marionette,
-		MainRouter, MemberRouter, HeaderView, FooterView, HomeView) {
+		"views/header", "views/footer", "views/home", "pace"], function(Marionette,
+		MainRouter, MemberRouter, HeaderView, FooterView, HomeView, pace) {
 	GtcOffice = new Marionette.Application();
 
 	GtcOffice.navigate = function(route, options) {
@@ -29,7 +29,9 @@ define([ "marionette", "routers/main_router", "routers/member_router",
 	}
 
 	GtcOffice.on("start", function() {
-
+		
+		pace.start();
+		
 		var RegionContainer = Marionette.LayoutView.extend({
 			el : "#appWrapper",
 

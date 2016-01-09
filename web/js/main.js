@@ -2,7 +2,7 @@
 
 require
 		.config({
-			baseUrl : './js',
+			baseUrl : 'js',
 			paths : {
 				jquery : 'https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min',
 				json2 : 'https://cdnjs.cloudflare.com/ajax/libs/json2/20150503/json2.min',
@@ -19,7 +19,8 @@ require
 				typeahead : 'libs/typeahead.jquery',
 				bloodhound : 'http://twitter.github.com/typeahead.js/releases/latest/bloodhound',
 				datatables : 'https://cdn.datatables.net/1.10.10/js/jquery.dataTables',
-				"x-editable" : 'https://cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.1/bootstrap3-editable/js/bootstrap-editable.min'
+				"x-editable" : 'https://cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.1/bootstrap3-editable/js/bootstrap-editable.min',
+				pace : 'https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min'
 			},
 			shim : {
 				underscore : {
