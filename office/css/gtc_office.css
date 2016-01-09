@@ -7,6 +7,14 @@
 	padding-bottom: 70px;
 }
 
+.pace .pace-activity {
+	top: 10px;
+	left: 10px;
+	width: 30px;
+	height: 30px;
+	border-radius:30px;
+}
+
 .typeahead, .tt-query, .tt-hint {
 	width: 396px;
 	height: 30px;
