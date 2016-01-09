@@ -27,7 +27,8 @@ define(
 										queryTokenizer : Bloodhound.tokenizers.whitespace,
 										remote : {
 											url : 'https://api.dev.gtc.org.uk/member/search/%memberNumber',
-											wildcard : '%memberNumber'
+											wildcard : '%memberNumber',
+											cache : false
 										}
 									});
 							$('#members-typeahead .typeahead')
