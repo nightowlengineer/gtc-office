@@ -3,19 +3,19 @@ define([ 'models/base_model' ], function(BaseModel) {
 	return BaseModel.extend({
 		urlRoot : new BaseModel().urlRoot + "member/id",
 		
-		getSalutations : function()
+		getSalutations : function(cache)
 		{
-			return this.getPlainData("member/salutationTypes");
+			return this.getPlainData("member/salutationTypes", cache);
 		},
 		
-		getLocations : function()
+		getLocations : function(cache)
 		{
-			return this.getPlainData("member/locationTypes");
+			return this.getPlainData("member/locationTypes", cache);
 		},
 		
-		getStatuses : function()
+		getStatuses : function(cache)
 		{
-			return this.getPlainData("member/statusTypes");
+			return this.getPlainData("member/statusTypes", cache);
 		}
 	});
 

@@ -23,9 +23,9 @@ define([ 'jquery', 'x-editable', 'marionette', 'text!templates/member/member_cor
 			this.member = new Member({_id: options.memberId});
 			this.member.bind('change', this.render, this);
 			this.member.fetch();
-			this.salutationTypes = this.setupSourceData(this.member.getSalutations());
-			this.locationTypes = this.setupSourceData(this.member.getLocations());
-			this.statusTypes = this.setupSourceData(this.member.getStatuses());
+			this.salutationTypes = this.setupSourceData(this.member.getSalutations(true));
+			this.locationTypes = this.setupSourceData(this.member.getLocations(true));
+			this.statusTypes = this.setupSourceData(this.member.getStatuses(true));
 		},
 
 		onRender : function()

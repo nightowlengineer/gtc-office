@@ -16,7 +16,7 @@ define([ 'jquery', 'x-editable', 'marionette', 'underscore.string'], function($,
 		{
 			var sourceData = '[';
 			
-			_.each(dataArray.responseJSON, function(item){
+			_.each(dataArray, function(item){
 				sourceData += "{'value':'" + item + "', 'text':'" + item + "'},"; 
 			});
 			

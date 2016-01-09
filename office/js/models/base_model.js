@@ -5,16 +5,39 @@ define([ 'backbone', 'backbone-deep-model' ], function(Backbone) {
 		basePath : "https://api.dev.gtc.org.uk/",
 		urlRoot : "https://api.dev.gtc.org.uk/",
 		
-		getPlainData : function(apiPath)
+		getPlainData : function(apiPath, cache)
 		{
-			return $.ajax({
-				type: 'GET',
-				url : this.basePath + apiPath,
-				async : false,
-				success : function(data){
-					return data;
+			if (cache && typeof(Storage) !== "undefined")
+			{
+				cachedVersion = sessionStorage.getItem(apiPath);
+				if (cachedVersion && cachedVersion != "")
+				{
+					return JSON.parse(cachedVersion);
 				}
-			});
+				else
+				{
+					return $.ajax({
+						type: 'GET',
+						url : this.basePath + apiPath,
+						async : false,
+						success : function(data){
+							sessionStorage.setItem(apiPath, JSON.stringify(data.responseText));
+							return data.responseJSON;
+						}
+					});
+				}
+			}
+			else
+			{
+				return $.ajax({
+					type: 'GET',
+					url : this.basePath + apiPath,
+					async : false,
+					success : function(data){
+						return data;
+					}
+				});
+			}
 		}
 	});
 
