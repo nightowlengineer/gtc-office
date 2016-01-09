@@ -31,13 +31,17 @@ define([ "marionette", "routers/main_router", "routers/member_router",
 	GtcOffice.on("start", function() {
 		
 		pace.start({
-			restartOnRequestAfter: 100
+			//restartOnRequestAfter: 500
 		});
 		
 		$(document).on('click a', 'a:not([data-bypass])', function(e) {
 			e.preventDefault();
-			var link = e.target.attributes.getNamedItem("data-route").value;
-			GtcOffice.navigate(link, true);
+			var link = e.target.attributes.getNamedItem("data-route");
+			if (link)
+			{
+				var link = e.target.attributes.getNamedItem("data-route").value;
+				GtcOffice.navigate(link, true);
+			}
 		});
 		
 		var RegionContainer = Marionette.LayoutView.extend({
