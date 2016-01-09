@@ -7,8 +7,9 @@ define([ 'jquery', 'x-editable', 'marionette', 'text!templates/member/member_cor
 		
 		templateHelpers : function() {
 			return {
-				salutation : s.capitalize(this.member.attributes.salutation, true),
-				member : this.member.attributes
+				salutation : this.member.attributes.salutation,
+				member : this.member.attributes,
+				salutationTypes : this.setupSourceData(this.member.getSalutations())
 			};
 		},
 		
