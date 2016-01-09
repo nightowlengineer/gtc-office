@@ -26,12 +26,19 @@
 	outline: none;
 }
 
-.statusColor {
+.statusColor-LAPSED, .statusColor-REMOVED, .statusColor-DECLINED {
+	/* Red */
 	background-color: #f2dede;
 }
 
+.statusColor-APPLIED, .statusColor-APPROVED, .statusColor-INVOICED, .statusColor-PAID {
+	/* Yellow */
+	background-color: #f0ad4e;
+}
+
 .statusColor-CURRENT {
-	background-color: #dff0d8 !important;
+	/* Green */
+	background-color: #5cb85c;
 }
 
 .typeahead {
