@@ -7,9 +7,10 @@ define([ 'jquery', 'x-editable', 'marionette', 'text!templates/member/member_cor
 		
 		templateHelpers : function() {
 			return {
-				salutation : this.member.attributes.salutation,
 				member : this.member.attributes,
-				salutationTypes : this.setupSourceData(this.member.getSalutations())
+				addresses : this.member.get("addresses"),
+				salutationTypes : this.setupSourceData(this.member.getSalutations()),
+				locationTypes : this.setupSourceData(this.member.getLocations())
 			};
 		},
 		

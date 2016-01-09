@@ -9,6 +9,7 @@ require
 				underscore : 'https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min',
 				'underscore.string' : 'https://cdnjs.cloudflare.com/ajax/libs/underscore.string/3.2.2/underscore.string.min',
 				backbone : 'https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.2.3/backbone-min',
+				"backbone-deep-model" : 'libs/backbone-deep-model.min',
 				marionette : 'https://cdnjs.cloudflare.com/ajax/libs/backbone.marionette/2.4.3/backbone.marionette.min',
 				handlebars : 'https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.4/handlebars.amd.min',
 				"jquery-ui" : 'https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min',
@@ -32,6 +33,10 @@ require
 				},
 				backbone : {
 					deps : [ "jquery", "underscore", "json2" ],
+					exports : "Backbone"
+				},
+				"backbone-deep-model" : {
+					deps : [ "backbone" ],
 					exports : "Backbone"
 				},
 				marionette : {

@@ -21,30 +21,30 @@
 					<div class="panel-body">
 						<div class="row">
 							<div class="col-md-6">
-								<p><strong>Salutation</strong>: <span class="inlineEditable" id="salutation" data-type="select" data-value="<%= salutation %>" data-source="<%= salutationTypes %>"><%= salutation %></span></p>
+								<p><strong>Salutation</strong>: <span class="inlineEditable" id="salutation" data-type="select" data-value="<%= member.salutation %>" data-source="<%= salutationTypes %>"><%= member.salutation %></span></p>
 								<p><strong>First name</strong>: <span class="inlineEditable" id="firstName" data-type="text"><%= member.firstName %></span></p>
 								<p><strong>Last name</strong>: <span class="inlineEditable" id="lastName" data-type="text"><%= member.lastName %></span></p>
 								<p><strong>Email</strong>: <span class="inlineEditable" id="email" data-type="text"><%= member.email %></span></p>
 							</div>
 							<div class="col-md-6">
 								<strong>Addresses</strong>:
-									<% _.each(member.addresses, function(address){%>
+									<% _.each(addresses, function(address, addressIndex){%>
 									<div class="row">
-										<div class="col-md-2"><strong><%= address.addressType %></strong></div>
-										<div class="col-md-4"><% _.each(address.lines, function(line){%>
-											<%= line %><br />
+										<div class="col-md-2"><strong><span class="inlineEditable" id="addresses.<%= addressIndex %>.addressType" data-type="select" data-value="<%= address.addressType %>" data-source="<%= locationTypes %>"><%= address.addressType %></span></strong></div>
+										<div class="col-md-4"><% _.each(address.lines, function(line, lineIndex){%>
+											<span class="inlineEditable" id="addresses.<%= addressIndex %>.lines.<%= lineIndex %>" data-type="text"><%= line %></span><br />
 										<% }) %>
-										<%= address.country %><br />
-										<%= address.postcode %><br />
+										<span class="inlineEditable" id="addresses.<%= addressIndex %>.country" data-type="text" data-value="<%= address.country %>"><%= address.country %></span><br />
+										<span class="inlineEditable" id="addresses.<%= addressIndex %>.postcode" data-type="text" data-value="<%= address.postcode %>"><%= address.postcode %></span><br />
 										</div>
 									</div>
 									<% }) %>
 								
 								<strong>Phone numbers</strong>:
-									<% _.each(member.phoneNumbers, function(phoneNumber){%>
+									<% _.each(member.phoneNumbers, function(phoneNumber, index){%>
 									<div class="row">
-										<div class="col-md-2"><strong><%= phoneNumber.phoneType %></strong></div>
-										<div class="col-md-4"><%= phoneNumber.number %></div>
+										<div class="col-md-2"><strong><span class="inlineEditable" id="phoneNumbers.<%= index %>.phoneType" data-type="select" data-value="<%= phoneNumber.phoneType %>" data-source="<%= locationTypes %>"><%= phoneNumber.phoneType %></span></strong></div>
+										<div class="col-md-4"><span class="inlineEditable" id="phoneNumbers.<%= index %>.number" data-type="text" data-value="<%= phoneNumber.number %>"><%= phoneNumber.number %></span></div>
 									</div>
 									<% }) %>
 							</div>

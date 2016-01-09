@@ -1,6 +1,6 @@
-define([ 'backbone' ], function(Backbone) {
+define([ 'backbone', 'backbone-deep-model' ], function(Backbone) {
 
-	return Backbone.Model.extend({
+	return Backbone.DeepModel.extend({
 		idAttribute : "_id",
 		basePath : "https://api.dev.gtc.org.uk/",
 		urlRoot : "https://api.dev.gtc.org.uk/",
