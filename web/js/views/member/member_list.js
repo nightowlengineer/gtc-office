@@ -21,10 +21,16 @@ define([ 'marionette', 'text!templates/member/member_list.html',
 			this.members = new Members();
 			
 			var p;
+			var showMemberNumber = true;
 			
 			if (this.listType == "current")
 			{
 				p = this.members.getCurrentMembers();
+			}
+			else if (this.listType == "applications")
+			{
+				p = this.members.getApplications();
+				showMemberNumber = false;
 			}
 			else
 			{		
@@ -33,7 +39,8 @@ define([ 'marionette', 'text!templates/member/member_list.html',
 			
 			p.done(function() {
 				var memberTableView = new MemberTableView({
-					collection: that.members
+					collection: that.members,
+					showMemberNumber : showMemberNumber
 				});
 				that.render();
 				that.memberTable.show(memberTableView);

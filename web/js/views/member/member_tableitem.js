@@ -2,21 +2,22 @@ define([ 'marionette', 'text!templates/member/member_tableitem.html' ],
 		function(Marionette, MemberTableItemViewTemplate) {
 
 			return Marionette.ItemView.extend({
-				my_template : _.template(MemberTableItemViewTemplate),
+				template : _.template(MemberTableItemViewTemplate),
 				
 				tagName : "tr",
 
 				templateHelpers : function() {
 					return {
-						//model : this.model,
 						membershipNumber : this.model.get("membershipNumber"),
 						firstName : this.model.get("firstName"),
-						id : this.model.id
+						id : this.model.id,
+						showMemberNumber : this.showMemberNumber
 					};
 				},
-
-				render : function() {
-					this.$el.html(this.my_template(this.templateHelpers()));
+				
+				initialize : function(options)
+				{
+					this.showMemberNumber = options.showMemberNumber;
 				}
 			});
 		});

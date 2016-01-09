@@ -3,10 +3,28 @@ define([ 'marionette', 'text!templates/member/member_table.html',
 		memberTableTemplate, MemberTableItemView) {
 
 	return Marionette.CompositeView.extend({
-		template : memberTableTemplate,
+		template : _.template(memberTableTemplate),
+		
+		templateHelpers : function() {
+			return {
+				showMemberNumber : this.showMemberNumber
+			};
+		},
+		
 		childView : MemberTableItemView,
+		
 		childViewContainer : "tbody",
-		collection : this.collection,
+		
+		childViewOptions : function(model, index){
+			return {
+				showMemberNumber : this.showMemberNumber				
+			}
+		},
+		
+		initialize : function(options)
+		{
+			this.showMemberNumber = options.showMemberNumber;
+		},
 		
 		onShow : function(){
 			$("#memberTable").DataTable();

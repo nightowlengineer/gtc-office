@@ -1,3 +1,3 @@
-<td><span class="badge"><%= membershipNumber %></span></td>
+<% if (showMemberNumber) { %><td><span class="badge"><%= membershipNumber %></span></td><% } %>
 <td><%= firstName %></td>
 <td><a href="#/member/<%= id %>">View</a></td>
