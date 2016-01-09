@@ -10,7 +10,8 @@ define([ 'jquery', 'x-editable', 'marionette', 'text!templates/member/member_cor
 				member : this.member.attributes,
 				addresses : this.member.get("addresses"),
 				salutationTypes : this.setupSourceData(this.member.getSalutations()),
-				locationTypes : this.setupSourceData(this.member.getLocations())
+				locationTypes : this.setupSourceData(this.member.getLocations()),
+				statusTypes : this.setupSourceData(this.member.getStatuses())
 			};
 		},
 		

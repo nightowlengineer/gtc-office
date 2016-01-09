@@ -11,6 +11,11 @@ define([ 'models/base_model' ], function(BaseModel) {
 		getLocations : function()
 		{
 			return this.getPlainData("member/locationTypes");
+		},
+		
+		getStatuses : function()
+		{
+			return this.getPlainData("member/statusTypes");
 		}
 	});
 
