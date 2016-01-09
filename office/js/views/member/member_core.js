@@ -9,9 +9,9 @@ define([ 'jquery', 'x-editable', 'marionette', 'text!templates/member/member_cor
 			return {
 				member : this.member.attributes,
 				addresses : this.member.get("addresses"),
-				salutationTypes : this.setupSourceData(this.member.getSalutations()),
-				locationTypes : this.setupSourceData(this.member.getLocations()),
-				statusTypes : this.setupSourceData(this.member.getStatuses())
+				salutationTypes : this.salutationTypes,
+				locationTypes : this.locationTypes,
+				statusTypes : this.statusTypes
 			};
 		},
 		
@@ -23,6 +23,9 @@ define([ 'jquery', 'x-editable', 'marionette', 'text!templates/member/member_cor
 			this.member = new Member({_id: options.memberId});
 			this.member.bind('change', this.render, this);
 			this.member.fetch();
+			this.salutationTypes = this.setupSourceData(this.member.getSalutations());
+			this.locationTypes = this.setupSourceData(this.member.getLocations());
+			this.statusTypes = this.setupSourceData(this.member.getStatuses());
 		},
 
 		onRender : function()
