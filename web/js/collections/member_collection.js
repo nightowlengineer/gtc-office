@@ -15,9 +15,15 @@ define([ 'collections/base_collection', 'models/member_model' ], function(BaseCo
 			return this.fetchSpecific(options);
 		},
 		
+		getApplications : function() {
+			var options = {};
+			options.url = this.url + "applications";
+			return this.fetchSpecific(options);
+		},
+		
 		getCurrentMembers : function() {
 			var options = {};
-			options.url = this.url + "current";
+			options.url = this.url + "status/current";
 			return this.fetchSpecific(options);
 		}
 	});
