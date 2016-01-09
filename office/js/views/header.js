@@ -15,7 +15,7 @@ define(
 						typeaheadSelectMember : function(e, suggestion)
 						{
 							$('.typeahead').typeahead('val', "");
-							GtcOffice.navigate("#/member/" + suggestion._id, true);
+							GtcOffice.navigate("#member/" + suggestion._id, true);
 						},
 
 						onShow : function() {
