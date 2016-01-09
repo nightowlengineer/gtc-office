@@ -30,7 +30,9 @@ define([ "marionette", "routers/main_router", "routers/member_router",
 
 	GtcOffice.on("start", function() {
 		
-		pace.start();
+		pace.start({
+			restartOnRequestAfter: 100
+		});
 		
 		var RegionContainer = Marionette.LayoutView.extend({
 			el : "#appWrapper",
