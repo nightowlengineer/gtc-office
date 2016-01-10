@@ -20,9 +20,11 @@ define([ 'jquery', 'x-editable', 'marionette', 'text!templates/member/member_cor
 		},
 		
 		initialize : function(options) {
+			var self = this;
 			this.member = new Member({_id: options.memberId});
-			this.member.bind('change', this.render, this);
-			this.member.fetch();
+			this.member.fetch().success(function(){
+				self.render();
+			});
 			this.salutationTypes = this.setupSourceData(this.member.getSalutations(true));
 			this.locationTypes = this.setupSourceData(this.member.getLocations(true));
 			this.statusTypes = this.setupSourceData(this.member.getStatuses(true));
