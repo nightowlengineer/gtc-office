@@ -21,7 +21,7 @@ define([ 'backbone', 'backbone-deep-model' ], function(Backbone) {
 						url : this.basePath + apiPath,
 						async : false,
 						success : function(data){
-							sessionStorage.setItem(apiPath, JSON.stringify(data.responseText));
+							sessionStorage.setItem(apiPath, JSON.stringify(data));
 							return data.responseJSON;
 						}
 					});
