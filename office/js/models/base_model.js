@@ -7,29 +7,32 @@ define([ 'backbone', 'backbone-deep-model' ], function(Backbone) {
 		
 		getPlainData : function(apiPath, cache)
 		{
+			var returnData;
+			
 			if (cache && typeof(Storage) !== "undefined")
 			{
 				cachedVersion = sessionStorage.getItem(apiPath);
 				if (cachedVersion && cachedVersion != "")
 				{
-					return JSON.parse(cachedVersion);
+					returnData = JSON.parse(cachedVersion);
 				}
 				else
 				{
-					return $.ajax({
+					$.ajax({
 						type: 'GET',
 						url : this.basePath + apiPath,
 						async : false,
 						success : function(data){
 							sessionStorage.setItem(apiPath, JSON.stringify(data));
-							return data.responseJSON;
+							returnData = data;
 						}
 					});
 				}
+				return returnData;
 			}
 			else
 			{
-				return $.ajax({
+				$.ajax({
 					type: 'GET',
 					url : this.basePath + apiPath,
 					async : false,
