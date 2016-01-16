@@ -24,6 +24,8 @@ define([ 'jquery', 'x-editable', 'marionette', 'text!templates/member/member_cor
 			this.member = new Member({_id: options.memberId});
 			this.member.fetch().success(function(){
 				self.render();
+			}).error(function(){
+				GtcOffice.navigate("#member", true);
 			});
 			this.salutationTypes = this.setupSourceData(this.member.getSalutations(true));
 			this.locationTypes = this.setupSourceData(this.member.getLocations(true));

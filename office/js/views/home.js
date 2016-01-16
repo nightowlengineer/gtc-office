@@ -1,15 +1,16 @@
 define([ 'marionette', 'text!templates/home.html' ], function(Marionette,
 		homeTemplate) {
 
-	return Marionette.ItemView.extend({
+	return Marionette.LayoutView.extend({
 		my_template : _.template(homeTemplate),
 		templateHelpers : function() {
 			return {
-				testContent : "someExample"
+				optionalMessage : this.optionalMessage
 			};
 		},
 
-		initialize : function() {
+		initialize : function(options) {
+			this.optionalMessage = options.optionalMessage;
 			this.render();
 		},
 

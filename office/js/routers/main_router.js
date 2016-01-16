@@ -3,7 +3,8 @@ define([ 'marionette', 'controllers/main_controller' ], function(Marionette, Mai
 	return Marionette.AppRouter.extend({
 		
 		appRoutes : {
-			'' : 'index'
+			'(/)' : 'index',
+			'*path' : '404'
 		},
 		
 		controller : new MainController()

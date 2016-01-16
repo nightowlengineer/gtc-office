@@ -2,10 +2,10 @@ define([ 'marionette', 'controllers/member_controller' ], function(Marionette, M
 
 	return Marionette.AppRouter.extend({
 		appRoutes : {
-			'member' : 'home',
-			'member/applications' : 'applications',
-			'member/current' : 'current',
-			'member/:id' : 'view'
+			'member(/)' : 'home',
+			'member/applications(/)' : 'applications',
+			'member/current(/)' : 'current',
+			'member/:id(/)' : 'view'
 		},
 		controller : new MemberController(),
 

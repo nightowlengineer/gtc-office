@@ -1,12 +1,6 @@
-define([ 'marionette', 'views/home', 'views/error' ], function(Marionette, HomeView, ErrorView) {
+define([ 'marionette', 'views/error' ], function(Marionette, ErrorView) {
 
 	return Marionette.Controller.extend({
-		index : function() {
-			console.log("MainController.index called");
-			GtcOffice.showView(new HomeView());
-			GtcOffice.setNav("home");
-		},
-		
 		404 : function(path) {
 			console.log("MainController.404 called");
 			var options = {
