@@ -5,6 +5,17 @@ define([ 'backbone', 'backbone-deep-model' ], function(Backbone) {
 		basePath : "https://api.dev.gtc.org.uk/",
 		urlRoot : "https://api.dev.gtc.org.uk/",
 		
+		fetch : function(options) {
+			options = options || {};
+			var custom = {
+			    'Content-type': 'application/json',
+			    'Accept': 'application/json',
+			    'Authorization': 'Bearer ' + localStorage.getItem('userToken')
+			  };
+			options.headers = options.headers ? _.extend(options.headers, custom) : custom;
+			return Backbone.Model.prototype.fetch.call(this, options);
+		},
+		
 		getPlainData : function(apiPath, cache)
 		{
 			var returnData;

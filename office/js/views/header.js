@@ -9,7 +9,14 @@ define(
 						template : headerTemplate,
 						
 						events : {
-							"typeahead:select" : "typeaheadSelectMember"
+							"typeahead:select" : "typeaheadSelectMember",
+							"click .btn-logout" : "logout"
+						},
+						
+						logout : function(e)
+						{
+							localStorage.removeItem("userToken");
+							GtcOffice.navigate("#", true);
 						},
 						
 						typeaheadSelectMember : function(e, suggestion)

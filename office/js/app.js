@@ -1,6 +1,6 @@
 define([ "marionette", "routers/main_router", "routers/member_router",
-		"views/header", "views/footer", "views/home", "pace", "underscore", "underscore.string", "jquery"], function(Marionette,
-		MainRouter, MemberRouter, HeaderView, FooterView, HomeView, pace, _, s, $) {
+		"views/header", "views/footer", "views/home", "pace", "underscore", "underscore.string", "jquery", "auth0-lock"], function(Marionette,
+		MainRouter, MemberRouter, HeaderView, FooterView, HomeView, pace, _, s, $, Auth0Lock) {
 	GtcOffice = new Marionette.Application();
 
 	GtcOffice.navigate = function(route, options) {
@@ -27,8 +27,16 @@ define([ "marionette", "routers/main_router", "routers/member_router",
 			currentApp.start(args);
 		}
 	}
+	
+	GtcOffice.lock = new Auth0Lock('y8T1angMINFrNKwwiSec1DDhQaZB7zTq', 'gtc.eu.auth0.com');
 
 	GtcOffice.on("start", function() {
+		
+		$.ajaxSetup({
+			headers : {
+				'Authorization' : 'Bearer ' + localStorage.getItem('userToken')
+			}
+		});
 		
 		pace.start({
 			//restartOnRequestAfter: 500
