@@ -33,7 +33,7 @@ define(
 												.whitespace('value'),
 										queryTokenizer : Bloodhound.tokenizers.whitespace,
 										remote : {
-											url : 'https://api.dev.gtc.org.uk/member/search/%memberNumber',
+											url : 'https://services.gtc.org.uk/api/member/search/%memberNumber',
 											wildcard : '%memberNumber',
 											cache : false
 										}

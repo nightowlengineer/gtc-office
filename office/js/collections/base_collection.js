@@ -1,7 +1,7 @@
 define([ 'backbone' ], function(Backbone) {
 
 	return Backbone.Collection.extend({
-		url : "https://api.dev.gtc.org.uk/",
+		url : "https://services.gtc.org.uk/api/",
 		fetch : function(options) {
 			options = options || {};
 			var custom = {
