@@ -22,7 +22,7 @@ require
 				datatables : 'https://cdn.datatables.net/1.10.10/js/jquery.dataTables',
 				"x-editable" : 'https://cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.1/bootstrap3-editable/js/bootstrap-editable.min',
 				pace : 'https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min',
-				"auth0-lock" : 'https://cdn.auth0.com/js/lock-8.1.min'
+				"auth0-lock" : 'https://cdn.auth0.com/js/lock-8.2.min'
 			},
 			shim : {
 				underscore : {
