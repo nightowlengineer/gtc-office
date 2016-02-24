@@ -36,7 +36,7 @@ define([ "marionette", "routers/main_router", "routers/member_router",
 		
 		// sso requires redirect mode, hence we need to parse
 		// the response from Auth0 that comes on location hash
-		var hash = GtcOffice.lock.parseHash(window.location);
+		var hash = GtcOffice.lock.parseHash(window.location.hash);
 		if (hash && hash.id_token) {
 		  // the user came back from the login (either SSO or regular login),
 		  // save the token
