@@ -10,11 +10,29 @@ define(
 						
 						events : {
 							"typeahead:select" : "typeaheadSelectMember",
-							"click .btn-logout" : "logout"
+							"click .btn-logout" : "logout",
+							'click .btn-login' : 'login'
+						},
+						
+						login : function(e) {
+							e.preventDefault();
+							GtcOffice.lock.show(function(err, profile, token) {
+								if (err) {
+								      // Error callback
+								      alert('There was an error');
+								    } else {
+								      // Save the JWT token.
+								      localStorage.setItem('userToken', token);
+								      // Save the profile
+								      GtcOffice.userProfile = profile;
+								    }
+							});
 						},
 						
 						logout : function(e)
 						{
+							GtcOffice.userProfile = null;
+							GtcOffice.lock.logout({ref: window.location.href});
 							localStorage.removeItem("userToken");
 							GtcOffice.navigate("#", true);
 						},

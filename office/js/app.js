@@ -11,6 +11,8 @@ define([ "marionette", "routers/main_router", "routers/member_router",
 	GtcOffice.getCurrentRoute = function() {
 		return Backbone.history.fragment
 	};
+	
+	GtcOffice.userProfile;
 
 	GtcOffice.startSubApp = function(appName, args) {
 		var currentApp = appName ? GtcOffice.module(appName) : null;
@@ -31,6 +33,41 @@ define([ "marionette", "routers/main_router", "routers/member_router",
 	GtcOffice.lock = new Auth0Lock('y8T1angMINFrNKwwiSec1DDhQaZB7zTq', 'gtc.eu.auth0.com');
 
 	GtcOffice.on("start", function() {
+		
+		// sso requires redirect mode, hence we need to parse
+		// the response from Auth0 that comes on location hash
+		var hash = GtcOffice.lock.parseHash(window.location);
+		if (hash && hash.id_token) {
+		  // the user came back from the login (either SSO or regular login),
+		  // save the token
+		  localStorage.setItem('userToken', hash.id_token);
+		  // redirect to "targetUrl" if any
+		  window.location.href = hash.state || '#/';
+		  return;
+		}
+
+		// Get the user token if we've saved it in localStorage before
+		var idToken = localStorage.getItem('userToken');
+		if (idToken) {
+		  // If there's a token, just redirect to "targetUrl" if any
+		  window.location.href = hash.state || '#/';  
+		  return;
+		}
+
+		// user is not logged, check whether there is an SSO session or not
+		GtcOffice.lock.$auth0.getSSOData(function(err, data) {
+		  if (!err && data.sso) {
+		    // there is! redirect to Auth0 for SSO
+			  GtcOffice.lock.$auth0.signin({
+		      // If the user wanted to go to some other URL, you can track it with `state`
+		      state: getQueryParam(location.search, 'targetUrl'),
+		      callbackOnLocationHash: true
+		    });
+		  } else {
+		    // regular login
+		    alert("regular login");
+		  }
+		});
 		
 		$.ajaxSetup({
 			headers : {
