@@ -19,7 +19,8 @@ define([ "marionette", "routers/main_router", "routers/member_router",
 
 	GtcOffice.getProfile = function() {
 		defer = $.Deferred();
-		var profilePromise = GtcOffice.lock.getProfile(localStorage.getItem("userToken"), function(err, profile) {
+		var profilePromise = GtcOffice.lock.getProfile(localStorage
+				.getItem("userToken"), function(err, profile) {
 			GtcOffice.userProfile = profile;
 			GtcOffice.isLoggedIn = true;
 			console.log("Fetched profile");
@@ -63,7 +64,10 @@ define([ "marionette", "routers/main_router", "routers/member_router",
 		var idToken = localStorage.getItem('userToken');
 		if (idToken) {
 			console.log("Token found");
-			GtcOffice.getProfile();
+			GtcOffice.getProfile().done(function() {
+				GtcOffice.navigate("#dash", true);
+			});
+
 			// If there's a token, just redirect to "targetUrl" if any
 
 		}
