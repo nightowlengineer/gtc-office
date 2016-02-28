@@ -23,6 +23,7 @@ define([ 'marionette', 'views/home', 'views/dash', 'views/error' ], function(Mar
 			GtcOffice.showView(new HomeView({
 				optionalMessage : "Logout completed."
 			}))
+			GtcOffice.regions.getRegion('header').currentView.render();
 			GtcOffice.navigate("#", true);
 		},
 		
