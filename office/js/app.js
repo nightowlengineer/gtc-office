@@ -42,6 +42,7 @@ define([ "marionette", "routers/main_router", "routers/member_router",
 		// the response from Auth0 that comes on location hash
 		var hash = GtcOffice.lock.parseHash(window.location.hash);
 		if (hash && hash.id_token) {
+			console.log("Resuming session from Auth0");
 			// the user came back from the login (either SSO or regular login),
 			// save the token
 			localStorage.setItem('userToken', hash.id_token);
@@ -53,6 +54,7 @@ define([ "marionette", "routers/main_router", "routers/member_router",
 		// Get the user token if we've saved it in localStorage before
 		var idToken = localStorage.getItem('userToken');
 		if (idToken) {
+			console.log("Token found");
 			// If there's a token, just redirect to "targetUrl" if any
 			GtcOffice.isLoggedIn = true;
 			GtcOffice.navigate("#dash", true);
@@ -60,7 +62,10 @@ define([ "marionette", "routers/main_router", "routers/member_router",
 
 		// user is not logged, check whether there is an SSO session or not
 		GtcOffice.lock.$auth0.getSSOData(function(err, data) {
+			console.log("Getting SSO data");
 			if (!err && data.sso) {
+				console.log("No error, have SSO data: " + data.sso);
+				console.log("Starting signin flow... ");
 				// there is! redirect to Auth0 for SSO
 				GtcOffice.lock.$auth0.signin({
 					// If the user wanted to go to some other URL, you can track
@@ -68,8 +73,9 @@ define([ "marionette", "routers/main_router", "routers/member_router",
 					//state: getQueryParam(location.search, 'targetUrl'),
 					callbackOnLocationHash : true
 				});
+				console.log("Setting user profile to: " + data);
 				GtcOffice.userProfile = data;
-				alert("resuming session");
+				console.log("Setting default token for API calls");
 			} else {
 				// regular login
 				alert("need to login");
