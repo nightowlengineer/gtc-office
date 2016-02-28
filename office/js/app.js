@@ -58,6 +58,7 @@ define([ "marionette", "routers/main_router", "routers/member_router",
 			// If there's a token, just redirect to "targetUrl" if any
 			GtcOffice.isLoggedIn = true;
 			GtcOffice.navigate("#dash", true);
+			console.log("Moving to dashboard");
 		}
 
 		// user is not logged, check whether there is an SSO session or not
@@ -70,11 +71,11 @@ define([ "marionette", "routers/main_router", "routers/member_router",
 				GtcOffice.lock.$auth0.signin({
 					// If the user wanted to go to some other URL, you can track
 					// it with `state`
-					//state: getQueryParam(location.search, 'targetUrl'),
+					state: getQueryParam(location.search, 'targetUrl'),
 					callbackOnLocationHash : true
 				});
 				console.log("Setting user profile to: " + data);
-				GtcOffice.userProfile = data;
+				GtcOffice.userProfile = GtcOffice.lock.getProfile(idToken);
 				console.log("Setting default token for API calls");
 			} else {
 				// regular login
