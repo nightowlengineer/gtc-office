@@ -25,7 +25,7 @@ define(
 								      localStorage.setItem('userToken', token);
 								      // Save the profile
 								      GtcOffice.userProfile = profile;
-								      GtcOffice.navigate("#home", true);
+								      GtcOffice.navigate("#dash", true);
 								    }
 							});
 						},
