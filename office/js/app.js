@@ -21,8 +21,13 @@ define([ "marionette", "routers/main_router", "routers/member_router",
 		var deferredObject = $.Deferred();
 		var profilePromise = GtcOffice.lock.getProfile(localStorage
 				.getItem("userToken"), function(err, profile) {
-			GtcOffice.userProfile = profile;
-			GtcOffice.isLoggedIn = true;
+			if (err) {
+				GtcOffice.userProfile = null;
+				GtcOffice.isLoggedIn = false;
+			} else {
+				GtcOffice.userProfile = profile;
+				GtcOffice.isLoggedIn = true;
+			}
 			console.log("Fetched profile");
 			deferredObject.resolve();
 		});
