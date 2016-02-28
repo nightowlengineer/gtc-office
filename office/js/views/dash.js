@@ -1,4 +1,4 @@
-define([ 's', 'marionette', 'text!templates/dash.html' ], function(s,
+define([ 'underscore.string', 'marionette', 'text!templates/dash.html' ], function(s,
 		Marionette, dashTemplate) {
 
 	return Marionette.LayoutView.extend({

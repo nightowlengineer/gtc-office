@@ -1,5 +1,5 @@
 define(
-		[ 's', 'bootstrap', 'marionette', 'typeahead', 'bloodhound',
+		[ 'underscore.string', 'bootstrap', 'marionette', 'typeahead', 'bloodhound',
 				'handlebars', 'text!templates/header.html' ],
 		function(s, bootstrap, Marionette, Typeahead, Bloodhound, Handlebars,
 				headerTemplate) {
