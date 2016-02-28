@@ -46,7 +46,6 @@ define([ "marionette", "routers/main_router", "routers/member_router",
 			localStorage.setItem('userToken', hash.id_token);
 			// redirect to "targetUrl" if any
 			GtcOffice.navigate("#", true);
-			return;
 		}
 
 		// Get the user token if we've saved it in localStorage before
@@ -54,7 +53,6 @@ define([ "marionette", "routers/main_router", "routers/member_router",
 		if (idToken) {
 			// If there's a token, just redirect to "targetUrl" if any
 			GtcOffice.navigate("#", true);
-			return;
 		}
 
 		// user is not logged, check whether there is an SSO session or not
