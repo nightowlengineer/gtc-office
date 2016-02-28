@@ -3,9 +3,9 @@ define([ 'marionette', 'controllers/main_controller' ], function(Marionette, Mai
 	return Marionette.AppRouter.extend({
 		
 		appRoutes : {
-			'(/)' : 'index',
+			'(/)' : 'home',
 			'logout' : 'logout',
-			'home' : 'home',
+			'dash' : 'dash',
 			'*path' : '404'
 		},
 		

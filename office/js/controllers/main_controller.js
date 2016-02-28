@@ -1,13 +1,18 @@
 define([ 'marionette', 'views/home', 'views/dash', 'views/error' ], function(Marionette, HomeView, DashView, ErrorView) {
 
 	return Marionette.Controller.extend({
-		index : function() {
+		home : function() {
 			console.log("MainController.home called");
+			if (GtcOffice.userProfile != null)
+			{
+				GtcOffice.navigate("#dash", true);
+				return;
+			}
 			GtcOffice.showView(new HomeView());
 			GtcOffice.setNav("home"); //Doesn't exist - just remove current tab
 		},
 		
-		home : function() {
+		dash : function() {
 			console.log("MainController.dash called");
 			GtcOffice.showView(new DashView());
 			GtcOffice.setNav("dash");
