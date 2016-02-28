@@ -29,7 +29,9 @@
 							<li data-app-location="member.applications"><a data-route="#member/applications" href="/office/member/applications">Applications</a></li>
 							<li data-app-location="member.current"><a data-route="#member/current" href="/office/member/current">View current</a></li>
 						</ul></li>
+					<% } %>
 				</ul>
+				<% if (userProfile) { %>
 				<form class="navbar-form navbar-left" role="search">
 					<div class="form-group" id="members-typeahead">
 						<input type="text" class="typeahead form-control"
@@ -43,8 +45,6 @@
 						aria-expanded="false">User <span class="caret"></span></a>
 						<ul class="dropdown-menu">
 							<li><a class="btn-login">Login</a></li>
-							<li><a href="#">Another action</a></li>
-							<li><a href="#">Something else here</a></li>
 							<li role="separator" class="divider"></li>
 							<li><a class="btn-logout" href="#">Logout</a></li>
 						</ul></li>
