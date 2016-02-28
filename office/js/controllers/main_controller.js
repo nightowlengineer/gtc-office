@@ -3,7 +3,7 @@ define([ 'marionette', 'views/home', 'views/dash', 'views/error' ], function(Mar
 	return Marionette.Controller.extend({
 		home : function() {
 			console.log("MainController.home called");
-			if (GtcOffice.userProfile != null)
+			if (GtcOffice.isLoggedIn)
 			{
 				GtcOffice.navigate("#dash", true);
 				return;
