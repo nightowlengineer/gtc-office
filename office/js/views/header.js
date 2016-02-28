@@ -1,6 +1,6 @@
 define(
-		[ 'underscore.string', 'bootstrap', 'marionette', 'typeahead', 'bloodhound',
-				'handlebars', 'text!templates/header.html' ],
+		[ 'underscore.string', 'bootstrap', 'marionette', 'typeahead',
+				'bloodhound', 'handlebars', 'text!templates/header.html' ],
 		function(s, bootstrap, Marionette, Typeahead, Bloodhound, Handlebars,
 				headerTemplate) {
 
@@ -8,11 +8,17 @@ define(
 					.extend({
 						template : _.template(headerTemplate),
 						templateHelpers : function() {
+							var nickname = "Guest";
+							if (GtcOffice.isLoggedIn) {
+								nickname = s
+										.capitalize(GtcOffice.userProfile.nickname);
+							}
+
 							return {
 								optionalMessage : this.optionalMessage,
 								isLoggedIn : GtcOffice.isLoggedIn,
 								userProfile : GtcOffice.userProfile,
-								nickname : s.capitalize(GtcOffice.userProfile.nickname)
+								nickname : nickname
 							};
 						},
 
