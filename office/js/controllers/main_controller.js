@@ -13,6 +13,12 @@ define([ 'marionette', 'views/index', 'views/home', 'views/error' ], function(Ma
 			GtcOffice.setNav("home");
 		},
 		
+		logout : function() {
+			GtcOffice.showView(new HomeView({
+				optionalMessage : "Logout completed."
+			}))
+		},
+		
 		404 : function(path) {
 			console.log("MainController.404 called");
 			var options = {
