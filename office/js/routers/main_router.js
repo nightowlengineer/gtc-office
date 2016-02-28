@@ -4,6 +4,8 @@ define([ 'marionette', 'controllers/main_controller' ], function(Marionette, Mai
 		
 		appRoutes : {
 			'(/)' : 'index',
+			'logout' : 'logout',
+			'home' : 'home',
 			'*path' : '404'
 		},
 		

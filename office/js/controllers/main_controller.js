@@ -1,8 +1,14 @@
-define([ 'marionette', 'views/home', 'views/error' ], function(Marionette, HomeView, ErrorView) {
+define([ 'marionette', 'views/index', 'views/home', 'views/error' ], function(Marionette, IndexView, HomeView, ErrorView) {
 
 	return Marionette.Controller.extend({
 		index : function() {
 			console.log("MainController.index called");
+			GtcOffice.showView(new IndexView());
+			GtcOffice.setNav("index"); //Doesn't exist - just remove current tab
+		},
+		
+		home : function() {
+			console.log("MainController.home called");
 			GtcOffice.showView(new HomeView());
 			GtcOffice.setNav("home");
 		},
