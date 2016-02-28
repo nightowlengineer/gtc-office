@@ -12,8 +12,7 @@ define(
 								optionalMessage : this.optionalMessage,
 								isLoggedIn : GtcOffice.isLoggedIn,
 								userProfile : GtcOffice.userProfile,
-								nickname : s
-										.capitalize(GtcOffice.userProfile.nickname)
+								nickname : s.capitalize(GtcOffice.userProfile.nickname)
 							};
 						},
 
