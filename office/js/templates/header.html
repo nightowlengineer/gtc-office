@@ -9,27 +9,33 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" data-route="#" href="/office"><img src="/office/assets/images/logo.square.clear.png"></a>
-				<a class="navbar-brand" data-route="#" href="/office">Office</a>
+				<a class="navbar-brand" data-route="#" href="/office"><img
+					src="/office/assets/images/logo.square.clear.png"></a> <a
+					class="navbar-brand" data-route="#" href="/office">Office</a>
 			</div>
 
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
 					<% if (isLoggedIn) { %>
-					<li data-app-location="dash"><a data-route="#dash" href="/office/dash">Dashboard</a></li>
-					<li data-app-location="member" class="dropdown-split-left"><a data-route="#member" href="/office/member">Members</a></li>
-					<li class="dropdown-split-right hidden-phone">
-						<a href="" class="dropdown-toggle"
-						data-toggle="dropdown" role="button" aria-haspopup="true"
-						aria-expanded="false"> <span class="caret"></span></a>
+					<li data-app-location="dash"><a data-route="#dash"
+						href="/office/dash">Dashboard</a></li>
+					<li data-app-location="member" class="dropdown-split-left"><a
+						data-route="#member" href="/office/member">Members</a></li>
+					<li class="dropdown-split-right hidden-phone"><a href=""
+						class="dropdown-toggle" data-toggle="dropdown" role="button"
+						aria-haspopup="true" aria-expanded="false"> <span
+							class="caret"></span></a>
 						<ul class="dropdown-menu pull-right">
 							<!-- <li><a href="#member">Home</a></li>
 							<li role="separator" class="divider"></li>-->
-							<li data-app-location="member.applications"><a data-route="#member/applications" href="/office/member/applications">Applications</a></li>
-							<li data-app-location="member.current"><a data-route="#member/current" href="/office/member/current">View current</a></li>
-						</ul></li>
-					<% } %>
+							<li data-app-location="member.applications"><a
+								data-route="#member/applications"
+								href="/office/member/applications">Applications</a></li>
+							<li data-app-location="member.current"><a
+								data-route="#member/current" href="/office/member/current">View
+									current</a></li>
+						</ul></li> <% } %>
 				</ul>
 				<% if (isLoggedIn) { %>
 				<form class="navbar-form navbar-left" role="search">
@@ -43,16 +49,14 @@
 					<% if (isLoggedIn) { %>
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-haspopup="true"
-						aria-expanded="false"><img src="<%= userProfile.picture %>" /> User <span class="caret"></span></a>
+						aria-expanded="false"><img class="userProfileImage"
+							src="<%= userProfile.picture %>" /> User <span class="caret"></span></a>
 						<ul class="dropdown-menu">
 							<!-- <li role="separator" class="divider"></li> -->
 							<% if (isLoggedIn) { %>
-							<li><a class="btn-logout" href="#">Logout</a></li>
-							<% } %>
-						</ul></li>
-					<% } else { %>
-					<li><a class="btn-login">Login</a></li>
-					<% } %>
+							<li><a class="btn-logout" href="#">Logout</a></li> <% } %>
+						</ul></li> <% } else { %>
+					<li><a class="btn-login">Login</a></li> <% } %>
 				</ul>
 			</div>
 			<!-- /.navbar-collapse -->
