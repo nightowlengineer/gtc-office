@@ -58,6 +58,9 @@ define([ "marionette", "routers/main_router", "routers/member_router",
 		var idToken = localStorage.getItem('userToken');
 		if (idToken) {
 			console.log("Token found");
+			tcOffice.lock.getProfile(idToken, function(err, profile){
+				GtcOffice.userProfile = profile;
+			});
 			// If there's a token, just redirect to "targetUrl" if any
 			GtcOffice.isLoggedIn = true;
 			GtcOffice.navigate("#dash", true);
