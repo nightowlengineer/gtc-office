@@ -50,8 +50,6 @@ define([ "marionette", "routers/main_router", "routers/member_router",
 			// save the token
 			localStorage.setItem('userToken', hash.id_token);
 			GtcOffice.isLoggedIn = true;
-			// redirect to "targetUrl" if any
-			GtcOffice.navigate("#dash", true);
 		}
 
 		// Get the user token if we've saved it in localStorage before
@@ -63,10 +61,9 @@ define([ "marionette", "routers/main_router", "routers/member_router",
 			});
 			// If there's a token, just redirect to "targetUrl" if any
 			GtcOffice.isLoggedIn = true;
-			GtcOffice.navigate("#dash", true);
-			console.log("Moving to dashboard");
 		}
-
+		console.log("Moving to dashboard");
+		GtcOffice.navigate("#dash", true);
 		// user is not logged, check whether there is an SSO session or not
 		/*-GtcOffice.lock.$auth0.getSSOData(function(err, data) {
 			console.log("Getting SSO data");
