@@ -32,7 +32,7 @@ define(
 						logout : function(e)
 						{
 							GtcOffice.userProfile = null;
-							GtcOffice.lock.logout({ref: window.location.href});
+							//GtcOffice.lock.logout({ref: window.location.href});
 							localStorage.removeItem("userToken");
 							GtcOffice.navigate("#", true);
 						},
