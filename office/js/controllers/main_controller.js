@@ -4,12 +4,14 @@ define([ 'marionette', 'views/home', 'views/dash', 'views/error' ], function(
 	return Marionette.Controller.extend({
 		home : function() {
 			console.log("MainController.home called");
-			if (GtcOffice.isLoggedIn) {
-				GtcOffice.navigate("#dash", true);
-			} else {
-				GtcOffice.showView(new HomeView());
-				GtcOffice.setNav("home");
-			}
+			GtcOffice.getProfile().done(function() {
+				if (GtcOffice.isLoggedIn) {
+					GtcOffice.navigate("#dash", true);
+				} else {
+					GtcOffice.showView(new HomeView());
+					GtcOffice.setNav("home");
+				}
+			});
 		},
 
 		dash : function() {
