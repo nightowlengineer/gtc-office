@@ -44,9 +44,12 @@
 						data-toggle="dropdown" role="button" aria-haspopup="true"
 						aria-expanded="false">User <span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a class="btn-login">Login</a></li>
-							<li role="separator" class="divider"></li>
+							<!-- <li role="separator" class="divider"></li> -->
+							<% if (isLoggedIn) { %>
 							<li><a class="btn-logout" href="#">Logout</a></li>
+							<% } else { %>
+							<li><a class="btn-login">Login</a></li>
+							<% } %>
 						</ul></li>
 				</ul>
 			</div>
