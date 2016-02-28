@@ -1,16 +1,16 @@
-define([ 'marionette', 'views/index', 'views/home', 'views/error' ], function(Marionette, IndexView, HomeView, ErrorView) {
+define([ 'marionette', 'views/home', 'views/dash', 'views/error' ], function(Marionette, HomeView, DashView, ErrorView) {
 
 	return Marionette.Controller.extend({
 		index : function() {
-			console.log("MainController.index called");
-			GtcOffice.showView(new IndexView());
-			GtcOffice.setNav("index"); //Doesn't exist - just remove current tab
+			console.log("MainController.home called");
+			GtcOffice.showView(new HomeView());
+			GtcOffice.setNav("home"); //Doesn't exist - just remove current tab
 		},
 		
 		home : function() {
-			console.log("MainController.home called");
-			GtcOffice.showView(new HomeView());
-			GtcOffice.setNav("home");
+			console.log("MainController.dash called");
+			GtcOffice.showView(new DashView());
+			GtcOffice.setNav("dash");
 		},
 		
 		logout : function() {
@@ -27,7 +27,7 @@ define([ 'marionette', 'views/index', 'views/home', 'views/error' ], function(Ma
 			}
 			GtcOffice.navigate("/404");
 			GtcOffice.showView(new ErrorView(options));
-			GtcOffice.setNav("home");
+			GtcOffice.setNav("dash");
 		}
 	});
 
