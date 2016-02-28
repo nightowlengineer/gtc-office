@@ -55,6 +55,7 @@ define([ "marionette", "routers/main_router", "routers/member_router",
 		if (idToken) {
 			// If there's a token, just redirect to "targetUrl" if any
 			GtcOffice.isLoggedIn = true;
+			GtcOffice.userProfile = GtcOffice.lock.
 			GtcOffice.navigate("#dash", true);
 		}
 
@@ -65,9 +66,10 @@ define([ "marionette", "routers/main_router", "routers/member_router",
 				GtcOffice.lock.$auth0.signin({
 					// If the user wanted to go to some other URL, you can track
 					// it with `state`
-					state: getQueryParam(location.search, 'targetUrl'),
+					//state: getQueryParam(location.search, 'targetUrl'),
 					callbackOnLocationHash : true
 				});
+				GtcOffice.userProfile = data;
 				alert("resuming session");
 			} else {
 				// regular login

@@ -41,7 +41,6 @@ define(
 						logout : function(e)
 						{
 							GtcOffice.userProfile = null;
-							//GtcOffice.lock.logout({ref: window.location.href});
 							GtcOffice.isLoggedIn = false;
 							localStorage.removeItem("userToken");
 							GtcOffice.navigate("#", true);
