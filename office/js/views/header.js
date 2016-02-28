@@ -43,7 +43,7 @@ define(
 							GtcOffice.userProfile = null;
 							GtcOffice.isLoggedIn = false;
 							localStorage.removeItem("userToken");
-							GtcOffice.navigate("#", true);
+							GtcOffice.navigate("#logout", true);
 						},
 						
 						typeaheadSelectMember : function(e, suggestion)
