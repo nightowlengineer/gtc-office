@@ -17,6 +17,17 @@ define([ "marionette", "routers/main_router", "routers/member_router",
 	GtcOffice.userProfile;
 	GtcOffice.isLoggedIn;
 
+	GtcOffice.getProfile = function() {
+		defer = $.Deferred();
+		var profilePromise = GtcOffice.lock.getProfile(localStorage.getItem("userToken"), function(err, profile) {
+			GtcOffice.userProfile = profile;
+			GtcOffice.isLoggedIn = true;
+			console.log("Fetched profile");
+		});
+		defer.promise(profilePromise);
+		return defer;
+	};
+
 	GtcOffice.startSubApp = function(appName, args) {
 		var currentApp = appName ? GtcOffice.module(appName) : null;
 		if (GtcOffice.currentApp === currentApp) {
@@ -42,15 +53,8 @@ define([ "marionette", "routers/main_router", "routers/member_router",
 		// the response from Auth0 that comes on location hash
 		var hash = GtcOffice.lock.parseHash(window.location.hash);
 		if (hash && hash.id_token) {
-			GtcOffice.lock.getProfile(hash.id_token, function(err, profile){
-				GtcOffice.userProfile = profile;
-				GtcOffice.isLoggedIn = true;
-				console.log("Moving to dashboard");
-				GtcOffice.navigate("#dash", true);
-			});
 			console.log("Resuming session from Auth0");
-			// the user came back from the login (either SSO or regular login),
-			// save the token
+			GtcOffice.getProfile();
 			localStorage.setItem('userToken', hash.id_token);
 			GtcOffice.isLoggedIn = true;
 		}
@@ -59,17 +63,11 @@ define([ "marionette", "routers/main_router", "routers/member_router",
 		var idToken = localStorage.getItem('userToken');
 		if (idToken) {
 			console.log("Token found");
-			GtcOffice.lock.getProfile(idToken, function(err, profile){
-				GtcOffice.userProfile = profile;
-				GtcOffice.isLoggedIn = true;
-				console.log("Moving to dashboard");
-				GtcOffice.navigate("#dash", true);
-			});
+			GtcOffice.getProfile();
 			// If there's a token, just redirect to "targetUrl" if any
-			
+
 		}
-		
-		
+
 		// user is not logged, check whether there is an SSO session or not
 		/*-GtcOffice.lock.$auth0.getSSOData(function(err, data) {
 			console.log("Getting SSO data");

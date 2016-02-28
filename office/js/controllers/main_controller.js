@@ -1,24 +1,32 @@
-define([ 'marionette', 'views/home', 'views/dash', 'views/error' ], function(Marionette, HomeView, DashView, ErrorView) {
+define([ 'marionette', 'views/home', 'views/dash', 'views/error' ], function(
+		Marionette, HomeView, DashView, ErrorView) {
 
 	return Marionette.Controller.extend({
 		home : function() {
 			console.log("MainController.home called");
-			if (GtcOffice.isLoggedIn)
-			{
+			if (GtcOffice.isLoggedIn) {
 				GtcOffice.navigate("#dash", true);
 				return;
 			}
 			GtcOffice.showView(new HomeView());
-			GtcOffice.setNav("home"); //Doesn't exist - just remove current tab
+			GtcOffice.setNav("home"); // Doesn't exist - just remove current
+			// tab
 		},
-		
+
 		dash : function() {
 			console.log("MainController.dash called");
-			GtcOffice.regions.getRegion('header').currentView.render();
-			GtcOffice.showView(new DashView());
-			GtcOffice.setNav("dash");
+			if (GtcOffice.isLoggedIn) {
+				GtcOffice.getProfile().done(function() {
+					GtcOffice.regions.getRegion('header').currentView.render();
+					GtcOffice.showView(new DashView());
+					GtcOffice.setNav("dash");
+				});
+			} else {
+				GtcOffice.navigate("#", true);
+				return;
+			}
 		},
-		
+
 		logout : function() {
 			GtcOffice.showView(new HomeView({
 				optionalMessage : "Logout completed."
@@ -26,7 +34,7 @@ define([ 'marionette', 'views/home', 'views/dash', 'views/error' ], function(Mar
 			GtcOffice.regions.getRegion('header').currentView.render();
 			GtcOffice.navigate("#", true);
 		},
-		
+
 		404 : function(path) {
 			console.log("MainController.404 called");
 			var options = {
