@@ -42,7 +42,7 @@ define([ "marionette", "routers/main_router", "routers/member_router",
 		  // save the token
 		  localStorage.setItem('userToken', hash.id_token);
 		  // redirect to "targetUrl" if any
-		  window.location.href = hash.state || '/';
+		  window.location.href = hash.state || '#';
 		  return;
 		}
 
@@ -50,7 +50,7 @@ define([ "marionette", "routers/main_router", "routers/member_router",
 		var idToken = localStorage.getItem('userToken');
 		if (idToken) {
 		  // If there's a token, just redirect to "targetUrl" if any
-		  window.location.href = hash ? hash.state : '/';
+		  window.location.href = hash ? hash.state : '#';
 		  return;
 		}
 
