@@ -6,7 +6,7 @@ define(
 
 			return Marionette.ItemView
 					.extend({
-						template : headerTemplate,
+						template : _.template(headerTemplate),
 						templateHelpers : function() {
 							return {
 								optionalMessage : this.optionalMessage,
