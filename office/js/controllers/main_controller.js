@@ -4,27 +4,28 @@ define([ 'marionette', 'views/home', 'views/dash', 'views/error' ], function(
 	return Marionette.Controller.extend({
 		home : function() {
 			console.log("MainController.home called");
-			if (GtcOffice.isLoggedIn) {
-				GtcOffice.navigate("#dash", true);
-				return;
-			}
-			GtcOffice.showView(new HomeView());
-			GtcOffice.setNav("home"); // Doesn't exist - just remove current
-			// tab
+			GtcOffice.getProfile().done(function() {
+				if (GtcOffice.isLoggedIn) {
+					GtcOffice.navigate("#dash", true);
+				} else {
+					GtcOffice.showView(new HomeView());
+					GtcOffice.setNav("home");
+				}
+			});
 		},
 
 		dash : function() {
 			console.log("MainController.dash called");
-			if (GtcOffice.isLoggedIn) {
-				GtcOffice.getProfile().done(function() {
+			GtcOffice.getProfile().done(function() {
+				if (GtcOffice.isLoggedIn) {
 					GtcOffice.regions.getRegion('header').currentView.render();
 					GtcOffice.showView(new DashView());
 					GtcOffice.setNav("dash");
-				});
-			} else {
-				GtcOffice.navigate("#", true);
-				return;
-			}
+				} else {
+					GtcOffice.navigate("#", true);
+					return;
+				}
+			});
 		},
 
 		logout : function() {
