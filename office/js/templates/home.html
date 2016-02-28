@@ -5,9 +5,5 @@
 	</div>
 	<% if (optionalMessage) { %><div><%= optionalMessage %></div><% } %>
 	
-	<% if (!loggedIn) { %>
-	<div id="login">
-		<input type="submit" class="btn-login" />
-	</div>
-	<% } %>
+	<div><p>Login status: <%= loggedIn %></p></div>
 </div>
