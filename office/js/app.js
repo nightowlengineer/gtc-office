@@ -42,6 +42,9 @@ define([ "marionette", "routers/main_router", "routers/member_router",
 		// the response from Auth0 that comes on location hash
 		var hash = GtcOffice.lock.parseHash(window.location.hash);
 		if (hash && hash.id_token) {
+			GtcOffice.lock.getProfile(hash.id_token, function(err, profile){
+				GtcOffice.userProfile = profile;
+			});
 			console.log("Resuming session from Auth0");
 			// the user came back from the login (either SSO or regular login),
 			// save the token
@@ -62,7 +65,7 @@ define([ "marionette", "routers/main_router", "routers/member_router",
 		}
 
 		// user is not logged, check whether there is an SSO session or not
-		GtcOffice.lock.$auth0.getSSOData(function(err, data) {
+		/*-GtcOffice.lock.$auth0.getSSOData(function(err, data) {
 			console.log("Getting SSO data");
 			if (!err && data.sso) {
 				console.log("No error, have SSO data: " + data.sso);
@@ -75,13 +78,12 @@ define([ "marionette", "routers/main_router", "routers/member_router",
 					callbackOnLocationHash : true
 				});
 				console.log("Setting user profile to: " + data);
-				GtcOffice.userProfile = GtcOffice.lock.getProfile(idToken);
 				console.log("Setting default token for API calls");
 			} else {
 				// regular login
 				alert("need to login");
 			}
-		});
+		});*/
 
 		$.ajaxSetup({
 			headers : {
