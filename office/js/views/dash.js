@@ -15,9 +15,13 @@ define([ 'marionette', 'text!templates/dash.html' ], function(Marionette,
 			var self = this;
 			this.optionalMessage = options.optionalMessage;
 			GtcOffice.getProfile().done(function() {
-				self.render();
+				if (GtcOffice.isLoggedIn) {
+					self.render();
+				} else {
+					GtcOffice.navigate("#", true);
+				}
 			});
-			
+
 		},
 	});
 });
