@@ -10,7 +10,7 @@ define(
 						templateHelpers : function() {
 							return {
 								optionalMessage : this.optionalMessage,
-								loggedIn : GtcOffice.userProfile == null ? false : true,
+								isLoggedIn : GtcOffice.isLoggedIn,
 								userProfile : GtcOffice.userProfile
 							};
 						},
@@ -31,6 +31,7 @@ define(
 								      // Save the JWT token.
 								      localStorage.setItem('userToken', token);
 								      // Save the profile
+								      GtcOffice.isLoggedIn = true;
 								      GtcOffice.userProfile = profile;
 								      GtcOffice.navigate("#dash", true);
 								    }
@@ -41,6 +42,7 @@ define(
 						{
 							GtcOffice.userProfile = null;
 							//GtcOffice.lock.logout({ref: window.location.href});
+							GtcOffice.isLoggedIn = false;
 							localStorage.removeItem("userToken");
 							GtcOffice.navigate("#", true);
 						},

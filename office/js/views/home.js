@@ -6,7 +6,7 @@ define([ 'marionette', 'text!templates/home.html' ], function(Marionette,
 		templateHelpers : function() {
 			return {
 				optionalMessage : this.optionalMessage,
-				loggedIn : GtcOffice.userProfile == null ? false : true
+				isLoggedIn : GtcOffice.isLoggedIn
 			};
 		},
 

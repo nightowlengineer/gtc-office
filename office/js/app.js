@@ -15,6 +15,7 @@ define([ "marionette", "routers/main_router", "routers/member_router",
 	};
 
 	GtcOffice.userProfile;
+	GtcOffice.isLoggedIn;
 
 	GtcOffice.startSubApp = function(appName, args) {
 		var currentApp = appName ? GtcOffice.module(appName) : null;
@@ -44,15 +45,17 @@ define([ "marionette", "routers/main_router", "routers/member_router",
 			// the user came back from the login (either SSO or regular login),
 			// save the token
 			localStorage.setItem('userToken', hash.id_token);
+			GtcOffice.isLoggedIn = true;
 			// redirect to "targetUrl" if any
-			GtcOffice.navigate("#", true);
+			GtcOffice.navigate("#dash", true);
 		}
 
 		// Get the user token if we've saved it in localStorage before
 		var idToken = localStorage.getItem('userToken');
 		if (idToken) {
 			// If there's a token, just redirect to "targetUrl" if any
-			GtcOffice.navigate("#", true);
+			GtcOffice.isLoggedIn = true;
+			GtcOffice.navigate("#dash", true);
 		}
 
 		// user is not logged, check whether there is an SSO session or not
