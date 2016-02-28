@@ -64,8 +64,9 @@ define([ "marionette", "routers/main_router", "routers/member_router",
 				GtcOffice.lock.$auth0.signin({
 					// If the user wanted to go to some other URL, you can track
 					// it with `state`
-					// state: getQueryParam(location.search, 'targetUrl'),
-					callbackOnLocationHash : false
+					state: getQueryParam(location.search, 'targetUrl'),
+					callbackOnLocationHash : true,
+					alert("loggedin")
 				});
 			} else {
 				// regular login
