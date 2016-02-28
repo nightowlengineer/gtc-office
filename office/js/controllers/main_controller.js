@@ -14,7 +14,7 @@ define([ 'marionette', 'views/home', 'views/dash', 'views/error' ], function(Mar
 		
 		dash : function() {
 			console.log("MainController.dash called");
-			GtcOffice.regions.getRegion('header').render();
+			GtcOffice.regions.getRegion('header').currentView.render();
 			GtcOffice.showView(new DashView());
 			GtcOffice.setNav("dash");
 		},
