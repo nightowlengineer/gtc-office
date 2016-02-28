@@ -55,7 +55,6 @@ define([ "marionette", "routers/main_router", "routers/member_router",
 		if (idToken) {
 			// If there's a token, just redirect to "targetUrl" if any
 			GtcOffice.isLoggedIn = true;
-			GtcOffice.userProfile = GtcOffice.lock.
 			GtcOffice.navigate("#dash", true);
 		}
 
