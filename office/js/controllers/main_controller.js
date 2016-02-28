@@ -14,9 +14,15 @@ define([ 'marionette', 'views/home', 'views/dash', 'views/error' ], function(
 
 		dash : function() {
 			console.log("MainController.dash called");
-			GtcOffice.regions.getRegion('header').currentView.render();
-			GtcOffice.showView(new DashView());
-			GtcOffice.setNav("dash");
+			GtcOffice.getProfile().done(function() {
+				if (GtcOffice.isLoggedIn) {
+					GtcOffice.regions.getRegion('header').currentView.render();
+					GtcOffice.showView(new DashView());
+					GtcOffice.setNav("dash");
+				} else {
+					GtcOffice.navigate("#", true);
+				}
+			});
 		},
 
 		logout : function() {
