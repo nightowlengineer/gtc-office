@@ -4,9 +4,7 @@ define([ 'marionette', 'controllers/main_controller' ], function(Marionette, Mai
 		
 		appRoutes : {
 			'(/)' : 'index',
-			'*path' : '404',
-			'#' : 'index'
-				
+			'*path' : '404'
 		},
 		
 		controller : new MainController()
