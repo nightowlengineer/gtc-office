@@ -65,12 +65,12 @@ define([ "marionette", "routers/main_router", "routers/member_router",
 					// If the user wanted to go to some other URL, you can track
 					// it with `state`
 					state: getQueryParam(location.search, 'targetUrl'),
-					callbackOnLocationHash : true,
-					alert("loggedin")
+					callbackOnLocationHash : true
 				});
+				alert("resuming session");
 			} else {
 				// regular login
-				alert("regular login");
+				alert("need to login");
 			}
 		});
 
