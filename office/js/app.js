@@ -55,43 +55,9 @@ define([ "marionette", "routers/main_router", "routers/member_router",
 		var hash = GtcOffice.lock.parseHash(window.location.hash);
 		if (hash && hash.id_token) {
 			console.log("Resuming session from Auth0");
-			GtcOffice.getProfile();
 			localStorage.setItem('userToken', hash.id_token);
 			GtcOffice.isLoggedIn = true;
 		}
-
-		// Get the user token if we've saved it in localStorage before
-		var idToken = localStorage.getItem('userToken');
-		if (idToken) {
-			console.log("Token found");
-			GtcOffice.getProfile().done(function() {
-				GtcOffice.navigate("#dash", true);
-			});
-
-			// If there's a token, just redirect to "targetUrl" if any
-
-		}
-
-		// user is not logged, check whether there is an SSO session or not
-		/*-GtcOffice.lock.$auth0.getSSOData(function(err, data) {
-			console.log("Getting SSO data");
-			if (!err && data.sso) {
-				console.log("No error, have SSO data: " + data.sso);
-				console.log("Starting signin flow... ");
-				// there is! redirect to Auth0 for SSO
-				GtcOffice.lock.$auth0.signin({
-					// If the user wanted to go to some other URL, you can track
-					// it with `state`
-					state: getQueryParam(location.search, 'targetUrl'),
-					callbackOnLocationHash : true
-				});
-				console.log("Setting user profile to: " + data);
-				console.log("Setting default token for API calls");
-			} else {
-				// regular login
-				alert("need to login");
-			}
-		});*/
 
 		$.ajaxSetup({
 			headers : {
