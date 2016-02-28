@@ -7,6 +7,13 @@ define(
 			return Marionette.ItemView
 					.extend({
 						template : headerTemplate,
+						templateHelpers : function() {
+							return {
+								optionalMessage : this.optionalMessage,
+								loggedIn : GtcOffice.userProfile == null ? false : true,
+								userProfile : GtcOffice.userProfile
+							};
+						},
 						
 						events : {
 							"typeahead:select" : "typeaheadSelectMember",
