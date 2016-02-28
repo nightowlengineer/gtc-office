@@ -1,7 +1,7 @@
 define(
-		[ 'bootstrap', 'marionette', 'typeahead', 'bloodhound', 'handlebars',
-				'text!templates/header.html' ],
-		function(bootstrap, Marionette, Typeahead, Bloodhound, Handlebars,
+		[ 's', 'bootstrap', 'marionette', 'typeahead', 'bloodhound',
+				'handlebars', 'text!templates/header.html' ],
+		function(s, bootstrap, Marionette, Typeahead, Bloodhound, Handlebars,
 				headerTemplate) {
 
 			return Marionette.ItemView
@@ -11,45 +11,46 @@ define(
 							return {
 								optionalMessage : this.optionalMessage,
 								isLoggedIn : GtcOffice.isLoggedIn,
-								userProfile : GtcOffice.userProfile
+								userProfile : GtcOffice.userProfile,
+								nickname : s
+										.capitalize(GtcOffice.userProfile.nickname)
 							};
 						},
-						
+
 						events : {
 							"typeahead:select" : "typeaheadSelectMember",
 							"click .btn-logout" : "logout",
 							'click .btn-login' : 'login'
 						},
-						
+
 						login : function(e) {
 							e.preventDefault();
 							GtcOffice.lock.show(function(err, profile, token) {
 								if (err) {
-								      // Error callback
-								      alert('There was an error');
-								    } else {
-								      // Save the JWT token.
-								      localStorage.setItem('userToken', token);
-								      // Save the profile
-								      GtcOffice.isLoggedIn = true;
-								      GtcOffice.userProfile = profile;
-								      GtcOffice.navigate("#dash", true);
-								    }
+									// Error callback
+									alert('There was an error');
+								} else {
+									// Save the JWT token.
+									localStorage.setItem('userToken', token);
+									// Save the profile
+									GtcOffice.isLoggedIn = true;
+									GtcOffice.userProfile = profile;
+									GtcOffice.navigate("#dash", true);
+								}
 							});
 						},
-						
-						logout : function(e)
-						{
+
+						logout : function(e) {
 							GtcOffice.userProfile = null;
 							GtcOffice.isLoggedIn = false;
 							localStorage.removeItem("userToken");
 							GtcOffice.navigate("#logout", true);
 						},
-						
-						typeaheadSelectMember : function(e, suggestion)
-						{
+
+						typeaheadSelectMember : function(e, suggestion) {
 							$('.typeahead').typeahead('val', "");
-							GtcOffice.navigate("#member/" + suggestion._id, true);
+							GtcOffice.navigate("#member/" + suggestion._id,
+									true);
 						},
 
 						onShow : function() {
