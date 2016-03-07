@@ -5,8 +5,8 @@ define([ 'marionette', 'controllers/member_controller' ], function(Marionette, M
 			'member(/)' : 'home',
 			'member/applications(/)' : 'applications',
 			'member/current(/)' : 'current',
-			'member/:id(/)' : 'view',
-			'member/create(/)' : 'create'
+			'member/create(/)' : 'create',
+			'member/:id(/)' : 'view'
 		},
 		controller : new MemberController(),
 
