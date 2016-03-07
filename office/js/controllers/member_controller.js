@@ -1,5 +1,7 @@
-define([ 'app', 'marionette', 'views/member/member_home', 'views/member/member_core' , 'views/member/member_list'], function(App, Marionette,
-		MemberHomeView, MemberCoreView, MemberListView) {
+define([ 'app', 'marionette', 'views/member/member_home',
+		'views/member/member_core', 'views/member/member_list',
+		'views/member/member_create' ], function(App, Marionette,
+		MemberHomeView, MemberCoreView, MemberListView, MemberCreateView) {
 
 	return Marionette.Controller.extend({
 		home : function() {
@@ -7,12 +9,12 @@ define([ 'app', 'marionette', 'views/member/member_home', 'views/member/member_c
 			GtcOffice.showView(new MemberHomeView());
 			GtcOffice.setNav("member.home");
 		},
-		
+
 		all : function() {
 			GtcOffice.showView(new MemberListView());
 			GtcOffice.setNav("member.all");
 		},
-		
+
 		applications : function() {
 			console.log("MemberController.applications called");
 			GtcOffice.showView(new MemberListView({
@@ -20,18 +22,26 @@ define([ 'app', 'marionette', 'views/member/member_home', 'views/member/member_c
 			}));
 			GtcOffice.setNav("member.applications");
 		},
-		
-		current : function(){
+
+		create : function() {
+			console.log("MemberControll.create called");
+			GtcOffice.showView(new MemberCreateView());
+			GtcOffice.setNav("member.create");
+		},
+
+		current : function() {
 			console.log("MemberController.current called");
 			GtcOffice.showView(new MemberListView({
 				listType : "current"
 			}));
 			GtcOffice.setNav("member.current");
 		},
-		
+
 		view : function(memberId) {
 			console.log("MemberController.view called");
-			GtcOffice.showView(new MemberCoreView({memberId : memberId}));
+			GtcOffice.showView(new MemberCoreView({
+				memberId : memberId
+			}));
 			GtcOffice.setNav("member.view");
 		}
 	});

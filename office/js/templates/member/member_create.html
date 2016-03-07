@@ -1,0 +1,142 @@
+<div>
+	<div id="memberCore">
+		<div id="memberHeading" class="page-header">
+			<h1><%= member.firstName %> <%= member.lastName %> <small><%= member.type %> <span class="badge">#<%= member.membershipNumber %></span></small></h1>
+		</div>
+		<div id="memberMenu">
+		
+		</div>
+		<div id="memberInformation">
+			<ul class="nav nav-tabs">
+			  <li class="active"><a href="#info" data-toggle="tab">Information</a></li>
+			  <li><a href="#application" data-toggle="tab">Application</a></li>
+			  <li><a href="#actions" data-toggle="tab">Actions</a></li>
+			  <li><a href="#logs" data-toggle="tab">Logbook</a></li>
+			</ul>
+	
+			<!-- Tab panes -->
+			<div class="tab-content">
+			  <div class="tab-pane fade in active" id="info">
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-md-6">
+								<p><strong>Status</strong>: <span class="inlineEditable" id="status" data-type="select" data-value="<%= member.status %>" data-source="<%= statusTypes %>"><%= member.status %></span></p>
+								<p><strong>Salutation</strong>: <span class="inlineEditable" id="salutation" data-type="select" data-value="<%= member.salutation %>" data-source="<%= salutationTypes %>"><%= member.salutation %></span></p>
+								<p><strong>First name</strong>: <span class="inlineEditable" id="firstName" data-type="text"><%= member.firstName %></span></p>
+								<p><strong>Last name</strong>: <span class="inlineEditable" id="lastName" data-type="text"><%= member.lastName %></span></p>
+								<p><strong>Email</strong>: <span class="inlineEditable" id="email" data-type="text"><%= member.email %></span></p>
+							</div>
+							<div class="col-md-6">
+								<strong>Addresses</strong>:
+									<% _.each(addresses, function(address, addressIndex){%>
+									<div class="row">
+										<div class="col-md-2"><strong><span class="inlineEditable" id="addresses.<%= addressIndex %>.addressType" data-type="select" data-value="<%= address.addressType %>" data-source="<%= locationTypes %>"><%= address.addressType %></span></strong></div>
+										<div class="col-md-4"><% _.each(address.lines, function(line, lineIndex){%>
+											<span class="inlineEditable" id="addresses.<%= addressIndex %>.lines.<%= lineIndex %>" data-type="text"><%= line %></span><br />
+										<% }) %>
+										<span class="inlineEditable" id="addresses.<%= addressIndex %>.country" data-type="text" data-value="<%= address.country %>"><%= address.country %></span><br />
+										<span class="inlineEditable" id="addresses.<%= addressIndex %>.postcode" data-type="text" data-value="<%= address.postcode %>"><%= address.postcode %></span><br />
+										</div>
+									</div>
+									<% }) %>
+								
+								<strong>Phone numbers</strong>:
+									<% _.each(member.phoneNumbers, function(phoneNumber, index){%>
+									<div class="row">
+										<div class="col-md-2"><strong><span class="inlineEditable" id="phoneNumbers.<%= index %>.phoneType" data-type="select" data-value="<%= phoneNumber.phoneType %>" data-source="<%= locationTypes %>"><%= phoneNumber.phoneType %></span></strong></div>
+										<div class="col-md-4"><span class="inlineEditable" id="phoneNumbers.<%= index %>.number" data-type="text" data-value="<%= phoneNumber.number %>"><%= phoneNumber.number %></span></div>
+									</div>
+									<% }) %>
+							</div>
+						</div>
+					</div>
+				</div>
+			  </div>
+			  <div class="tab-pane fade in" id="application">
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-md-6">
+								<p><strong>Current post</strong>: <span class="inlineEditable" id="currentPost" data-type="text"><%= member.currentPost %></span></p>
+								<p><strong>Career start date</strong>: <span class="inlineEditable" id="careerStartDate" data-type="text"><%= member.careerStartDate %></span></p>
+								<p><strong>Referral source</strong>: <span class="inlineEditable" id="referralSource" data-type="text"><%= member.referralSource %></span></p>
+							</div>
+							<div class="col-md-6">
+								<strong>Sponsor members</strong>: <%= member.sponsorMembers %><br />
+									<div class="row">
+										<div class="col-md-2"><strong>#1234</strong></div>
+										<div class="col-md-4">John Smith</div>
+									</div>
+									<div class="row">
+										<div class="col-md-2"><strong>#1234</strong></div>
+										<div class="col-md-4">John Smith</div>
+									</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			  </div>
+			  <div class="tab-pane fade" id="actions">
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-md-6">
+								
+								<div class="panel panel-default">
+									<div class="panel-heading">
+										<h3 class="panel-title">Potential loaner</h3>
+									</div>
+									<div class="panel-body">
+										<p>This panel active if logged-in user = anyone who doesn't own the book</p>
+										<p><button class="btn btn-sm btn-default" disabled="disabled">Request loan</button></p>
+										<p><button class="btn btn-sm btn-default" disabled="disabled">Mark received</button></p>
+										<p class="bg-success">Loan requested 31/01/2014</button>
+										<p class="bg-success">Book received 01/02/2014</button>
+									</div>
+								</div>
+								<div class="panel panel-default">
+									<div class="panel-heading">
+										<h3 class="panel-title">Current owner</h3>
+									</div>
+									<div class="panel-body">
+										<p>This panel active if logged-in user = who received the book last</p>
+										<p><button class="btn btn-sm btn-default">Accept loan</button></p>
+										<p><button class="btn btn-sm btn-default">Mark sent</button></p>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="panel panel-default">
+									<div class="panel-heading">
+										<h3 class="panel-title">Admin</h3>
+									</div>
+									<div class="panel-body">
+										<p>This panel active if logged-in user = admin/staff</p>
+										<p><button class="btn btn-sm btn-success" disabled="disabled">Accept</button></p>
+										<p><button class="btn btn-sm btn-danger" disabled="disabled">Reject</button></p>
+										<p class="bg-success">Listing accepted 01/02/2014</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			  </div>
+			  <div class="tab-pane fade" id="logs">
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<table class="table">
+							<tr><th>Date</th><th>Member</th><th>Comments</th></tr>
+							<tr><td>16/02/2014</td><td>2973</td><td>Loan requested</td></tr>
+							<tr><td>04/02/2014</td><td>5678</td><td>Received book</td></tr>
+							<tr><td>31/01/2014</td><td>5678</td><td>Loan requested</td></tr>
+							<tr><td>31/01/2014</td><td>1122</td><td>Added to library</td></tr>
+						</table>
+					</div>
+				</div>
+			  </div>
+			</div>
+		</div>
+	</div>
+</div>
