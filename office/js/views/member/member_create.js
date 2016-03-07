@@ -22,9 +22,9 @@ define([ 'jquery', 'x-editable', 'marionette', 'text!templates/member/member_cre
 		initialize : function(options) {
 			var self = this;
 			this.member = new Member();
-			this.salutationTypes = this.setupSourceData(this.member.getSalutations(true));
-			this.locationTypes = this.setupSourceData(this.member.getLocations(true));
-			this.statusTypes = this.setupSourceData(this.member.getStatuses(true));
+			this.salutationTypes = this.member.getSalutations(true);
+			this.locationTypes = this.member.getLocations(true);
+			this.statusTypes = this.member.getStatuses(true);
 		}
 	});
 
