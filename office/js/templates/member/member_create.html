@@ -1,7 +1,7 @@
 <div>
 	<div id="memberCore">
 		<div id="memberHeading" class="page-header">
-			<h1><%= member.firstName %> <%= member.lastName %> <small><%= member.type %> <span class="badge">#<%= member.membershipNumber %></span></small></h1>
+			<h1>Create member</h1>
 		</div>
 		<div id="memberMenu">
 		
@@ -10,8 +10,6 @@
 			<ul class="nav nav-tabs">
 			  <li class="active"><a href="#info" data-toggle="tab">Information</a></li>
 			  <li><a href="#application" data-toggle="tab">Application</a></li>
-			  <li><a href="#actions" data-toggle="tab">Actions</a></li>
-			  <li><a href="#logs" data-toggle="tab">Logbook</a></li>
 			</ul>
 	
 			<!-- Tab panes -->
@@ -21,11 +19,15 @@
 					<div class="panel-body">
 						<div class="row">
 							<div class="col-md-6">
-								<p><strong>Status</strong>: <span class="inlineEditable" id="status" data-type="select" data-value="<%= member.status %>" data-source="<%= statusTypes %>"><%= member.status %></span></p>
-								<p><strong>Salutation</strong>: <span class="inlineEditable" id="salutation" data-type="select" data-value="<%= member.salutation %>" data-source="<%= salutationTypes %>"><%= member.salutation %></span></p>
-								<p><strong>First name</strong>: <span class="inlineEditable" id="firstName" data-type="text"><%= member.firstName %></span></p>
-								<p><strong>Last name</strong>: <span class="inlineEditable" id="lastName" data-type="text"><%= member.lastName %></span></p>
-								<p><strong>Email</strong>: <span class="inlineEditable" id="email" data-type="text"><%= member.email %></span></p>
+								<p><strong>Status</strong>: Applied</p>
+								<p><strong>Salutation</strong>: <select id="salutation">
+								<% _.each(salutationTypes, function(salutation){ %>
+								<option><%= salutation %></option>
+								<% }) %>
+								</select></p>
+								<p><strong>First name</strong>: <input id="firstName" /></p>
+								<p><strong>Last name</strong>: <input id="lastName" /></p>
+								<p><strong>Email</strong>: <input id="email" /></p>
 							</div>
 							<div class="col-md-6">
 								<strong>Addresses</strong>:
