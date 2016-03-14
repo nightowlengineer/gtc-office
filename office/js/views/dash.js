@@ -1,5 +1,5 @@
-define([ 'marionette', 'text!templates/dash.html' ], function(Marionette,
-		dashTemplate) {
+define([ 'underscore.string', 'marionette', 'text!templates/dash.html' ], function(s,
+		Marionette, dashTemplate) {
 
 	return Marionette.LayoutView.extend({
 		template : _.template(dashTemplate),
@@ -7,7 +7,8 @@ define([ 'marionette', 'text!templates/dash.html' ], function(Marionette,
 			return {
 				optionalMessage : this.optionalMessage,
 				loggedIn : GtcOffice.userProfile == null ? false : true,
-				userProfile : GtcOffice.userProfile
+				userProfile : GtcOffice.userProfile,
+				nickname : s.capitalize(GtcOffice.userProfile.nickname)
 			};
 		},
 
