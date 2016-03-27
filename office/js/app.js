@@ -1,7 +1,7 @@
 define([ "marionette", "routers/main_router", "routers/error_router",
         "routers/member_router", "views/header", "views/footer", "views/home",
         "pace", "underscore", "underscore.string", "jquery", "auth0-lock" ],
-        function(Marionette, MainRouter, MemberRouter, HeaderView, FooterView,
+        function(Marionette, MainRouter, ErrorRouter, MemberRouter, HeaderView, FooterView,
         		HomeView, pace, _, s, $, Auth0Lock) {
 	GtcOffice = new Marionette.Application();
 	
@@ -125,6 +125,7 @@ define([ "marionette", "routers/main_router", "routers/error_router",
 
 		// Routers
 		var mainRouter = new MainRouter();
+		var errorRouter = new ErrorRouter();
 		var memberRouter = new MemberRouter();
 
 		Backbone.history.start({
