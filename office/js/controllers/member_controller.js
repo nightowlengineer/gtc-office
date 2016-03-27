@@ -24,7 +24,7 @@ define([ 'app', 'marionette', 'views/member/member_home',
 		},
 
 		create : function() {
-			console.log("MemberControll.create called");
+			console.log("MemberController.create called");
 			GtcOffice.showView(new MemberCreateView());
 			GtcOffice.setNav("member.create");
 		},
