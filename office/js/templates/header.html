@@ -20,15 +20,14 @@
 					<% if (isLoggedIn) { %>
 					<li data-app-location="dash"><a data-route="#dash"
 						href="/office/dash">Dashboard</a></li>
-					<li data-app-location="member" class="dropdown-split-left"><a
-						data-route="#member" href="/office/member">Members</a></li>
+					<li data-app-location="member" class="dropdown-split-left">
 					<li class="dropdown-split-right hidden-phone"><a href=""
 						class="dropdown-toggle" data-toggle="dropdown" role="button"
 						aria-haspopup="true" aria-expanded="false"> <span
 							class="caret"></span></a>
 						<ul class="dropdown-menu pull-right">
-							<!-- <li><a href="#member">Home</a></li>
-							<li role="separator" class="divider"></li>-->
+							<li><a href="/office/member" data-route="#member" data-app-location="member">Home</a></li>
+							<li role="separator" class="divider"></li>
 							<li data-app-location="member.applications"><a
 								data-route="#member/applications"
 								href="/office/member/applications">Applications</a></li>
@@ -37,7 +36,9 @@
 									current</a></li>
 							<li data-app-location="member.create"><a
 								data-route="#member/create" href="/office/member/create">Create</a></li>
-						</ul></li> <% } %>
+						</ul></li>
+					</li>
+					<% } %>
 				</ul>
 				<% if (isLoggedIn) { %>
 				<form class="navbar-form navbar-left" role="search">
