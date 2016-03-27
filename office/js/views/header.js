@@ -30,7 +30,7 @@ define(
 						
 						initialize : function() {
 							var fetchProfile = GtcOffice.getProfile();
-							fetchProfile.then(this.render());
+							fetchProfile.done(this.render());
 						},
 
 						login : function(e) {
