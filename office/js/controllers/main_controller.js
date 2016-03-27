@@ -45,7 +45,9 @@ define([ 'marionette', 'views/home', 'views/dash', 'views/error' ], function(
 			switch(errorCode)
 			{
 			case "404":
-				detailedMessage = "That page doesn't exist: " + extra;
+				detailedMessage = "That page doesn't exist";
+				if (extra && extra.length > 0)
+					detailedMessage += ": " + extra;
 				break;
 			case "502":
 				detailedMessage = "The office is unavailable. Contact support via the footer.";
