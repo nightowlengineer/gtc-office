@@ -60,7 +60,7 @@ define([ 'marionette', 'views/home', 'views/dash', 'views/error' ], function(
 			}
 			GtcOffice.showView(new ErrorView(options));
 			
-			GtcOffice.navigate("#");
+			GtcOffice.navigate("error/" + errorCode);
 			GtcOffice.setNav("dash");
 		}
 	});
