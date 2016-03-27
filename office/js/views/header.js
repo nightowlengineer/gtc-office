@@ -27,6 +27,11 @@ define(
 							"click .btn-logout" : "logout",
 							'click .btn-login' : 'login'
 						},
+						
+						intialize : function() {
+							var fetchProfile = GtcOffice.getProfile();
+							fetchProfile.then(this.render());
+						},
 
 						login : function(e) {
 							e.preventDefault();
