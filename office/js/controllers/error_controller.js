@@ -2,12 +2,6 @@ define([ 'marionette', 'views/error' ], function(
 		Marionette, ErrorView) {
 
 	return Marionette.Controller.extend({
-		404 : function(path) {
-			console.log("ErrorController.404 called");
-			GtcOffice.setNav("error/404");
-			this.error("404", path);
-		},
-		
 		error : function(errorCode, extra) {
 			console.log("ErrorController.error called");
 			var detailedMessage = "An error occurred.";

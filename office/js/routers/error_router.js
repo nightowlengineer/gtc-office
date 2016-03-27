@@ -3,7 +3,6 @@ define([ 'marionette', 'controllers/error_controller' ], function(Marionette, Er
 	return Marionette.AppRouter.extend({
 		
 		appRoutes : {
-			'*path' : '404',
 			'error(/:code)' : 'error'
 		},
 		

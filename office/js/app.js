@@ -125,10 +125,17 @@ define([ "marionette", "routers/main_router", "routers/error_router",
 
 		// Routers
 		var mainRouter = new MainRouter();
-		var errorRouter = new ErrorRouter();
 		var memberRouter = new MemberRouter();
 
-		Backbone.history.start({
+		var errorRouter = new ErrorRouter();
+		var History = Backbone.History.extend({
+		  loadUrl: function() {
+		    var match = Backbone.History.prototype.loadUrl.apply(this, arguments);
+		    if (!match) GtcOffice.navigate("error/404", true);
+		    return match;
+		  }
+		});
+		(Backbone.history = new History).start({
 			pushState : true,
 			root : window.location.pathname.replace('/', '').split('/')[0]
 		});
