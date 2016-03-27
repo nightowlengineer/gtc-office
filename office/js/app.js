@@ -1,8 +1,7 @@
-define([ "marionette", "routers/main_router", "routers/error_router",
-        "routers/member_router", "views/header", "views/footer", "views/home",
-        "pace", "underscore", "underscore.string", "jquery", "auth0-lock" ],
-        function(Marionette, MainRouter, ErrorRouter, MemberRouter, HeaderView, FooterView,
-        		HomeView, pace, _, s, $, Auth0Lock) {
+define([ "marionette", "routers/main_router", "routers/member_router", "views/header",
+        "views/footer", "views/home", "pace", "underscore", "underscore.string",
+        "jquery", "auth0-lock" ], function(Marionette, MainRouter, MemberRouter,
+        HeaderView, FooterView, HomeView, pace, _, s, $, Auth0Lock) {
 	GtcOffice = new Marionette.Application();
 	
 	GtcOffice.navigate = function(route, options) {
@@ -54,7 +53,6 @@ define([ "marionette", "routers/main_router", "routers/error_router",
 			'gtc.eu.auth0.com');
 
 	GtcOffice.on("start", function() {
-
 		// sso requires redirect mode, hence we need to parse
 		// the response from Auth0 that comes on location hash
 		var hash = GtcOffice.lock.parseHash(window.location.hash);
@@ -127,15 +125,7 @@ define([ "marionette", "routers/main_router", "routers/error_router",
 		var mainRouter = new MainRouter();
 		var memberRouter = new MemberRouter();
 
-		var errorRouter = new ErrorRouter();
-		var History = Backbone.History.extend({
-		  loadUrl: function() {
-		    var match = Backbone.History.prototype.loadUrl.apply(this, arguments);
-		    if (!match) GtcOffice.navigate("error/404", true);
-		    return match;
-		  }
-		});
-		(Backbone.history = new History).start({
+		Backbone.history.start({
 			pushState : true,
 			root : window.location.pathname.replace('/', '').split('/')[0]
 		});

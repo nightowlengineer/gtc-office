@@ -33,6 +33,35 @@ define([ 'marionette', 'views/home', 'views/dash', 'views/error' ], function(
 			}))
 			GtcOffice.regions.getRegion('header').currentView.render();
 			GtcOffice.navigate("#", true);
+		},
+		
+		404 : function(path) {
+			this.error("404", path);
+		},
+		
+		error : function(errorCode, extra) {
+			console.log("ErrorController.error called");
+			var detailedMessage = "An error occurred.";
+			switch(errorCode)
+			{
+			case "404":
+				detailedMessage = "That page doesn't exist: " + extra;
+				break;
+			case "502":
+				detailedMessage = "The office is unavailable. Contact support via the footer.";
+				break;
+			default:
+				break;
+			}
+			
+			var options = {
+					errorCode : errorCode,
+					message : detailedMessage
+			}
+			GtcOffice.showView(new ErrorView(options));
+			
+			GtcOffice.navigate("#");
+			GtcOffice.setNav("dash");
 		}
 	});
 

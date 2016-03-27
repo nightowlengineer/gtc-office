@@ -5,7 +5,9 @@ define([ 'marionette', 'controllers/main_controller' ], function(Marionette, Mai
 		appRoutes : {
 			'(/)' : 'home',
 			'logout' : 'logout',
-			'dash' : 'dash'
+			'dash' : 'dash',
+			'error/:errorCode' : 'error',
+			'*path' : '404'
 		},
 		
 		controller : new MainController()
