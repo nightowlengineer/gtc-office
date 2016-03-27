@@ -4,8 +4,6 @@ define([ "marionette", "routers/main_router", "routers/member_router",
 		MainRouter, MemberRouter, HeaderView, FooterView, HomeView, pace, _, s,
 		$, Auth0Lock) {
 	GtcOffice = new Marionette.Application();
-
-	GtcOffice.baseUrl = "https://localhost";
 	
 	GtcOffice.navigate = function(route, options) {
 		options || (options = {});

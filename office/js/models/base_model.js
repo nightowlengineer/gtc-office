@@ -2,8 +2,8 @@ define([ 'backbone', 'backbone-deep-model' ], function(Backbone) {
 
 	return Backbone.DeepModel.extend({
 		idAttribute : "_id",
-		basePath : GtcOffice.baseUrl + "/api/",,
-		urlRoot : GtcOffice.baseUrl + "/api/",,
+		basePath : "https://services.gtc.org.uk/api/",
+		urlRoot : "https://services.gtc.org.uk/api/",
 		
 		fetch : function(options) {
 			options = options || {};
