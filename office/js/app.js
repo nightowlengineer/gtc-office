@@ -1,8 +1,8 @@
-define([ "marionette", "routers/main_router", "routers/member_router",
-		"views/header", "views/footer", "views/home", "pace", "underscore",
-		"underscore.string", "jquery", "auth0-lock" ], function(Marionette,
-		MainRouter, MemberRouter, HeaderView, FooterView, HomeView, pace, _, s,
-		$, Auth0Lock) {
+define([ "marionette", "routers/main_router", "routers/error_router",
+        "routers/member_router", "views/header", "views/footer", "views/home",
+        "pace", "underscore", "underscore.string", "jquery", "auth0-lock" ],
+        function(Marionette, MainRouter, MemberRouter, HeaderView, FooterView,
+        		HomeView, pace, _, s, $, Auth0Lock) {
 	GtcOffice = new Marionette.Application();
 	
 	GtcOffice.navigate = function(route, options) {

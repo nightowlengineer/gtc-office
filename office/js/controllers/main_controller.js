@@ -33,17 +33,6 @@ define([ 'marionette', 'views/home', 'views/dash', 'views/error' ], function(
 			}))
 			GtcOffice.regions.getRegion('header').currentView.render();
 			GtcOffice.navigate("#", true);
-		},
-
-		404 : function(path) {
-			console.log("MainController.404 called");
-			var options = {
-				errorCode : "404",
-				message : "That page doesn't exist: " + path
-			}
-			GtcOffice.navigate("/404");
-			GtcOffice.showView(new ErrorView(options));
-			GtcOffice.setNav("dash");
 		}
 	});
 
