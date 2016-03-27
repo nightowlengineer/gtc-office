@@ -29,8 +29,11 @@ define(
 						},
 						
 						initialize : function() {
+							var self = this;
 							var fetchProfile = GtcOffice.getProfile();
-							fetchProfile.done(this.render());
+							fetchProfile.done(function(){
+								self.render();
+							});
 						},
 
 						login : function(e) {
