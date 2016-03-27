@@ -28,7 +28,7 @@ define(
 							'click .btn-login' : 'login'
 						},
 						
-						intialize : function() {
+						initialize : function() {
 							var self = this;
 							var fetchProfile = GtcOffice.getProfile();
 							fetchProfile.done(function(){
