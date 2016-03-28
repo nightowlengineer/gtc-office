@@ -71,6 +71,10 @@ define(
 							this.setupTypeahead();
 						},
 						
+						onRender : function() {
+							this.setupTypeahead();
+						},
+						
 						setupTypeahead : function() {
 							var membersBloodhound = new Bloodhound(
 									{
