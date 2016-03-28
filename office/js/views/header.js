@@ -68,7 +68,10 @@ define(
 
 						onShow : function() {
 							$('.dropdown-toggle').dropdown();
-							
+							this.setupTypeahead();
+						},
+						
+						setupTypeahead : function() {
 							var membersBloodhound = new Bloodhound(
 									{
 										datumTokenizer : Bloodhound.tokenizers.obj
