@@ -84,7 +84,7 @@ define(
 										}
 									});
 							$(
-									'#members-typeahead .typeahead')
+									'#member-typeahead')
 									.typeahead(
 											null,
 											{
