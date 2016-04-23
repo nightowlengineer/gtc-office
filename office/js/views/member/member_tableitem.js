@@ -11,6 +11,7 @@ define([ 'marionette', 'text!templates/member/member_tableitem.html' ],
 						membershipNumber : this.model.get("membershipNumber"),
 						firstName : this.model.get("firstName"),
 						lastName : this.model.get("lastName"),
+						type : this.model.get("type"),
 						id : this.model.id,
 						showMemberNumber : this.showMemberNumber
 					};
