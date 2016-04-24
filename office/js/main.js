@@ -13,7 +13,7 @@ require
 				"jquery-ui" : "https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min",
 				text : "https://cdnjs.cloudflare.com/ajax/libs/require-text/2.0.12/text.min",
 				bootstrap : "https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min",
-				typeahead : "https://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.11.1/typeahead.jquery.min",
+				typeahead : "libs/typeahead.jquery",
 				bloodhound : "https://cdnjs.cloudflare.com/ajax/libs/corejs-typeahead/0.11.1/bloodhound.min",
 				datatables : "https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.11/js/jquery.dataTables.min",
 				"x-editable" : "https://cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.1/bootstrap3-editable/js/bootstrap-editable.min",
