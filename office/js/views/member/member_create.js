@@ -19,12 +19,21 @@ define([ 'jquery', 'x-editable', 'marionette', 'text!templates/member/member_cre
 				memberMenu : "#memberMenu"
 		},
 		
+		events : {
+			"click #createMember" : "createMember"
+		},
+		
 		initialize : function(options) {
 			var self = this;
 			this.member = new Member();
 			this.salutationTypes = this.member.getSalutations(true);
 			this.locationTypes = this.member.getLocations(true);
 			this.statusTypes = this.member.getStatuses(true);
+		},
+		
+		createMember : function(e) {
+			e.preventDefault();
+			alert("Clicked create button");
 		}
 	});
 
