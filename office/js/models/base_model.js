@@ -24,6 +24,7 @@ define([ 'backbone', 'backbone-deep-model' ], function(Backbone) {
 			    'Authorization': 'Bearer ' + localStorage.getItem('userToken')
 			  };
 			options.headers = options.headers ? _.extend(options.headers, custom) : custom;
+			attrs = attrs || this.attributes;
 			return Backbone.Model.prototype.save.call(this, attrs, options);
 		},
 		
