@@ -32,7 +32,8 @@ define([ 'jquery', 'x-editable', 'marionette', 'text!templates/member/member_cre
 			var member = new Member();
 			var memberForm = $('#memberCreateForm').serialize();
 			console.debug(memberForm);
-			member.save(memberForm);
+			member.set(memberForm);
+			member.createMember();
 			console.debug("Sent member to backend");
 		}
 	});
