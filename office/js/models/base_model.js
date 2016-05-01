@@ -51,7 +51,6 @@ define([ 'backbone', 'backbone-deep-model' ], function(Backbone) {
 						}
 					});
 				}
-				return returnData;
 			}
 			else
 			{
@@ -60,10 +59,11 @@ define([ 'backbone', 'backbone-deep-model' ], function(Backbone) {
 					url : this.basePath + apiPath,
 					async : false,
 					success : function(data){
-						return data;
+						returnData = data;
 					}
 				});
 			}
+			return returnData;
 		}
 	});
 
