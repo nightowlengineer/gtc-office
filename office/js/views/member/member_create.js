@@ -33,7 +33,9 @@ define([ 'jquery', 'x-editable', 'marionette', 'text!templates/member/member_cre
 			var memberForm = {};
 			$("#memberCreateForm").serializeArray().map(function(x){memberForm[x.name] = x.value;}); 
 			member.set(memberForm);
-			member.createMember();
+			member.createMember(function(model, response){
+				GtcOffice.navigate("/member/" + model.id);
+			});
 		}
 	});
 

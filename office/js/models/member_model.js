@@ -3,7 +3,7 @@ define([ 'models/base_model' ], function(BaseModel) {
 	return BaseModel.extend({
 		urlRoot : new BaseModel().urlRoot + "member/id/",
 
-		createMember : function() {
+		createMember : function(callback) {
 			var oldUrl = this.urlRoot;
 			this.urlRoot = new BaseModel().urlRoot + "member/";
 			this.save(
@@ -11,7 +11,7 @@ define([ 'models/base_model' ], function(BaseModel) {
 				{
 					success : function(model, response)
 					{
-						console.debug(model);
+						callback(model, response);
 					}
 				}
 			);
