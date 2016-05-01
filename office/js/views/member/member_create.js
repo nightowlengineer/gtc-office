@@ -32,10 +32,9 @@ define([ 'jquery', 'x-editable', 'marionette', 'text!templates/member/member_cre
 			var member = new Member();
 			var memberForm = {};
 			$("#memberCreateForm").serializeArray().map(function(x){memberForm[x.name] = x.value;}); 
-			console.debug(memberForm);
 			member.set(memberForm);
-			member.createMember();
-			console.debug("Sent member to backend");
+			var createdMember = member.createMember();
+			console.debug(createdMember);
 		}
 	});
 
