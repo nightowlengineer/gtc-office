@@ -16,7 +16,7 @@ define([ 'backbone', 'backbone-deep-model' ], function(Backbone) {
 			return Backbone.Model.prototype.fetch.call(this, options);
 		},
 		
-		save : function(options) {
+		save : function(attrs, options) {
 			options = options || {};
 			var custom = {
 			    'Content-type': 'application/json',
@@ -24,7 +24,7 @@ define([ 'backbone', 'backbone-deep-model' ], function(Backbone) {
 			    'Authorization': 'Bearer ' + localStorage.getItem('userToken')
 			  };
 			options.headers = options.headers ? _.extend(options.headers, custom) : custom;
-			return Backbone.Model.prototype.save.call(this, options);
+			return Backbone.Model.prototype.save.call(this, attrs, options);
 		},
 		
 		getPlainData : function(apiPath, cache)
