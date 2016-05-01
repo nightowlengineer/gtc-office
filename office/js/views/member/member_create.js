@@ -23,7 +23,9 @@ define([ 'jquery', 'x-editable', 'marionette', 'text!templates/member/member_cre
 		initialize : function(options) {
 			var self = this;
 			this.member = new Member();
-			this.member.set("membershipNumber", this.member.getNextMembershipNumber());
+			this.member.set({
+				"membershipNumber" : this.member.getNextMembershipNumber()
+			});
 			this.memberTypes = this.member.getMemberTypes(true);
 			this.salutationTypes = this.member.getSalutations(true);
 			this.locationTypes = this.member.getLocations(true);
