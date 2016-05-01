@@ -30,7 +30,7 @@ define([ 'jquery', 'x-editable', 'marionette', 'text!templates/member/member_cre
 		createMember : function(e) {
 			e.preventDefault();
 			var member = new Member();
-			var memberForm = this.getFormData( this.$el.find('#memberCreateForm') );
+			var memberForm = $('#memberCreateForm').serialize();
 			console.debug(memberForm);
 			member.save(memberForm);
 			console.debug("Sent member to backend");
