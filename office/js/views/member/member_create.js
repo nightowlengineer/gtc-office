@@ -33,8 +33,7 @@ define([ 'jquery', 'x-editable', 'marionette', 'text!templates/member/member_cre
 			var memberForm = {};
 			$("#memberCreateForm").serializeArray().map(function(x){memberForm[x.name] = x.value;}); 
 			member.set(memberForm);
-			var createdMember = member.createMember();
-			console.debug(createdMember);
+			member.createMember();
 		}
 	});
 

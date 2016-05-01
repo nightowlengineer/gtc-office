@@ -7,9 +7,13 @@ define([ 'models/base_model' ], function(BaseModel) {
 		{
 			var oldUrl = this.urlRoot;
 			this.urlRoot = new BaseModel().urlRoot + "member/";
-			var createdMember = this.save();
+			this.save({
+				success : function(createdMember)
+				{
+					console.debug(createdMember);
+				}
+			});
 			this.urlRoot = oldUrl;
-			return createdMember;
 		},
 		
 		getSalutations : function(cache)
