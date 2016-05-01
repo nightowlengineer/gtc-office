@@ -14,6 +14,11 @@
 										<strong>Status</strong>: Applied
 										<input hidden="hidden" readonly id="status" name="status" value="APPLIED" />
 									</p>
+									<div class="form-group">
+										<p>
+											<label for="membershipNumber"><strong>Membership number</strong>: <input id="membershipNumber" name="membershipNumber" value="<%= member.membershipNumber %>"/></label>
+										</p>
+									</div>
 									<p>
 										<label for="type"><strong>Type</strong>: <select id="type" name="type">
 											<% _.each(memberTypes, function(type){ %>

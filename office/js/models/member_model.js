@@ -17,6 +17,10 @@ define([ 'models/base_model' ], function(BaseModel) {
 			);
 			this.urlRoot = oldUrl;
 		},
+		
+		getNextMembershipNumber : function() {
+			return this.getPlainData("member/nextMembershipNumber", false);
+		},
 
 		getMemberTypes : function(cache) {
 			return this.getPlainData("member/memberTypes", cache);
