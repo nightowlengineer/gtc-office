@@ -30,7 +30,8 @@ define([ 'jquery', 'x-editable', 'marionette', 'text!templates/member/member_cre
 		createMember : function(e) {
 			e.preventDefault();
 			var member = new Member();
-			var memberForm = $('#memberCreateForm').serialize();
+			var memberForm = {};
+			$("#memberCreateForm").serializeArray().map(function(x){memberForm[x.name] = x.value;}); 
 			console.debug(memberForm);
 			member.set(memberForm);
 			member.createMember();
