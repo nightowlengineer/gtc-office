@@ -15,10 +15,6 @@ define([ 'jquery', 'x-editable', 'marionette', 'text!templates/member/member_cre
 			};
 		},
 		
-		regions : {
-				memberMenu : "#memberMenu"
-		},
-		
 		events : {
 			"click #createMember" : "createMember"
 		},
@@ -33,7 +29,11 @@ define([ 'jquery', 'x-editable', 'marionette', 'text!templates/member/member_cre
 		
 		createMember : function(e) {
 			e.preventDefault();
-			alert("Clicked create button");
+			var member = new Member();
+			var memberForm = this.getFormData( this.$el.find('#memberCreateForm') );
+			console.debug(memberForm);
+			member.save(memberForm);
+			console.debug("Sent member to backend");
 		}
 	});
 

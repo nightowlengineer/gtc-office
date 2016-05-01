@@ -4,7 +4,7 @@
 			<h1>Create member</h1>
 		</div>
 		<div id="memberInformation">
-			<form>
+			<form id="memberCreateForm">
 				<div class="panel panel-default">
 					<div class="panel-body">
 						<div class="row">
@@ -12,27 +12,29 @@
 								<div class="form-group">
 									<p>
 										<strong>Status</strong>: Applied
+										<input hidden="hidden" readonly id="status" value="APPLIED" />
 									</p>
 									<p>
-										<strong>Salutation</strong>: <select id="salutation">
+										<label for="salutation"><strong>Salutation</strong>: <select id="salutation">
 											<% _.each(salutationTypes, function(salutation){ %>
 											<option><%= salutation %></option> <% }) %>
 										</select>
+										</label>
 									</p>
 								</div>
 								<div class="form-group">
 									<p>
-										<strong>First name</strong>: <input id="firstName" />
+										<label for="firstName"><strong>First name</strong>: <input id="firstName" /></label>
 									</p>
 								</div>
 								<div class="form-group">
 									<p>
-										<strong>Last name</strong>: <input id="lastName" />
+										<label for="lastName"><strong>Last name</strong>: <input id="lastName" /></label>
 									</p>
 								</div>
 								<div class="form-group">
 									<p>
-										<strong>Email</strong>: <input id="email" />
+										<label for="email"><strong>Email</strong>: <input id="email" /></label>
 									</p>
 								</div>
 							</div>
