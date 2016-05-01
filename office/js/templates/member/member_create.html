@@ -15,6 +15,13 @@
 										<input hidden="hidden" readonly id="status" name="status" value="APPLIED" />
 									</p>
 									<p>
+										<label for="type"><strong>Type</strong>: <select id="type" name="type">
+											<% _.each(memberTypes, function(type){ %>
+											<option><%= type %></option> <% }) %>
+										</select>
+										</label>
+									</p>
+									<p>
 										<label for="salutation"><strong>Salutation</strong>: <select id="salutation" name="salutation">
 											<% _.each(salutationTypes, function(salutation){ %>
 											<option><%= salutation %></option> <% }) %>

@@ -19,6 +19,10 @@ define([ 'models/base_model' ], function(BaseModel) {
 		},
 
 		getSalutations : function(cache) {
+			return this.getPlainData("member/memberTypes", cache);
+		},
+		
+		getSalutations : function(cache) {
 			return this.getPlainData("member/salutationTypes", cache);
 		},
 

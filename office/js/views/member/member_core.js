@@ -9,6 +9,7 @@ define([ 'jquery', 'x-editable', 'marionette', 'text!templates/member/member_cor
 			return {
 				member : this.member.attributes,
 				addresses : this.member.get("addresses"),
+				memberTypes : this.memberTypes,
 				salutationTypes : this.salutationTypes,
 				locationTypes : this.locationTypes,
 				statusTypes : this.statusTypes
@@ -27,6 +28,7 @@ define([ 'jquery', 'x-editable', 'marionette', 'text!templates/member/member_cor
 			}).error(function(){
 				GtcOffice.navigate("#member", true);
 			});
+			this.memberTypes = this.setupSourceData(this.member.getMemberTypes(true));
 			this.salutationTypes = this.setupSourceData(this.member.getSalutations(true));
 			this.locationTypes = this.setupSourceData(this.member.getLocations(true));
 			this.statusTypes = this.setupSourceData(this.member.getStatuses(true));
