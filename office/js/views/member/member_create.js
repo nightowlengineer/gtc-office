@@ -1,6 +1,6 @@
 define([ 'jquery', 'x-editable', 'marionette', 'text!templates/member/member_create.html',
-		'models/member_model', 'underscore.string', 'helpers/editable'], function($, editable, Marionette,
-		memberCreateTemplate, Member, s, EditableHelper) {
+		'models/member_model', 'underscore.string', 'helpers/editable', 'helpers/formhelper'], function($, editable, Marionette,
+		memberCreateTemplate, Member, s, EditableHelper, FormHelper) {
 
 	var MemberCreateView = Marionette.LayoutView.extend({
 		template : _.template(memberCreateTemplate),
@@ -34,9 +34,7 @@ define([ 'jquery', 'x-editable', 'marionette', 'text!templates/member/member_cre
 		createMember : function(e) {
 			e.preventDefault();
 			var member = new Member();
-			var memberForm = {};
-			$("#memberCreateForm").serializeArray().map(function(x){memberForm[x.name] = x.value;}); 
-			member.set(memberForm);
+			member.set(FormHelper.serializeForm("#memberCreateForm"));
 			member.createMember(function(model, response){
 				GtcOffice.navigate("/member/" + model.id, true);
 			});
@@ -44,6 +42,7 @@ define([ 'jquery', 'x-editable', 'marionette', 'text!templates/member/member_cre
 	});
 
 	_.extend(MemberCreateView.prototype, EditableHelper);
+	_.extend(MemberCreateView.prototype, FormHelper);
 	
 	return MemberCreateView;
 });
