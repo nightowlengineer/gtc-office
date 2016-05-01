@@ -18,7 +18,7 @@ define([ 'models/base_model' ], function(BaseModel) {
 			this.urlRoot = oldUrl;
 		},
 
-		getSalutations : function(cache) {
+		getMemberTypes : function(cache) {
 			return this.getPlainData("member/memberTypes", cache);
 		},
 		
