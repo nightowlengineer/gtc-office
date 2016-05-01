@@ -19,7 +19,7 @@ define([ 'models/base_model' ], function(BaseModel) {
 		},
 		
 		getNextMembershipNumber : function() {
-			return this.getPlainData("member/nextMembershipNumber", false);
+			return this.getPlainData("member/nextMemberNumber", false);
 		},
 
 		getMemberTypes : function(cache) {
