@@ -12,6 +12,33 @@ define([ "marionette", "routers/main_router", "routers/member_router", "views/he
 	GtcOffice.getCurrentRoute = function() {
 		return Backbone.history.fragment
 	};
+	
+	GtcOffice.Config = {
+	   local : {
+	     basePath : 'http://localhost:8080/api/'
+	   },
+	   prod : {
+	     basePath : 'https://services.gtc.org.uk/api/'
+	   }
+	};
+	
+	GtcOffice.ConfigHandler = {
+			  getValue : function(key){
+			    var env;
+			    switch( window.location.hostname ){
+			      case "localhost":
+			      case "127.0.0.1":
+			        env = 'local';
+			        break;
+			      case "services.gtc.org.uk":
+			        env = 'prod';
+			        break;
+			      default:
+			        throw('Unknown environment: ' + window.location.hostname );
+			    }
+			    return GtcOffice.Config[env][key];
+			  }
+			};
 
 	GtcOffice.userProfile;
 	GtcOffice.isLoggedIn;
