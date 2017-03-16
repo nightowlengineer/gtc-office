@@ -1,7 +1,9 @@
 define([ 'collections/base_collection', 'models/member_model' ], function(BaseCollection, MemberModel) {
 
 	return BaseCollection.extend({
-		url: new BaseCollection().url + "member/",
+		url : function() {
+			return this.url() + "member/";
+		},
 		model : MemberModel,
 		
 		getAllMembers : function() {

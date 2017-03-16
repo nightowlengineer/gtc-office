@@ -1,11 +1,13 @@
 define([ 'models/base_model' ], function(BaseModel) {
 
 	return BaseModel.extend({
-		urlRoot : new BaseModel().urlRoot + "member/id/",
+		url : function() {
+			return this.urlRoot() + "member/id/" + this.get("id");
+		},
 
 		createMember : function(callback) {
-			var oldUrl = this.urlRoot;
-			this.urlRoot = new BaseModel().urlRoot + "member/";
+			var oldUrl = this.urlRoot();
+			this.urlRoot = new BaseModel().urlRoot() + "member/";
 			this.save(
 				this.attributes,
 				{

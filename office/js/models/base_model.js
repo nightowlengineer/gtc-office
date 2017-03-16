@@ -1,9 +1,13 @@
-define([ 'backbone', 'backbone-deep-model' ], function(Backbone) {
+define([ 'backbone', 'backbone-deep-model', 'app' ], function(Backbone, GtcOffice) {
 
 	return Backbone.DeepModel.extend({
 		idAttribute : "_id",
-		basePath : "https://services.gtc.org.uk/api/",
-		urlRoot : "https://services.gtc.org.uk/api/",
+		basePath : function() {
+			return GtcOffice.ConfigHandler.getValue("basePath");
+		},
+		urlRoot : function() {
+			return basePath();
+		},
 		
 		fetch : function(options) {
 			options = options || {};
