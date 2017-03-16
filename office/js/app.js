@@ -15,7 +15,7 @@ define([ "marionette", "routers/main_router", "routers/member_router", "views/he
 	
 	GtcOffice.Config = {
 	   local : {
-	     basePath : 'http://localhost:8080/api/'
+	     basePath : 'http://' + window.location.hostname + ':8080/api/'
 	   },
 	   prod : {
 	     basePath : 'https://services.gtc.org.uk/api/'
@@ -26,15 +26,15 @@ define([ "marionette", "routers/main_router", "routers/member_router", "views/he
 			  getValue : function(key){
 			    var env;
 			    switch( window.location.hostname ){
+			      case "services.gtc.org.uk":
+			        env = 'prod';
+			        break;
 			      case "localhost":
 			      case "127.0.0.1":
 			        env = 'local';
 			        break;
-			      case "services.gtc.org.uk":
-			        env = 'prod';
-			        break;
 			      default:
-			        throw('Unknown environment: ' + window.location.hostname );
+			    	env = 'local';
 			    }
 			    return GtcOffice.Config[env][key];
 			  }

@@ -58,6 +58,10 @@ require
 				"x-editable" : {
 					deps : [ "jquery", "bootstrap" ],
 					exports : "jquery"
+				},
+				app : {
+					deps : [ "backbone", "marionette" ],
+					exports : "GtcOffice"
 				}
 			}
 		});

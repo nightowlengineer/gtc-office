@@ -2,12 +2,12 @@ define([ 'models/base_model' ], function(BaseModel) {
 
 	return BaseModel.extend({
 		url : function() {
-			return this.urlRoot() + "member/id/" + this.get("id");
+			return this.urlRoot() + "member/id/" + this.id;
 		},
 
 		createMember : function(callback) {
-			var oldUrl = this.urlRoot();
-			this.urlRoot = new BaseModel().urlRoot() + "member/";
+			var oldUrl = this.url;
+			this.url = new BaseModel().urlRoot() + "member/";
 			this.save(
 				this.attributes,
 				{
@@ -17,12 +17,12 @@ define([ 'models/base_model' ], function(BaseModel) {
 					}
 				}
 			);
-			this.urlRoot = oldUrl;
+			this.url = oldUrl;
 		},
 		
 		getMyMember : function(callback) {
-			var oldUrl = this.urlRoot;
-			this.urlRoot = new BaseModel().urlRoot + "member/me";
+			var oldUrl = this.url;
+			this.url = new BaseModel().urlRoot() + "member/me";
 			this.fetch(
 				this.attributes,
 				{
@@ -32,12 +32,12 @@ define([ 'models/base_model' ], function(BaseModel) {
 					}
 				}
 			);
-			this.urlRoot = oldUrl;
+			this.url = oldUrl;
 		},
 		
 		getMemberByNumber : function(model, callback) {
-			var oldUrl = this.urlRoot;
-			this.urlRoot = new BaseModel().urlRoot + "member/" + model.get("membershipNumber");
+			var oldUrl = this.url;
+			this.url = new BaseModel().urlRoot() + "member/" + model.get("membershipNumber");
 			this.sync(
 				"read",
 				model,
@@ -49,7 +49,7 @@ define([ 'models/base_model' ], function(BaseModel) {
 					}
 				}
 			);
-			this.urlRoot = oldUrl;
+			this.url = oldUrl;
 		},
 		
 		getNextMembershipNumber : function() {

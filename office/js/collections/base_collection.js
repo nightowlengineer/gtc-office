@@ -1,4 +1,4 @@
-define([ 'backbone', 'app' ], function(Backbone, GtcOffice) {
+define([ 'backbone', 'app' ], function(Backbone, App) {
 
 	return Backbone.Collection.extend({
 		basePath : function() {

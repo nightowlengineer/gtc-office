@@ -1,4 +1,4 @@
-define([ 'backbone', 'backbone-deep-model', 'app' ], function(Backbone, GtcOffice) {
+define([ 'app', 'backbone', 'backbone-deep-model' ], function(App, Backbone) {
 
 	return Backbone.DeepModel.extend({
 		idAttribute : "_id",
@@ -6,7 +6,7 @@ define([ 'backbone', 'backbone-deep-model', 'app' ], function(Backbone, GtcOffic
 			return GtcOffice.ConfigHandler.getValue("basePath");
 		},
 		urlRoot : function() {
-			return basePath();
+			return this.basePath();
 		},
 		
 		fetch : function(options) {
@@ -47,7 +47,7 @@ define([ 'backbone', 'backbone-deep-model', 'app' ], function(Backbone, GtcOffic
 				{
 					$.ajax({
 						type: 'GET',
-						url : this.basePath + apiPath,
+						url : this.basePath() + apiPath,
 						async : false,
 						success : function(data){
 							sessionStorage.setItem(apiPath, JSON.stringify(data));
@@ -60,7 +60,7 @@ define([ 'backbone', 'backbone-deep-model', 'app' ], function(Backbone, GtcOffic
 			{
 				$.ajax({
 					type: 'GET',
-					url : this.basePath + apiPath,
+					url : this.basePath() + apiPath,
 					async : false,
 					success : function(data){
 						returnData = data;
