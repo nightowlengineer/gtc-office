@@ -18,6 +18,38 @@ define([ 'models/base_model' ], function(BaseModel) {
 			this.urlRoot = oldUrl;
 		},
 		
+		getMyMember : function(callback) {
+			var oldUrl = this.urlRoot;
+			this.urlRoot = new BaseModel().urlRoot + "member/me";
+			this.fetch(
+				this.attributes,
+				{
+					success : function(model, response)
+					{
+						callback(model, response);
+					}
+				}
+			);
+			this.urlRoot = oldUrl;
+		},
+		
+		getMemberByNumber : function(model, callback) {
+			var oldUrl = this.urlRoot;
+			this.urlRoot = new BaseModel().urlRoot + "member/" + model.get("membershipNumber");
+			this.sync(
+				"read",
+				model,
+				this.attributes,
+				{
+					success : function(model, response)
+					{
+						callback(model, response);
+					}
+				}
+			);
+			this.urlRoot = oldUrl;
+		},
+		
 		getNextMembershipNumber : function() {
 			return this.getPlainData("member/nextMemberNumber", false);
 		},
