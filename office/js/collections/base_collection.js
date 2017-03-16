@@ -1,7 +1,12 @@
-define([ 'backbone' ], function(Backbone) {
+define([ 'backbone', 'app' ], function(Backbone, GtcOffice) {
 
 	return Backbone.Collection.extend({
-		url : "https://services.gtc.org.uk/api/",
+		basePath : function() {
+			return GtcOffice.ConfigHandler.getValue("basePath");
+		},
+		url : function() {
+			return basePath();
+		},
 		fetch : function(options) {
 			options = options || {};
 			var custom = {

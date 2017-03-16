@@ -82,7 +82,7 @@ define(
 												.whitespace('value'),
 										queryTokenizer : Bloodhound.tokenizers.whitespace,
 										remote : {
-											url : 'https://services.gtc.org.uk/api/member/search/%memberNumber',
+											url : GtcOffice.ConfigHandler.getValue("basePath") + 'member/search/%memberNumber',
 											wildcard : '%memberNumber',
 											cache : false
 										}
