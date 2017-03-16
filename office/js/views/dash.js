@@ -1,5 +1,5 @@
-define([ 'underscore.string', 'marionette', 'text!templates/dash.html' ], function(s,
-		Marionette, dashTemplate) {
+define([ 'underscore.string', 'marionette', 'text!templates/dash.html', 'models/member_model' ], function(s,
+		Marionette, dashTemplate, Member) {
 
 	return Marionette.LayoutView.extend({
 		template : _.template(dashTemplate),
@@ -17,7 +17,9 @@ define([ 'underscore.string', 'marionette', 'text!templates/dash.html' ], functi
 			this.optionalMessage = options.optionalMessage;
 			GtcOffice.getProfile().done(function() {
 				if (GtcOffice.isLoggedIn) {
-					self.render();
+					var currentMember = new Member().getMyMember(function(model, response){
+						self.render();
+					});
 				} else {
 					GtcOffice.navigate("#", true);
 				}

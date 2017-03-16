@@ -1,6 +1,7 @@
 <div>
 	<div id="homeContent">
 		<p><%= nickname%>'s dashboard</p>
+		<p>Your membership number is <%= userProfile.app_metadata.membershipNumber %></p>
 	</div>
 	<% if (optionalMessage) { %><div><%= optionalMessage %></div><% } %>
 </div>
