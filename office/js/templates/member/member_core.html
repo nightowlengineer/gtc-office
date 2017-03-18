@@ -11,7 +11,7 @@
 			  <li class="active"><a href="#info" data-toggle="tab">Information</a></li>
 			  <li><a href="#application" data-toggle="tab">Application</a></li>
 			  <li><a href="#actions" data-toggle="tab">Actions</a></li>
-			  <li><a href="#logs" data-toggle="tab">Logbook</a></li>
+			  <% if (_.contains(roles, "MEMBERSHIP_MANAGE")) { %><li><a href="#logs" data-toggle="tab">Logbook</a></li><% } %>
 			</ul>
 	
 			<!-- Tab panes -->

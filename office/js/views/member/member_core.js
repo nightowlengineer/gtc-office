@@ -1,18 +1,20 @@
 define([ 'jquery', 'x-editable', 'marionette', 'text!templates/member/member_core.html',
-		'models/member_model', 'underscore.string', 'helpers/editable'], function($, editable, Marionette,
-		memberCoreTemplate, Member, s, EditableHelper) {
+		'models/member_model', 'underscore.string', 'helpers/editable', 'app' ], function($, editable, Marionette,
+		memberCoreTemplate, Member, s, EditableHelper, App) {
 
 	var MemberCoreView = Marionette.LayoutView.extend({
 		template : _.template(memberCoreTemplate),
 		
 		templateHelpers : function() {
+			var roles = GtcOffice.userProfile.roles;
 			return {
 				member : this.member.attributes,
 				addresses : this.member.get("addresses"),
 				memberTypes : this.memberTypes,
 				salutationTypes : this.salutationTypes,
 				locationTypes : this.locationTypes,
-				statusTypes : this.statusTypes
+				statusTypes : this.statusTypes,
+				roles : roles
 			};
 		},
 		
