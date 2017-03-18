@@ -1,7 +1,7 @@
 define([ 'app', 'marionette', 'views/member/member_home',
 		'views/member/member_core', 'views/member/member_list',
-		'views/member/member_create' ], function(App, Marionette,
-		MemberHomeView, MemberCoreView, MemberListView, MemberCreateView) {
+		'views/member/member_create', 'models/member_model' ], function(App, Marionette,
+		MemberHomeView, MemberCoreView, MemberListView, MemberCreateView, Member) {
 
 	return Marionette.Controller.extend({
 		home : function() {
@@ -39,9 +39,18 @@ define([ 'app', 'marionette', 'views/member/member_home',
 
 		view : function(memberId) {
 			console.log("MemberController.view called");
-			GtcOffice.showView(new MemberCoreView({
-				memberId : memberId
-			}));
+			var self = this;
+			this.member = new Member({_id: memberId});
+			GtcOffice.getProfile().done().then(function(){
+				self.member.fetch().success(function(){
+					GtcOffice.showView(new MemberCoreView({
+						member : self.member
+					}));
+				}).error(function(){
+					GtcOffice.navigate("#member", true);
+				});
+			});
+			
 			GtcOffice.setNav("member.view");
 		}
 	});
