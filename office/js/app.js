@@ -95,9 +95,7 @@ define([ "marionette", "routers/main_router", "routers/member_router", "views/he
 			}
 		});
 
-		pace.start({
-		// restartOnRequestAfter: 500
-		});
+		pace.start();
 
 		$(document).on(
 				'click a',
