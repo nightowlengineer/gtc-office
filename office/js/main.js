@@ -2,7 +2,7 @@ require
 		.config({
 			baseUrl : "/office/js/",
 			paths : {
-				jquery : "https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min",
+				jquery : "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.0/jquery.min",
 				json2 : "https://cdnjs.cloudflare.com/ajax/libs/json2/20160511/json2.min",
 				underscore : "https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min",
 				"underscore.string" : "https://cdnjs.cloudflare.com/ajax/libs/underscore.string/3.3.4/underscore.string.min",

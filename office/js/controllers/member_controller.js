@@ -42,11 +42,11 @@ define([ 'app', 'marionette', 'views/member/member_home',
 			var self = this;
 			this.member = new Member({_id: memberId});
 			GtcOffice.getProfile().done().then(function(){
-				self.member.fetch().success(function(){
+				self.member.fetch().done(function(){
 					GtcOffice.showView(new MemberCoreView({
 						member : self.member
 					}));
-				}).error(function(){
+				}).fail(function(){
 					GtcOffice.navigate("#member", true);
 				});
 			});
