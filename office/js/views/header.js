@@ -45,6 +45,7 @@ define(
 								} else {
 									// Save the JWT token.
 									localStorage.setItem('userToken', token);
+									GtcOffice.setAuthHeader();
 									// Save the profile
 									GtcOffice.isLoggedIn = true;
 									GtcOffice.userProfile = profile;
@@ -57,6 +58,7 @@ define(
 							GtcOffice.userProfile = null;
 							GtcOffice.isLoggedIn = false;
 							localStorage.removeItem("userToken");
+							GtcOffice.setAuthHeader();
 							GtcOffice.navigate("#logout", true);
 						},
 

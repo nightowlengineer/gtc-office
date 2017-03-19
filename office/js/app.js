@@ -55,6 +55,7 @@ define([ "marionette", "routers/main_router", "routers/member_router", "views/he
 				GtcOffice.isLoggedIn = true;
 			}
 			console.log("Fetched profile");
+			GtcOffice.setAuthHeader();
 			deferredObject.resolve();
 		});
 		return deferredObject.promise(profilePromise);
@@ -79,6 +80,14 @@ define([ "marionette", "routers/main_router", "routers/member_router", "views/he
 	GtcOffice.lock = new Auth0Lock('y8T1angMINFrNKwwiSec1DDhQaZB7zTq',
 			'gtc.eu.auth0.com');
 
+	GtcOffice.setAuthHeader = function() {
+		$.ajaxSetup({
+			headers : {
+				'Authorization' : 'Bearer ' + localStorage.getItem('userToken')
+			}
+		});
+	}
+	
 	GtcOffice.on("start", function() {
 		// sso requires redirect mode, hence we need to parse
 		// the response from Auth0 that comes on location hash
@@ -89,11 +98,7 @@ define([ "marionette", "routers/main_router", "routers/member_router", "views/he
 			GtcOffice.isLoggedIn = true;
 		}
 
-		$.ajaxSetup({
-			headers : {
-				'Authorization' : 'Bearer ' + localStorage.getItem('userToken')
-			}
-		});
+		GtcOffice.setAuthHeader();
 
 		pace.start();
 
