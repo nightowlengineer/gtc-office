@@ -2,10 +2,10 @@ define([ 'jquery', 'x-editable', 'marionette', 'text!templates/member/member_cre
 		'models/member_model', 'underscore.string', 'helpers/editable', 'helpers/formhelper'], function($, editable, Marionette,
 		memberCreateTemplate, Member, s, EditableHelper, FormHelper) {
 
-	var MemberCreateView = Marionette.LayoutView.extend({
+	var MemberCreateView = Marionette.View.extend({
 		template : _.template(memberCreateTemplate),
 		
-		templateHelpers : function() {
+		templateContext : function() {
 			return {
 				member : this.member.attributes,
 				addresses : this.member.get("addresses"),

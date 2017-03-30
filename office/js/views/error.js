@@ -1,9 +1,9 @@
 define([ 'marionette', 'text!templates/error.html' ], function(Marionette,
 		ErrorTemplate) {
 
-	return Marionette.LayoutView.extend({
+	return Marionette.View.extend({
 		template : _.template(ErrorTemplate),
-		templateHelpers : function() {
+		templateContext : function() {
 			return {
 				message : this.message,
 				errorCode : this.errorCode

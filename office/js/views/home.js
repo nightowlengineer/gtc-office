@@ -1,9 +1,9 @@
 define([ 'marionette', 'text!templates/home.html' ], function(Marionette,
 		homeTemplate) {
 
-	return Marionette.LayoutView.extend({
+	return Marionette.View.extend({
 		template : _.template(homeTemplate),
-		templateHelpers : function() {
+		templateContext : function() {
 			return {
 				optionalMessage : this.optionalMessage,
 				isLoggedIn : GtcOffice.isLoggedIn

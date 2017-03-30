@@ -1,12 +1,12 @@
 define([ 'marionette', 'text!templates/member/member_tableitem.html' ],
 		function(Marionette, MemberTableItemViewTemplate) {
 
-			return Marionette.ItemView.extend({
+			return Marionette.View.extend({
 				template : _.template(MemberTableItemViewTemplate),
 				
 				tagName : "tr",
 
-				templateHelpers : function() {
+				templateContext : function() {
 					return {
 						membershipNumber : this.model.get("membershipNumber"),
 						firstName : this.model.get("firstName"),

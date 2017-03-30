@@ -1,9 +1,10 @@
 define([ 'app', 'marionette', 'views/member/member_home',
 		'views/member/member_core', 'views/member/member_list',
-		'views/member/member_create', 'models/member_model' ], function(App, Marionette,
-		MemberHomeView, MemberCoreView, MemberListView, MemberCreateView, Member) {
+		'views/member/member_create', 'models/member_model', 'collections/member_collection' ], function(App,
+		Marionette, MemberHomeView, MemberCoreView, MemberListView,
+		MemberCreateView, Member, Members) {
 
-	return Marionette.Controller.extend({
+	return Marionette.Object.extend({
 		home : function() {
 			console.log("MemberController.home called");
 			GtcOffice.showView(new MemberHomeView());
@@ -17,10 +18,19 @@ define([ 'app', 'marionette', 'views/member/member_home',
 
 		applications : function() {
 			console.log("MemberController.applications called");
-			GtcOffice.showView(new MemberListView({
-				listType : "applications"
-			}));
-			GtcOffice.setNav("member.applications");
+
+			var members = new Members();
+			var p = members.getApplications();
+
+			p.done(function() {
+				var memberView = new MemberListView({
+					collection : members,
+					showMemberNumber: false
+				});
+				memberView.render();
+				GtcOffice.showView(memberView);
+				GtcOffice.setNav("member.applications");
+			});
 		},
 
 		create : function() {
@@ -40,17 +50,19 @@ define([ 'app', 'marionette', 'views/member/member_home',
 		view : function(memberId) {
 			console.log("MemberController.view called");
 			var self = this;
-			this.member = new Member({_id: memberId});
-			GtcOffice.getProfile().done().then(function(){
-				self.member.fetch().done(function(){
+			this.member = new Member({
+				_id : memberId
+			});
+			GtcOffice.getProfile().done().then(function() {
+				self.member.fetch().done(function() {
 					GtcOffice.showView(new MemberCoreView({
 						member : self.member
 					}));
-				}).fail(function(){
+				}).fail(function() {
 					GtcOffice.navigate("#member", true);
 				});
 			});
-			
+
 			GtcOffice.setNav("member.view");
 		}
 	});

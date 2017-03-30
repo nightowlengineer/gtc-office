@@ -4,10 +4,10 @@ define(
 		function(s, bootstrap, Marionette, Typeahead, Bloodhound, Handlebars,
 				headerTemplate) {
 
-			return Marionette.ItemView
+			return Marionette.View
 					.extend({
 						template : _.template(headerTemplate),
-						templateHelpers : function() {
+						templateContext : function() {
 							var nickname = "Guest";
 							if (GtcOffice.isLoggedIn) {
 								nickname = s

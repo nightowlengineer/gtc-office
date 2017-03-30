@@ -1,7 +1,7 @@
 define([ 'marionette', 'views/home', 'views/dash', 'views/error' ], function(
 		Marionette, HomeView, DashView, ErrorView) {
 
-	return Marionette.Controller.extend({
+	return Marionette.Object.extend({
 		home : function() {
 			console.log("MainController.home called");
 			GtcOffice.getProfile().done(function() {

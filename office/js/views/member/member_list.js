@@ -1,54 +1,46 @@
 define([ 'marionette', 'text!templates/member/member_list.html',
-		'collections/member_collection', 'views/member/member_table' ], function(Marionette,
-		memberListTemplate, Members, MemberTableView) {
+		'collections/member_collection', 'views/member/member_table' ],
+		function(Marionette, memberListTemplate, Members, MemberTableView) {
 
-	return Marionette.LayoutView.extend({
-		my_template : _.template(memberListTemplate),
-		templateHelpers : function() {
-			return {
-				listTitle : this.options.listTitle
-			};
-		},
-		
-		regions : {
-				memberTable : "#memberTableRegion"
-		},
+			return Marionette.View.extend({
+				template : _.template(memberListTemplate),
+				templateContext : function() {
+					return {
+						listTitle : this.options.listTitle
+					};
+				},
 
-		initialize : function(options) {
-			var that = this;
-			this.listType = options.listType;
+				regions : {
+					memberTable : "#memberTableRegion"
+				},
 
-			this.members = new Members();
-			
-			var p;
-			var showMemberNumber = true;
-			
-			if (this.listType == "current")
-			{
-				p = this.members.getCurrentMembers();
-			}
-			else if (this.listType == "applications")
-			{
-				p = this.members.getApplications();
-				showMemberNumber = false;
-			}
-			else
-			{		
-				p = this.members.fetch();
-			}
-			
-			p.done(function() {
-				var memberTableView = new MemberTableView({
-					collection: that.members,
-					showMemberNumber : showMemberNumber
-				});
-				that.render();
-				that.memberTable.show(memberTableView);
+				initialize : function(options) {
+					this.showMemberNumber = options.showMemberNumber
+					this.render();
+				},
+
+				onRender : function() {
+					this.$el.append(this.template(this.templateContext()));
+					var memberTableView = new MemberTableView({
+						collection : this.collection,
+						showMemberNumber : this.showMemberNumber
+					});
+					this.showChildView("memberTable", memberTableView);
+
+					var table = $("#memberTable").DataTable();
+					
+					var sortDef;
+					
+					if (this.showMemberNumber)
+					{
+						sortDef = [0, 'desc'];
+					}
+					else
+					{
+						sortDef = [0, 'asc'];
+					}
+					
+					table.order(sortDef).draw();
+				}
 			});
-		},
-
-		render : function() {
-			this.$el.html(this.my_template(this.templateHelpers()));
-		}
-	});
-});
+		});

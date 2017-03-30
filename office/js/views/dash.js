@@ -1,9 +1,9 @@
 define([ 'underscore.string', 'marionette', 'text!templates/dash.html', 'models/member_model' ], function(s,
 		Marionette, dashTemplate, Member) {
 
-	return Marionette.LayoutView.extend({
+	return Marionette.View.extend({
 		template : _.template(dashTemplate),
-		templateHelpers : function() {
+		templateContext : function() {
 			return {
 				optionalMessage : this.optionalMessage,
 				loggedIn : GtcOffice.userProfile == null ? false : true,

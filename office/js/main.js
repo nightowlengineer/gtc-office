@@ -7,8 +7,9 @@ require
 				underscore : "https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min",
 				"underscore.string" : "https://cdnjs.cloudflare.com/ajax/libs/underscore.string/3.3.4/underscore.string.min",
 				backbone : "https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.3.3/backbone-min",
+				"backbone.radio" : "https://cdnjs.cloudflare.com/ajax/libs/backbone.radio/2.0.0/backbone.radio.min",
 				"backbone-deep-model" : "libs/backbone-deep-model.min",
-				marionette : "https://cdnjs.cloudflare.com/ajax/libs/backbone.marionette/2.4.5/backbone.marionette.min",
+				marionette : "https://cdnjs.cloudflare.com/ajax/libs/backbone.marionette/3.2.0/backbone.marionette.min",
 				handlebars : "https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.amd.min",
 				"jquery-ui" : "https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min",
 				text : "https://cdnjs.cloudflare.com/ajax/libs/require-text/2.0.12/text.min",
@@ -38,6 +39,10 @@ require
 					deps : [ "backbone" ],
 					exports : "Backbone"
 				},
+		        'backbone.radio': {
+		            deps: [ "underscore", "backbone" ],
+		            exports : 'Radio'
+		        },
 				marionette : {
 					deps : [ "backbone" ],
 					exports : "Marionette"

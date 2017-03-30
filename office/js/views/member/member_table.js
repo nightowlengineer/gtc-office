@@ -2,18 +2,20 @@ define([ 'marionette', 'text!templates/member/member_table.html',
 		'views/member/member_tableitem', 'datatables' ], function(Marionette,
 		memberTableTemplate, MemberTableItemView) {
 
-	return Marionette.CompositeView.extend({
+	return Marionette.CollectionView.extend({
 		template : _.template(memberTableTemplate),
 		
-		templateHelpers : function() {
+		templateContext : function() {
 			return {
 				showMemberNumber : this.showMemberNumber
 			};
 		},
 		
+		tagName : "table",
+		
 		childView : MemberTableItemView,
 		
-		childViewContainer : "tbody",
+		//childViewContainer : "tbody",
 		
 		childViewOptions : function(model, index){
 			return {
@@ -24,23 +26,12 @@ define([ 'marionette', 'text!templates/member/member_table.html',
 		initialize : function(options)
 		{
 			this.showMemberNumber = options.showMemberNumber;
+			this.render();
 		},
 		
-		onShow : function(){
-			var table = $("#memberTable").DataTable();
-			
-			var sortDef;
-			
-			if (this.showMemberNumber)
-			{
-				sortDef = [0, 'desc'];
-			}
-			else
-			{
-				sortDef = [0, 'asc'];
-			}
-			
-			table.order(sortDef).draw();
+		render : function()
+		{
+			this.$el.html(this.template(this.templateContext()));
 		}
 	});
 });

@@ -2,10 +2,10 @@ define([ 'jquery', 'x-editable', 'marionette', 'text!templates/member/member_cor
 		'models/member_model', 'underscore.string', 'helpers/editable', 'app' ], function($, editable, Marionette,
 		memberCoreTemplate, Member, s, EditableHelper, App) {
 
-	var MemberCoreView = Marionette.LayoutView.extend({
+	var MemberCoreView = Marionette.View.extend({
 		template : _.template(memberCoreTemplate),
 		
-		templateHelpers : function() {
+		templateContext : function() {
 			var roles = GtcOffice.userProfile.roles;
 			return {
 				member : this.member.attributes,

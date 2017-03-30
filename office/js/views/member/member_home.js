@@ -2,9 +2,9 @@ define([ 'marionette', 'text!templates/member/member_home.html',
 		'collections/member_collection' ], function(Marionette,
 		memberHomeTemplate, Members) {
 
-	return Marionette.LayoutView.extend({
-		my_template : _.template(memberHomeTemplate),
-		templateHelpers : function() {
+	return Marionette.View.extend({
+		template : _.template(memberHomeTemplate),
+		templateContext : function() {
 			return {
 				totalMembers : this.members.length,
 				currentMembers: this.members.where({"status":"CURRENT"}).length,
@@ -29,7 +29,7 @@ define([ 'marionette', 'text!templates/member/member_home.html',
 		},
 
 		render : function() {
-			this.$el.html(this.my_template(this.templateHelpers()));
+			this.$el.html(this.template(this.templateContext()));
 		}
 	});
 });

@@ -115,20 +115,20 @@ define([ "marionette", "routers/main_router", "routers/member_router", "views/he
 					}
 				});
 
-		var RegionContainer = Marionette.LayoutView.extend({
+		var RegionContainer = Marionette.View.extend({
 			el : "#appWrapper",
 
 			regions : {
 				header : "#header",
 				footer : "#footer",
 				content : "#content",
-				dialog : "#dialog"
+				//dialog : "#dialog"
 			}
 
 		});
 		GtcOffice.regions = new RegionContainer();
 
-		GtcOffice.regions.dialog.onShow = function(view) {
+		/*-GtcOffice.regions.dialog.onRender = function(view) {
 			var self = this;
 			var closeDialog = function() {
 				self.stopListening();
@@ -146,7 +146,7 @@ define([ "marionette", "routers/main_router", "routers/member_router", "views/he
 					closeDialog();
 				}
 			});
-		};
+		};*/
 
 		this.regions.getRegion('header').show(new HeaderView());
 		this.regions.getRegion('footer').show(new FooterView());
