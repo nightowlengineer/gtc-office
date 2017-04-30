@@ -1,0 +1,41 @@
+<div>
+	<div id="memberCore">
+		<div id="memberHeading" class="page-header">
+			<h1>Import members</h1>
+		</div>
+		<div id="memberInformation">
+			<form id="memberImportForm">
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+									<p>
+										<label for="membersCsv"><strong>Select file</strong>:
+											<input type="file" id="membersCsv" name="membersCsv" />
+										</label>
+									</p>
+									<p>
+										<label for="overwrite"><strong>Delete members who aren't present in the import?</strong>
+											<input id="overwrite" />
+										</label>
+										<p class="alert alert-danger">
+											If you want to use the imported CSV as the single source of data, and irrevocably
+											remove any members from this system if they are not in the CSV, type 'danger' into
+											the text box.
+										</p>
+									</p>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<button id="importMembers" class="btn btn-sm btn-success">Start import</button>
+								<div id="importResult">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

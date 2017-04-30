@@ -1,7 +1,7 @@
 define([ 'app', 'marionette', 'views/member/member_home',
 		'views/member/member_core', 'views/member/member_list',
-		'views/member/member_create', 'models/member_model' ], function(App, Marionette,
-		MemberHomeView, MemberCoreView, MemberListView, MemberCreateView, Member) {
+		'views/member/member_create', 'views/member/member_import', 'models/member_model' ], function(App, Marionette,
+		MemberHomeView, MemberCoreView, MemberListView, MemberCreateView, MemberImportView, Member) {
 
 	return Marionette.Controller.extend({
 		home : function() {
@@ -13,6 +13,12 @@ define([ 'app', 'marionette', 'views/member/member_home',
 		all : function() {
 			GtcOffice.showView(new MemberListView());
 			GtcOffice.setNav("member.all");
+		},
+		
+		import : function() {
+			console.log("MemberController.import called");
+			GtcOffice.showView(new MemberImportView());
+			GtcOffice.setNav("member.import");
 		},
 
 		applications : function() {

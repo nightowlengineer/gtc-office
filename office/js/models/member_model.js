@@ -70,6 +70,28 @@ define([ 'models/base_model' ], function(BaseModel) {
 
 		getStatuses : function(cache) {
 			return this.getPlainData("member/statusTypes", cache);
+		},
+		
+		importMembers : function(data, overwrite, callback) {
+			var options = {};
+			if (!overwrite)
+			{
+				// If undefined, play safe
+				overwrite = false;
+			}
+			options.url = new BaseModel().urlRoot() + "member/upload/" + overwrite;
+			// Use $ for upload - investigate Backbone.sync/ajax in the future
+			$.ajax({
+			    url: options.url,
+			    data: data,
+			    type: 'POST',
+			    contentType: false,
+			    processData: false,
+			})
+			.done(function(data)
+			{
+				callback(data);
+			});
 		}
 	});
 
