@@ -64,15 +64,15 @@
 								<p><strong>Referral source</strong>: <span class="inlineEditable" id="referralSource" data-type="text"><%= member.referralSource %></span></p>
 							</div>
 							<div class="col-md-6">
-								<strong>Sponsor members</strong>: <%= member.sponsorMembers %><br />
+								<strong>Sponsor members</strong>:<br />
+								<div id="sponsorMemberList"></div>
+								<% _.each(sponsorMemberCollection, function(sponsorMember){ %>
 									<div class="row">
-										<div class="col-md-2"><strong>#1234</strong></div>
-										<div class="col-md-4">John Smith</div>
+										<div class="col-md-2"><strong><%= sponsorMember.membershipNumber %></strong></div>
+										<div class="col-md-4"><a data-route="#member/number/<%= sponsorMember.membershipNumber %>"
+										href="/office/member/number/<%= sponsorMember.membershipNumber %>">View</a></div>
 									</div>
-									<div class="row">
-										<div class="col-md-2"><strong>#1234</strong></div>
-										<div class="col-md-4">John Smith</div>
-									</div>
+								<% }) %>
 							</div>
 						</div>
 					</div>

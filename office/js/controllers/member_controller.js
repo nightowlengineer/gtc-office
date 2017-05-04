@@ -43,6 +43,16 @@ define([ 'app', 'marionette', 'views/member/member_home',
 			GtcOffice.setNav("member.current");
 		},
 
+		viewByNumber : function(memberNumber)
+		{
+			console.log("MemberController.viewByNumber called");
+			var self = this;
+			var member = new Member({"membershipNumber" : memberNumber});
+			member.getMemberByNumber(member).done().then(function(model){
+				GtcOffice.navigate("#member/" + model._id, true);
+			});
+		},
+		
 		view : function(memberId) {
 			console.log("MemberController.view called");
 			var self = this;

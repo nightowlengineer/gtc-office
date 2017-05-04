@@ -35,21 +35,9 @@ define([ 'models/base_model' ], function(BaseModel) {
 			this.url = oldUrl;
 		},
 		
-		getMemberByNumber : function(model, callback) {
-			var oldUrl = this.url;
-			this.url = new BaseModel().urlRoot() + "member/" + model.get("membershipNumber");
-			this.sync(
-				"read",
-				model,
-				this.attributes,
-				{
-					success : function(model, response)
-					{
-						callback(model, response);
-					}
-				}
-			);
-			this.url = oldUrl;
+		getMemberByNumber : function() {
+			this.url = new BaseModel().urlRoot() + "member/" + this.get("membershipNumber");
+			return this.fetch();
 		},
 		
 		getNextMembershipNumber : function() {
