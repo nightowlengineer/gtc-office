@@ -32,7 +32,8 @@ define([ 'jquery', 'x-editable', 'marionette', 'text!templates/member/member_cor
 
 		onShow : function()
 		{
-			this.setupEditable(".inlineEditable", this.member);
+			// Make read-only for first release
+			//this.setupEditable(".inlineEditable", this.member);
 		}
 	});
 
