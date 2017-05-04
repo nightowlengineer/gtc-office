@@ -20,8 +20,7 @@ define([ 'jquery', 'x-editable', 'marionette', 'text!templates/member/member_cre
 			"click #createMember" : "createMember"
 		},
 		
-		initialize : function(options) {
-			var self = this;
+		initialize : function() {
 			this.member = new Member();
 			var nextMembershipNumber = this.member.getNextMembershipNumber();
 			this.member.set("membershipNumber", nextMembershipNumber);

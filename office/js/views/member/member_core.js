@@ -23,7 +23,6 @@ define([ 'jquery', 'x-editable', 'marionette', 'text!templates/member/member_cor
 		},
 		
 		initialize : function(options) {
-			var self = this;
 			this.member = options.member;
 			this.memberTypes = this.setupSourceData(this.member.getMemberTypes(true));
 			this.salutationTypes = this.setupSourceData(this.member.getSalutations(true));
@@ -31,9 +30,10 @@ define([ 'jquery', 'x-editable', 'marionette', 'text!templates/member/member_cor
 			this.statusTypes = this.setupSourceData(this.member.getStatuses(true));
 		},
 
-		onRender : function()
+		onShow : function()
 		{
-			this.setupEditable(".inlineEditable", this.member);
+			// Make read-only for first release
+			//this.setupEditable(".inlineEditable", this.member);
 		}
 	});
 
