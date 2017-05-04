@@ -34,7 +34,7 @@ define([ 'marionette', 'text!templates/member/member_list.html',
 			}
 			else
 			{		
-				p = this.members.fetch();
+				p = this.members.getAllMembers();
 			}
 			
 			p.done(function() {
