@@ -109,9 +109,7 @@ define([ "marionette", "routers/main_router", "routers/member_router", "views/he
 					e.preventDefault();
 					var link = e.target.attributes.getNamedItem("data-route");
 					if (link) {
-						var link = e.target.attributes
-								.getNamedItem("data-route").value;
-						GtcOffice.navigate(link, true);
+						GtcOffice.navigate(link.value, true);
 					}
 				});
 
@@ -152,8 +150,8 @@ define([ "marionette", "routers/main_router", "routers/member_router", "views/he
 		this.regions.getRegion('footer').show(new FooterView());
 
 		// Routers
-		var mainRouter = new MainRouter();
-		var memberRouter = new MemberRouter();
+		new MainRouter();
+		new MemberRouter();
 
 		Backbone.history.start({
 			pushState : true,
