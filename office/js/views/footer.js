@@ -1,8 +1,14 @@
-define([ 'marionette', 'text!templates/footer.html' ], function(Marionette,
-		footerTemplate) {
+define([ 'marionette', 'text!templates/footer.html', 'models/base_model' ], function(Marionette,
+		footerTemplate, BaseModel) {
 
-	var FooterView = Marionette.ItemView.extend({
-		template : footerTemplate
+	return Marionette.ItemView.extend({
+		template : _.template(footerTemplate),
+		
+		templateHelpers : function()
+		{
+			return {
+				version: new BaseModel().getPlainData("version",true)
+			};
+		}
 	});
-	return FooterView;
 });
