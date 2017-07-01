@@ -4,11 +4,13 @@ define([ 'underscore.string', 'marionette', 'text!templates/dash.html', 'models/
 	return Marionette.LayoutView.extend({
 		template : _.template(dashTemplate),
 		templateHelpers : function() {
+			var userProfile = GtcOffice.userProfile;
 			return {
 				optionalMessage : this.optionalMessage,
-				loggedIn : GtcOffice.userProfile == null ? false : true,
-				userProfile : GtcOffice.userProfile,
-				nickname : s.capitalize(GtcOffice.userProfile.nickname)
+				loggedIn : userProfile == null ? false : true,
+				userProfile : userProfile,
+				nickname : userProfile ? s.capitalize(userProfile.nickname) : "Guest",
+				membershipNumber : userProfile ? userProfile.app_metadata.membershipNumber : null
 			};
 		},
 

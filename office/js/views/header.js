@@ -1,7 +1,7 @@
 define(
-		[ 'underscore.string', 'bootstrap', 'marionette', 'typeahead',
+		[ 'underscore', 'underscore.string', 'bootstrap', 'marionette', 'typeahead',
 				'bloodhound', 'handlebars', 'text!templates/header.html' ],
-		function(s, bootstrap, Marionette, Typeahead, Bloodhound, Handlebars,
+		function(_, s, bootstrap, Marionette, Typeahead, Bloodhound, Handlebars,
 				headerTemplate) {
 
 			return Marionette.ItemView
@@ -9,16 +9,25 @@ define(
 						template : _.template(headerTemplate),
 						templateHelpers : function() {
 							var nickname = "Guest";
-							if (GtcOffice.isLoggedIn) {
+							var userProfile = GtcOffice.userProfile;
+							var isLoggedIn = GtcOffice.isLoggedIn;
+							var roles = [];
+							
+							if (isLoggedIn) {
 								nickname = s
 										.capitalize(GtcOffice.userProfile.nickname);
+							}
+							
+							if (userProfile) {
+								roles = userProfile.app_metadata.roles;
 							}
 
 							return {
 								optionalMessage : this.optionalMessage,
-								isLoggedIn : GtcOffice.isLoggedIn,
-								userProfile : GtcOffice.userProfile,
-								nickname : nickname
+								isLoggedIn : isLoggedIn,
+								userProfile : userProfile,
+								nickname : nickname,
+								roles : roles
 							};
 						},
 
@@ -40,8 +49,7 @@ define(
 							e.preventDefault();
 							GtcOffice.lock.show(function(err, profile, token) {
 								if (err) {
-									// Error callback
-									alert('There was an error');
+									GtcOffice.navigate("#error/401", true);
 								} else {
 									// Save the JWT token.
 									localStorage.setItem('userToken', token);

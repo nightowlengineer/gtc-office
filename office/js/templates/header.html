@@ -20,6 +20,7 @@
 					<% if (isLoggedIn) { %>
 					<li data-app-location="dash"><a data-route="#dash"
 						href="/office/dash">Dashboard</a></li>
+                    <% if (_.contains(roles, "MEMBERSHIP_MANAGE")) { %>
 					<li data-app-location="member" class="dropdown-split-left">
 					<li class="dropdown-split-right hidden-phone" data-app-location="member.home"><a href=""
 						class="dropdown-toggle" data-toggle="dropdown" role="button"
@@ -41,9 +42,10 @@
 								-->
 						</ul></li>
 					</li>
+                    <% } %>
 					<% } %>
 				</ul>
-				<% if (isLoggedIn) { %>
+				<% if (isLoggedIn && _.contains(roles, "MEMBERSHIP_MANAGE")) { %>
 				<form class="navbar-form navbar-left" role="search">
 					<div class="form-group">
 						<input type="text" id="member-typeahead" class="typeahead form-control"
