@@ -19,7 +19,7 @@ define([ 'backbone', 'app' ], function(Backbone, App) {
 			return Backbone.Collection.prototype.fetch.call(this, options);
 		},
 		errorHandler : function(collection, response, options) {
-			GtcOffice.navigate("#error/502", true);
+			GtcOffice.navigate("#error/" + response.status, true);
 		}
 	});
 

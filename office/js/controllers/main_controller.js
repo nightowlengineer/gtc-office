@@ -44,6 +44,12 @@ define([ 'marionette', 'views/home', 'views/dash', 'views/error' ], function(
 			var detailedMessage = "An error occurred.";
 			switch(errorCode)
 			{
+			case "401":
+			case "403":
+				detailedMessage = "You don't have the right user role to access that resource";
+				if (extra && extra.length > 0)
+					detailedMessage += ": " + extra;
+				break;
 			case "404":
 				detailedMessage = "That page doesn't exist";
 				if (extra && extra.length > 0)
