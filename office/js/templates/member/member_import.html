@@ -8,8 +8,18 @@
 				<div class="panel panel-default">
 					<div class="panel-body">
 						<div class="row">
-							<div class="col-md-6">
+							<div class="col-md-8">
 								<div class="form-group">
+									<p>
+										Select a CSV that has the following headers included:
+										<pre>salutation, firstName, lastName, email, membershipNumber, type, status</pre>
+										Valid options:
+										<ul>
+											<li>Type: <%= memberTypes %></li>
+											<li>Status: <%= statusTypes %></li>
+											<li>Salutation: <%= salutationTypes %></li>
+										</ul>
+									</p>
 									<p>
 										<label for="membersCsv"><strong>Select file</strong>:
 											<input type="file" id="membersCsv" name="membersCsv" />
@@ -22,15 +32,14 @@
 										<label for="sync"><strong>Sync database with Auth0 after import?</strong>
 											<input type="checkbox" id="sync" checked="checked" />
 										</label>
-										<p class="alert alert-danger">
-											If you want to use the imported CSV as the single source of data, and irrevocably
-											remove any members from this system if they are not in the CSV, type 'danger' into
-											the text box.
+										<p class="alert alert-info">
+											When the import completes, an email will be sent containing basic information on the new & updated
+											members, and a list of deleted membership numbers.
 										</p>
 									</p>
 								</div>
 							</div>
-							<div class="col-md-6">
+							<div class="col-md-4">
 								<button id="importMembers" class="btn btn-sm btn-success">Start import</button>
 								<div id="importResult">
 								</div>

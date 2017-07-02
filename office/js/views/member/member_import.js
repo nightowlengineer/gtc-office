@@ -1,12 +1,27 @@
-define([ 'jquery', 'x-editable', 'marionette', 'text!templates/member/member_import.html',
-		'models/member_model', 'underscore.string', 'helpers/editable', 'helpers/formhelper'], function($, editable, Marionette,
-		memberImportTemplate, Member, s, EditableHelper, FormHelper) {
+define([ 'underscore', 'underscore.string', 'jquery', 'x-editable', 'marionette', 'text!templates/member/member_import.html',
+		'models/member_model', 'underscore.string', 'helpers/editable', 'helpers/formhelper'], function(_, s, 
+				$, editable, Marionette, memberImportTemplate, Member, s, EditableHelper, FormHelper) {
 
 	return Marionette.LayoutView.extend({
 		template : _.template(memberImportTemplate),
 		
+		templateHelpers : function() {
+			return {
+				memberTypes : s.toSentence(this.memberTypes),
+				salutationTypes : s.toSentence(this.salutationTypes),
+				statusTypes : s.toSentence(this.statusTypes)
+			};
+		},
+		
 		events : {
 			"click #importMembers" : "importMembers"
+		},
+		
+		initialize : function() {
+			var member = new Member();
+			this.memberTypes = member.getMemberTypes(true);
+			this.salutationTypes = member.getSalutations(true);
+			this.statusTypes = member.getStatuses(true);
 		},
 		
 		importMembers : function(e) {
