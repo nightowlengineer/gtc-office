@@ -32,10 +32,13 @@ define([ 'jquery', 'x-editable', 'marionette', 'text!templates/member/member_imp
 				
 				$("#importResult").html(results);
 				
-				member.syncAuth0Users(function(data){
-					var syncResult = '<p class="alert">Total synced with Auth0: ' + data + '</p>';
-					$("#syncResult").html(syncResult);
-				})
+				if (sync === true)
+				{
+					member.syncAuth0Users(function(data){
+						var syncResult = '<p class="alert">Total synced with Auth0: ' + data + '</p>';
+						$("#syncResult").html(syncResult);
+					});
+				}
 			});
 		}
 	});
