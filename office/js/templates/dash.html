@@ -1,10 +1,17 @@
 <div>
 	<div id="homeContent">
-		<p><%= nickname%>'s dashboard</p>
 		<% if (membershipNumber) { %>
-            <p>Your membership number is <%= membershipNumber %></p>
-        <% } %>
-        <p>Roles: <%= userProfile.roles %></p>
+		<div id="myMembership">
+		</div>
+		<% } else { %>
+		<div>
+			<p>Your account has no membership number on it just now. This may because:</p>
+			<ul>
+				<li>The administrator hasn't yet imported the latest list of members</li>
+				<li>You are no longer a member of the GTC</li>
+				<li>You are using a different email address to the one we hold on record. This system doesn't yet have the ability to link accounts together, so in the meantime please ask the administrator to update your membership record if appropriate.</li>
+			</ul>
+		</div>
+		<% } %>
 	</div>
-	<% if (optionalMessage) { %><div><%= optionalMessage %></div><% } %>
 </div>

@@ -1,8 +1,8 @@
 define(
 		[ 'underscore', 'underscore.string', 'bootstrap', 'marionette', 'typeahead',
-				'bloodhound', 'handlebars', 'text!templates/header.html' ],
+				'bloodhound', 'handlebars', 'text!templates/header.html', 'models/member_model' ],
 		function(_, s, bootstrap, Marionette, Typeahead, Bloodhound, Handlebars,
-				headerTemplate) {
+				headerTemplate, Member) {
 
 			return Marionette.ItemView
 					.extend({
@@ -11,11 +11,17 @@ define(
 							var nickname = "Guest";
 							var userProfile = GtcOffice.userProfile;
 							var isLoggedIn = GtcOffice.isLoggedIn;
+							var memberInfo = GtcOffice.currentMemberRecord;
 							var roles = [];
 							
 							if (isLoggedIn) {
 								nickname = s
 										.capitalize(GtcOffice.userProfile.nickname);
+							}
+							
+							if (memberInfo)
+							{
+								nickname = memberInfo.get("firstName") + " " + memberInfo.get("lastName");
 							}
 							
 							if (userProfile) {
@@ -27,6 +33,7 @@ define(
 								isLoggedIn : isLoggedIn,
 								userProfile : userProfile,
 								nickname : nickname,
+								member : memberInfo,
 								roles : roles
 							};
 						},
@@ -64,6 +71,7 @@ define(
 
 						logout : function(e) {
 							GtcOffice.userProfile = null;
+							GtcOffice.currentMemberRecord = null;
 							GtcOffice.isLoggedIn = false;
 							localStorage.removeItem("userToken");
 							GtcOffice.setAuthHeader();

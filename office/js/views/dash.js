@@ -1,5 +1,5 @@
-define([ 'underscore.string', 'marionette', 'text!templates/dash.html', 'models/member_model' ], function(s,
-		Marionette, dashTemplate, Member) {
+define([ 'underscore.string', 'marionette', 'text!templates/dash.html', 'models/member_model', 'views/member/member_core' ], function(s,
+		Marionette, dashTemplate, Member, MemberCoreView) {
 
 	return Marionette.LayoutView.extend({
 		template : _.template(dashTemplate),
@@ -13,6 +13,10 @@ define([ 'underscore.string', 'marionette', 'text!templates/dash.html', 'models/
 				membershipNumber : userProfile ? userProfile.app_metadata.membershipNumber : null
 			};
 		},
+		
+		regions : {
+			myMembership : "#myMembership"
+		},
 
 		initialize : function(options) {
 			var self = this;
@@ -20,13 +24,15 @@ define([ 'underscore.string', 'marionette', 'text!templates/dash.html', 'models/
 			GtcOffice.getProfile().done(function() {
 				if (GtcOffice.isLoggedIn) {
 					var currentMember = new Member().getMyMember(function(model, response){
-						self.render();
+						var memberCoreView = new MemberCoreView({
+							member: model
+						});
+						self.myMembership.show(memberCoreView);
 					});
 				} else {
 					GtcOffice.navigate("#", true);
 				}
 			});
-
 		},
 	});
 });

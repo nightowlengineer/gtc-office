@@ -23,15 +23,11 @@ define([ 'models/base_model' ], function(BaseModel) {
 		getMyMember : function(callback) {
 			var oldUrl = this.url;
 			this.url = new BaseModel().urlRoot() + "member/me";
-			this.fetch(
-				this.attributes,
-				{
-					success : function(model, response)
-					{
-						callback(model, response);
-					}
-				}
-			);
+			var options = {};
+			options.success = function(model, response){
+				callback(model, response);
+			}
+			this.fetch(options);
 			this.url = oldUrl;
 		},
 		

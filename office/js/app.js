@@ -1,7 +1,7 @@
 define([ "marionette", "routers/main_router", "routers/member_router", "views/header",
         "views/footer", "views/home", "pace", "underscore", "underscore.string",
-        "jquery", "auth0-lock" ], function(Marionette, MainRouter, MemberRouter,
-        HeaderView, FooterView, HomeView, pace, _, s, $, Auth0Lock) {
+        "jquery", "auth0-lock", "models/member_model" ], function(Marionette, MainRouter, MemberRouter,
+        HeaderView, FooterView, HomeView, pace, _, s, $, Auth0Lock, Member) {
 	GtcOffice = new Marionette.Application();
 	
 	GtcOffice.navigate = function(route, options) {
@@ -41,6 +41,7 @@ define([ "marionette", "routers/main_router", "routers/member_router", "views/he
 			};
 
 	GtcOffice.userProfile;
+	GtcOffice.currentMemberRecord;
 	GtcOffice.isLoggedIn;
 
 	GtcOffice.getProfile = function() {
@@ -53,10 +54,22 @@ define([ "marionette", "routers/main_router", "routers/member_router", "views/he
 			} else {
 				GtcOffice.userProfile = profile;
 				GtcOffice.isLoggedIn = true;
+				if (profile.app_metadata.membershipNumber)
+				{
+					var currentMember = new Member().getMyMember(function(model, response){
+						GtcOffice.currentMemberRecord = model;
+						console.log("Fetched profile");
+						GtcOffice.setAuthHeader();
+						deferredObject.resolve();
+					});
+				}
+				else
+				{
+					console.log("Fetched profile");
+					GtcOffice.setAuthHeader();
+					deferredObject.resolve();
+				}
 			}
-			console.log("Fetched profile");
-			GtcOffice.setAuthHeader();
-			deferredObject.resolve();
 		});
 		return deferredObject.promise(profilePromise);
 	};
