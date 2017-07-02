@@ -17,7 +17,10 @@
 									</p>
 									<p>
 										<label for="overwrite"><strong>Delete members who aren't present in the import?</strong>
-											<input id="overwrite" />
+											<input type="checkbox" id="overwrite" />
+										</label>
+										<label for="sync"><strong>Sync database with Auth0 after import?</strong>
+											<input type="checkbox" id="sync" checked="checked" />
 										</label>
 										<p class="alert alert-danger">
 											If you want to use the imported CSV as the single source of data, and irrevocably
@@ -30,6 +33,8 @@
 							<div class="col-md-6">
 								<button id="importMembers" class="btn btn-sm btn-success">Start import</button>
 								<div id="importResult">
+								</div>
+								<div id="syncResult">
 								</div>
 							</div>
 						</div>

@@ -72,21 +72,26 @@ define([ 'models/base_model' ], function(BaseModel) {
 			return this.getPlainData("member/statusTypes", cache);
 		},
 		
-		importMembers : function(data, overwrite, callback) {
-			var options = {};
-			if (!overwrite)
-			{
-				// If undefined, play safe
-				overwrite = false;
-			}
-			options.url = new BaseModel().urlRoot() + "member/upload/" + overwrite;
+		importMembers : function(data, callback) {
 			// Use $ for upload - investigate Backbone.sync/ajax in the future
 			$.ajax({
-			    url: options.url,
+			    url: new BaseModel().urlRoot() + "member/upload",
 			    data: data,
 			    type: 'POST',
 			    contentType: false,
 			    processData: false,
+			})
+			.done(function(data)
+			{
+				callback(data);
+			});
+		},
+		
+		syncAuth0Users : function(callback) {
+			// Use $ for get - investigate Backbone.sync/ajax in the future
+			$.ajax({
+			    url: new BaseModel().urlRoot() + "user/auth0/syncAuth0Users",
+			    type: 'GET'
 			})
 			.done(function(data)
 			{
