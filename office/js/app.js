@@ -51,6 +51,7 @@ define([ "marionette", "routers/main_router", "routers/member_router", "views/he
 			if (err) {
 				GtcOffice.userProfile = null;
 				GtcOffice.isLoggedIn = false;
+				deferredObject.resolve();
 			} else {
 				GtcOffice.userProfile = profile;
 				GtcOffice.isLoggedIn = true;
