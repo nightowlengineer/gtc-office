@@ -29,7 +29,7 @@ define([ 'underscore', 'underscore.string', 'jquery', 'x-editable', 'marionette'
 			var overwriteInput = $("#overwrite").is(':checked');
 			var overwrite = overwriteInput && overwriteInput === true ? true : false;
 			
-			var syncWithAuth0 = $("#syncWithAuth0").is(':checked');
+			var syncWithAuth0 = $("#sync").is(':checked');
 			var sync = syncWithAuth0 && syncWithAuth0 === true ? true : false;
 			
 			var formData = new FormData();
