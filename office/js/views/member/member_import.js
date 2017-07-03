@@ -37,17 +37,24 @@ define([ 'underscore', 'underscore.string', 'jquery', 'x-editable', 'marionette'
 			formData.append("overwrite", overwrite);
 			
 			var member = new Member();
-			member.importMembers(formData, function(data){
-				var results = '<p class="alert">Total read for import: ' + data.importedSet.length + '</p>';
-				results += '<p class="alert">Pre-import total member records: ' + data.existingSet.length + '</p>';
-				results += '<p class="alert alert-success">Created: ' + data.createdSet.length + '</p>';
-				results += '<p class="alert alert-info">Updated: ' + data.updatedSet.length + '</p>';
-				results += '<p class="alert alert-warning">Deleted: ' + data.deletedSet.length + '</p>';
-				results += '<p class="alert alert-danger">Errors: ' + data.errorSet.length + '</p>';
-				
+			member.importMembers(formData, function(data, failed){
+				if (!failed)
+				{
+					var results = '<p class="alert">Total read for import: ' + data.importedSet.length + '</p>';
+					results += '<p class="alert">Pre-import total member records: ' + data.existingSet.length + '</p>';
+					results += '<p class="alert alert-success">Created: ' + data.createdSet.length + '</p>';
+					results += '<p class="alert alert-info">Updated: ' + data.updatedSet.length + '</p>';
+					results += '<p class="alert alert-warning">Deleted: ' + data.deletedSet.length + '</p>';
+					results += '<p class="alert alert-danger">Errors: ' + data.errorSet.length + '</p>';
+				}
+				else
+				{
+					var results = '<p class="alert alert-danger">Unable to complete import:';
+					results += '<pre>' + data.responseJSON.message + '</pre></p>';
+				}
 				$("#importResult").html(results);
 				
-				if (sync === true)
+				if (!failed && sync === true)
 				{
 					member.syncAuth0Users(function(data){
 						var syncResult = '<p class="alert">Total synced with Auth0: ' + data + '</p>';

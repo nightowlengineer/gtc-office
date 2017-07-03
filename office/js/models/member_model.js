@@ -77,9 +77,13 @@ define([ 'models/base_model' ], function(BaseModel) {
 			    contentType: false,
 			    processData: false,
 			})
+			.fail(function(data)
+			{
+				callback(data, true);
+			})
 			.done(function(data)
 			{
-				callback(data);
+				callback(data, false);
 			});
 		},
 		
