@@ -44,15 +44,12 @@
 								<div id="myMemberActions">
 									<h4>Check your status</h4>
 									<label>Marketing (Mailchimp):</label>
-									<% switch(mailchimpStatus) { case "Subscribed": %>
-									<span class="label label-success">
-									<% break; default: %>
-									<span class="label label-danger">
-									<% break; }%>
-									<%= mailchimpStatus %></span>
-									<% if (mailchimpStatus != "Subscribed") { %>
-										<button id="mailchimpSubscribe" class="btn btn-primary btn-xs">One-click re-subscribe</button>
-										<div id="mailchimpExtraInfo">It looks like you unsubscribed on <%= mailchimpLastChanged %><% if (mailchimpUnsubscribeReason) { %> giving this reason:
+									<% if (mailchimpStatus == "Subscribed") { %>
+									<span class="label label-success">Subscribed</span>
+									<% } else { %>
+									<span class="label label-danger"><%= mailchimpStatus %></span>
+									<button id="mailchimpSubscribe" class="btn btn-primary btn-xs">Click to re-subscribe</button>
+										<div id="mailchimpExtraInfo">It looks like you changed status on <%= mailchimpLastChanged %><% if (mailchimpUnsubscribeReason) { %> giving this reason:
 											<p><em><%= mailchimpUnsubscribeReason %></em></p><% } %>
 										</div>
 									<% } %>
