@@ -1,7 +1,7 @@
 define(
-		[ 'underscore', 'underscore.string', 'bootstrap', 'marionette', 'typeahead',
+		[ 'underscore', 'underscore.string', 'jquery', 'bootstrap', 'marionette', 'typeahead',
 				'bloodhound', 'handlebars', 'text!templates/header.html', 'models/member_model' ],
-		function(_, s, bootstrap, Marionette, Typeahead, Bloodhound, Handlebars,
+		function(_, s, $, bootstrap, Marionette, Typeahead, Bloodhound, Handlebars,
 				headerTemplate, Member) {
 
 			return Marionette.ItemView
@@ -105,8 +105,7 @@ define(
 											cache : false
 										}
 									});
-							$(
-									'#member-typeahead')
+							$('#member-typeahead')
 									.typeahead(
 											null,
 											{
