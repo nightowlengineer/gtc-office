@@ -24,9 +24,9 @@
 						<div class="row">
 							<div class="col-md-6">
 								<p><strong>Status</strong>:
-								<% switch(member.status) { case "CURRENT":%>
+								<% switch(member.status) { case "CURRENT": %>
 									<span class="label label-success">
-									<% break; case "APPLIED":%>
+									<% break; case "APPLIED": %>
 									<span class="label label-primary">
 									<% break; case "APPROVED": case "INVOICED": case "PAID": %>
 									<span class="label label-primary">
@@ -46,7 +46,7 @@
 									<label>Marketing (Mailchimp):</label>
 									<% switch(mailchimpStatus) { case "Subscribed": case "Transactional": case "Pending": %>
 									<span class="label label-success">
-									<% break; case "Unsubscribed": "Cleaned": %>
+									<% break; case "Unsubscribed": case "Cleaned": %>
 									<span class="label label-danger">
 									<% break; }%>
 									<%= mailchimpStatus %></span>
