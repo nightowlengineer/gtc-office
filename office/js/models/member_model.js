@@ -20,6 +20,10 @@ define([ 'models/base_model' ], function(BaseModel) {
 			this.url = oldUrl;
 		},
 		
+		getMyMailchimpStatus : function() {
+			return this.getJsonData("member/me/mailchimp/status");
+		},
+		
 		getMyMember : function(callback) {
 			var oldUrl = this.url;
 			this.url = new BaseModel().urlRoot() + "member/me";

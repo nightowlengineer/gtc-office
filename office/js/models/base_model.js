@@ -68,6 +68,23 @@ define([ 'app', 'backbone', 'backbone-deep-model' ], function(App, Backbone) {
 				});
 			}
 			return returnData;
+		},
+		
+		getJsonData : function(apiPath)
+		{
+			var returnData;
+			
+			$.ajax({
+				type: 'GET',
+				url : this.basePath() + apiPath,
+				async : false,
+				timeout: 5000,
+				success : function(data){
+					returnData = data;
+				}
+			});
+			
+			return returnData;
 		}
 	});
 

@@ -14,7 +14,8 @@ define([ 'jquery', 'x-editable', 'marionette', 'text!templates/member/member_cor
 				salutationTypes : this.salutationTypes,
 				locationTypes : this.locationTypes,
 				statusTypes : this.statusTypes,
-				roles : roles
+				roles : roles,
+				mailchimpStatus : s.capitalize(this.mailchimpStatus.status, true)
 			};
 		},
 		
@@ -28,6 +29,7 @@ define([ 'jquery', 'x-editable', 'marionette', 'text!templates/member/member_cor
 			this.salutationTypes = this.setupSourceData(this.member.getSalutations(true));
 			this.locationTypes = this.setupSourceData(this.member.getLocations(true));
 			this.statusTypes = this.setupSourceData(this.member.getStatuses(true));
+			this.mailchimpStatus = this.member.getMyMailchimpStatus();
 		},
 
 		onShow : function()
