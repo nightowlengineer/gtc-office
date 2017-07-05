@@ -20,12 +20,14 @@ define([ 'models/base_model' ], function(BaseModel) {
 			this.url = oldUrl;
 		},
 		
-		getMyMailchimpStatus : function() {
-			return this.getJsonData("member/me/mailchimp/status");
+		getMailchimpStatus : function() {
+			var memberReference = (GtcOffice.currentMemberRecord && GtcOffice.currentMemberRecord.id) == this.id ? "me" : this.id;
+			return this.getJsonData("member/" + memberReference + "/mailchimp/status");
 		},
 		
 		subscribeToMailchimp : function() {
-			return this.getJsonData("member/me/mailchimp/subscribe");
+			var memberReference = (GtcOffice.currentMemberRecord && GtcOffice.currentMemberRecord.id) == this.id ? "me" : this.id;
+			return this.getJsonData("member/" + memberReference + "/mailchimp/subscribe");
 		},
 		
 		getMyMember : function(callback) {

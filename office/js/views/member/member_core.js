@@ -40,7 +40,7 @@ define([ 'jquery', 'x-editable', 'marionette', 'text!templates/member/member_cor
 			this.salutationTypes = this.setupSourceData(this.member.getSalutations(true));
 			this.locationTypes = this.setupSourceData(this.member.getLocations(true));
 			this.statusTypes = this.setupSourceData(this.member.getStatuses(true));
-			this.mailchimpStatus = this.member.getMyMailchimpStatus();
+			this.mailchimpStatus = this.member.getMailchimpStatus();
 		},
 
 		onShow : function()
