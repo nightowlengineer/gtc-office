@@ -23,7 +23,17 @@
 					<div class="panel-body">
 						<div class="row">
 							<div class="col-md-6">
-								<p><strong>Status</strong>: <span class="inlineEditable" id="status" data-type="select" data-value="<%= member.status %>" data-source="<%= statusTypes %>"><%= member.status %></span></p>
+								<p><strong>Status</strong>:
+								<% switch(member.status) { case "CURRENT":%>
+									<span class="label label-success">
+									<% break; case "APPLIED":%>
+									<span class="label label-primary">
+									<% break; case "APPROVED": case "INVOICED": case "PAID": %>
+									<span class="label label-primary">
+									<% break; case "DECLINED": case "LAPSED": case "REMOVED": %>
+									<span class="label label-danger">
+									<% break; }%>
+									<%= member.status %></span></p>
 								<p><strong>Type</strong>: <span class="inlineEditable" id="type" data-type="select" data-value="<%= member.type %>" data-source="<%= memberTypes %>"><%= member.type %></span></p>
 								<p><strong>Salutation</strong>: <span class="inlineEditable" id="salutation" data-type="select" data-value="<%= member.salutation %>" data-source="<%= salutationTypes %>"><%= member.salutation %></span></p>
 								<p><strong>First name</strong>: <span class="inlineEditable" id="firstName" data-type="text"><%= member.firstName %></span></p>
