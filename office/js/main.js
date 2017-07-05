@@ -15,7 +15,7 @@ require
 				bootstrap : "https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min",
 				typeahead : "https://cdnjs.cloudflare.com/ajax/libs/corejs-typeahead/1.1.1/typeahead.jquery.min",
 				bloodhound : "https://cdnjs.cloudflare.com/ajax/libs/corejs-typeahead/1.1.1/bloodhound.min",
-				datatables : "https://cdn.datatables.net/v/ju/dt-1.10.15/cr-1.3.3/datatables.min",
+				"datatables.net" : "https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.15/js/jquery.dataTables.min",
 				"x-editable" : "https://cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.1/bootstrap3-editable/js/bootstrap-editable.min",
 				pace : "https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min",
 				"auth0-lock" : "https://cdn.auth0.com/js/lock-9.min",

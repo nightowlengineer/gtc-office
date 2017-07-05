@@ -1,5 +1,5 @@
 define([ 'marionette', 'text!templates/member/member_table.html',
-		'views/member/member_tableitem', 'datatables' ], function(Marionette,
+		'views/member/member_tableitem', 'datatables.net' ], function(Marionette,
 		memberTableTemplate, MemberTableItemView) {
 
 	return Marionette.CompositeView.extend({
