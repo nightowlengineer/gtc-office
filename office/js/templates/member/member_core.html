@@ -45,14 +45,19 @@
 									<h4>Check your status</h4>
 									<label>Marketing (Mailchimp):</label>
 									<% if (mailchimpStatus == "Subscribed") { %>
-									<span class="label label-success">Subscribed</span>
+										<span class="label label-success">Subscribed</span>
+									<% } else if (mailchimpStatus == "Unknown") { %>
+										<span class="label label-default">Unknown</span>
 									<% } else { %>
-									<span class="label label-danger"><%= mailchimpStatus %></span>
-									<button id="mailchimpSubscribe" class="btn btn-primary btn-xs">Click to re-subscribe</button>
-										<div id="mailchimpExtraInfo">It looks like you changed status on <%= mailchimpLastChanged %><% if (mailchimpUnsubscribeReason) { %> giving this reason:
-											<p><em><%= mailchimpUnsubscribeReason %></em></p><% } %>
-										</div>
+										<span class="label label-<% if (mailchimpStatus == "Not subscribed") { %>warning<% } else if (mailchimpStatus == "Unknown") { %>default<% } else { %>danger<% } %>">
+										<%= mailchimpStatus %></span>
+										<button id="mailchimpSubscribe" class="btn btn-primary btn-xs">Click to subscribe</button>
 									<% } %>
+										<% if (mailchimpStatus == "Unsubscribed" || mailchimpStatus == "Cleaned") { %>
+											<div id="mailchimpExtraInfo">It looks like you changed status on <%= mailchimpLastChanged %><% if (mailchimpUnsubscribeReason) { %> giving this reason:
+												<p><em><%= mailchimpUnsubscribeReason %></em></p><% } %>
+											</div>
+										<% } %>
 								</div>
 							<!-- Hidden for first release
 								<strong>Addresses</strong>:

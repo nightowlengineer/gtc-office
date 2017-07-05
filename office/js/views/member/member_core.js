@@ -16,8 +16,8 @@ define([ 'jquery', 'x-editable', 'marionette', 'text!templates/member/member_cor
 				statusTypes : this.statusTypes,
 				roles : roles,
 				mailchimpUnsubscribeReason : this.mailchimpStatus.unsubscribeReason,
-				mailchimpLastChanged : new Date(this.mailchimpStatus.lastChanged).toDateString(),
-				mailchimpStatus : s.capitalize(this.mailchimpStatus.status, true)
+				mailchimpLastChanged : this.mailchimpStatus.lastChanged ? new Date(this.mailchimpStatus.lastChanged).toDateString() : "",
+				mailchimpStatus : s.humanize(this.mailchimpStatus.status)
 			};
 		},
 		
