@@ -44,12 +44,18 @@
 								<div id="myMemberActions">
 									<h4>Check your status</h4>
 									<label>Marketing (Mailchimp):</label>
-									<% switch(mailchimpStatus) { case "Subscribed": case "Transactional": case "Pending": %>
+									<% switch(mailchimpStatus) { case "Subscribed": %>
 									<span class="label label-success">
-									<% break; case "Unsubscribed": case "Cleaned": %>
+									<% break; default: %>
 									<span class="label label-danger">
 									<% break; }%>
 									<%= mailchimpStatus %></span>
+									<% if (mailchimpStatus != "Subscribed") { %>
+										<button id="mailchimpSubscribe" class="btn btn-primary btn-xs">One-click re-subscribe</button>
+										<div id="mailchimpExtraInfo">It looks like you unsubscribed on <%= mailchimpLastChanged %><% if (mailchimpUnsubscribeReason) { %> giving this reason:
+											<p><em><%= mailchimpUnsubscribeReason %></em></p><% } %>
+										</div>
+									<% } %>
 								</div>
 							<!-- Hidden for first release
 								<strong>Addresses</strong>:

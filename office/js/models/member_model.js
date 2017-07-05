@@ -24,6 +24,10 @@ define([ 'models/base_model' ], function(BaseModel) {
 			return this.getJsonData("member/me/mailchimp/status");
 		},
 		
+		subscribeToMailchimp : function() {
+			return this.getJsonData("member/me/mailchimp/subscribe");
+		},
+		
 		getMyMember : function(callback) {
 			var oldUrl = this.url;
 			this.url = new BaseModel().urlRoot() + "member/me";

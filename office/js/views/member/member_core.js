@@ -15,12 +15,23 @@ define([ 'jquery', 'x-editable', 'marionette', 'text!templates/member/member_cor
 				locationTypes : this.locationTypes,
 				statusTypes : this.statusTypes,
 				roles : roles,
+				mailchimpUnsubscribeReason : this.mailchimpStatus.unsubscribeReason,
+				mailchimpLastChanged : new Date(this.mailchimpStatus.lastChanged).toDateString(),
 				mailchimpStatus : s.capitalize(this.mailchimpStatus.status, true)
 			};
 		},
 		
 		regions : {
 				memberMenu : "#memberMenu"
+		},
+		
+		events : {
+			"click #mailchimpSubscribe" : "subscribeToMailchimp"
+		},
+		
+		subscribeToMailchimp : function() {
+			this.mailchimpStatus = this.member.subscribeToMailchimp();
+			this.render();
 		},
 		
 		initialize : function(options) {
