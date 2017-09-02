@@ -95,18 +95,6 @@ define([ 'models/base_model' ], function(BaseModel) {
 			{
 				callback(data, false);
 			});
-		},
-		
-		syncAuth0Users : function(callback) {
-			// Use $ for get - investigate Backbone.sync/ajax in the future
-			$.ajax({
-			    url: new BaseModel().urlRoot() + "user/auth0/syncAuth0Users",
-			    type: 'GET'
-			})
-			.done(function(data)
-			{
-				callback(data);
-			});
 		}
 	});
 

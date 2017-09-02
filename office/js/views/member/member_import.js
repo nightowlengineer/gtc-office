@@ -29,9 +29,6 @@ define([ 'underscore', 'underscore.string', 'jquery', 'x-editable', 'marionette'
 			var overwriteInput = $("#overwrite").is(':checked');
 			var overwrite = overwriteInput && overwriteInput === true ? true : false;
 			
-			var syncWithAuth0 = $("#sync").is(':checked');
-			var sync = syncWithAuth0 && syncWithAuth0 === true ? true : false;
-			
 			var formData = new FormData();
 			formData.append("file", $("#membersCsv")[0].files[0]);
 			formData.append("overwrite", overwrite);
@@ -53,14 +50,6 @@ define([ 'underscore', 'underscore.string', 'jquery', 'x-editable', 'marionette'
 					results += '<pre>' + data.responseJSON.message + '</pre></p>';
 				}
 				$("#importResult").html(results);
-				
-				if (!failed && sync === true)
-				{
-					member.syncAuth0Users(function(data){
-						var syncResult = '<p class="alert">Total synced with Auth0: ' + data + '</p>';
-						$("#syncResult").html(syncResult);
-					});
-				}
 			});
 		}
 	});
